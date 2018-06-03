@@ -12,7 +12,6 @@ class DB{
     private $pwd="DbPass4v032";
     private $dbname="s18-bvz2-fst-30";
     private $dbobject = null;
-
     /**
      *  Wird verwendet um eine Verbindung zur Datenbank herstellen zu können.
      */
@@ -24,7 +23,6 @@ class DB{
             echo "Connected succesfully";
         }
     }
-
     /**
      * @return Alle Kundenbestellungen aus der Datenbank
      */
@@ -37,8 +35,4 @@ class DB{
         }
         return $Bestellungen;
     }
-
-
-
-
 }

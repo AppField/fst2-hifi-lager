@@ -5,7 +5,7 @@
  * Date: 02.06.2018
  * Time: 10:57
  */
-
+include 'Bestellung.php';
 class Lieferantenbestellung extends Bestellung {
     public $zahlungsmethodeID;
     public $bestellschein;

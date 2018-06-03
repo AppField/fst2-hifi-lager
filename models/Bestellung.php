@@ -8,7 +8,39 @@
 
 abstract class Bestellung{
     protected $bestellungsID;
+
+    /**
+     * @return BestellungsID einer Bestellung
+     */
+    public function getBestellungsID()
+    {
+        return $this->bestellungsID;
+    }
+
+    /**
+     * @param BestellungsID einer Bestellung (Int)
+     */
+    public function setBestellungsID($bestellungsID)
+    {
+        $this->bestellungsID = $bestellungsID;
+    }
     public $zugeordnet;
+
+    /**
+     * @return KundenID (Int)
+     */
+    public function getZugeordnet()
+    {
+        return $this->zugeordnet;
+    }
+
+    /**
+     * @param KundenID (Int)
+     */
+    public function setZugeordnet($zugeordnet)
+    {
+        $this->zugeordnet = $zugeordnet;
+    }
 
     /**
      * Bestellung constructor.

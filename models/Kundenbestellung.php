@@ -5,7 +5,7 @@
  * Date: 02.06.2018
  * Time: 11:17
  */
-
+include 'Bestellung.php';
 class Kundenbestellung extends Bestellung {
 
 

@@ -5,7 +5,7 @@
  * Date: 02.06.2018
  * Time: 10:41
  */
-
+include 'Lieferung.php';
 class Kundenlieferung extends Lieferung {
     public $uebernahmeschein=null;
     public $rechnung;

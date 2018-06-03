@@ -5,7 +5,7 @@
  * Date: 02.06.2018
  * Time: 10:52
  */
-
+include 'Lieferung.php';
 class Lieferantenlieferung extends Lieferung {
     //public $ablehnen;
     public $status;

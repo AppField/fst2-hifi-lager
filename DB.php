@@ -5,9 +5,7 @@
  * Date: 02.06.2018
  * Time: 09:35
  */
-include 'models/Bestellung.php';
-include 'models/Lieferantenbestellung.php';
-include 'models/Kundenbestellung.php';
+
 class DB{
     private $servername="wi-projectdb.technikum-wien.at";
     private $user="s18-bvz2-fst-32";
@@ -31,8 +29,8 @@ class DB{
      *  Wird verwendet um eine Verbindung zur Datenbank herstellen zu beenden.
      */
     function close(){
-       if($this->dbobject){
-        mysqli_close($this->dbobject);
+        if($this->dbobject){
+            mysqli_close($this->dbobject);
         }
     }
 
@@ -52,6 +50,21 @@ class DB{
     }
 
     /**
+     * @return Alle Kundenlieferungen aus der Datenbank
+     */
+    function getKundenlieferungen(){
+        $this->doConnect();
+        $Lieferungen = array();
+        $result = $this->dbobject->query("SELECT * FROM Kundenlieferung");
+        while ($row = $result->fetch_object()) {
+            $Lieferung = new Kundenlieferung($row->KundenlieferungsID, $row->KundenbestellungsID,$row->Versanddatum, $row->Lieferschein, $row->Rechnung);
+            array_push($Lieferungen, $Lieferung);
+        }
+        $this->close();
+        return $Lieferungen;
+    }
+
+    /**
      * @return Alle Lieferantenbestellungen aus der Datenbank
      */
     function getLieferantenbestellung(){
@@ -66,6 +79,37 @@ class DB{
         return $Bestellungen;
     }
 
+    /**
+     * @return Alle Kundenlieferungen aus der Datenbank
+     */
+    function getLieferantenlieferungen(){
+        $this->doConnect();
+        $Lieferungen = array();
+        $result = $this->dbobject->query("SELECT * FROM Lieferantenlieferungen");
+        while ($row = $result->fetch_object()) {
+            $Lieferung = new Lieferantenlieferung($row->LieferantenLieferungID, $row->LieferbestellungsID,$row->Eingangsdatum, $row->Lieferschein);
+            array_push($Lieferungen, $Lieferung);
+        }
+        $this->close();
+        return $Lieferungen;
+    }
+    /**
+     * @return Alle Artikel aus der Datenbank
+     */
+    function getArtikel(){
+        $this->doConnect();
+        $artikel = array();
+        $result = $this->dbobject->query("SELECT * FROM Artikel");
+        while ($row = $result->fetch_object()) {
+
+            $bestellung = new Artikel($row->ArtikelID, $row->Artikelname, $row->LagerstandAktuell,
+                $row->LagerstandVerfuegbar, $row->Einkaufspreis,
+                $row->Verkaufspreis, $row->Mindestbestand);
+            array_push($artikel, $bestellung);
+        }
+        $this->close();
+        return $artikel;
+    }
 
 
 

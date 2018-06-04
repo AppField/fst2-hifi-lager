@@ -43,3 +43,5 @@ INSERT INTO Lieferantenlieferungen (lieferantenlieferungID, Eingangsdatum, Liefe
 SELECT * FROM Lieferantenlieferungen;
 COMMIT;
 
+# Artikel
+SELECT * FROM Artikel;

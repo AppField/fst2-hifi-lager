@@ -10,9 +10,9 @@ include 'DB.php';
 
 $db = new DB();
 $db->doConnect();
+echo 'Kundenbestellungen </br>';
 $kundenbestellungen = $db->getKundenbestellungen();
-foreach ($kundenbestellungen as $kb){
-    echo $kb->getBestellungsID();
-    echo $kb->getZugeordnet();
-}
-
+var_dump($kundenbestellungen);
+echo 'Lieferantenbestelllungen </br>';
+$lieferantenbestellungen = $db->getLieferantenbestellung();
+var_dump($lieferantenbestellungen);

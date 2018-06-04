@@ -8,6 +8,38 @@
 
 abstract class Lieferung{
     protected $lieferungsID;
+
+    /**
+     * @return mixed
+     */
+    public function getLieferungsID()
+    {
+        return $this->lieferungsID;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBestellungsID()
+    {
+        return $this->bestellungsID;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDatum()
+    {
+        return $this->datum;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLieferschein()
+    {
+        return $this->lieferschein;
+    }
     public $bestellungsID;
     public $datum;
     public $lieferschein;

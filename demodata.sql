@@ -34,13 +34,13 @@ COMMIT;
 # Demo Lieferantenbestellung
 INSERT INTO Lieferantenbestellung (LieferantenbestellungsID, LieferantID, ZahlungsmethodeID) VALUES (1,1,1);
 INSERT INTO Lieferantenbestellung (LieferantenbestellungsID, LieferantID, ZahlungsmethodeID) VALUES (2,3,3);
-SELECT * FROM Lieferantenbestellung;
+SELECT * FROM Lieferantenbestellung WHERE LieferantenbestellungsID = 1;
 COMMIT;
 
 # Demo Lieferantenlieferung
 INSERT INTO Lieferantenlieferungen (lieferantenlieferungID, Eingangsdatum, LieferbestellungsID) VALUES (1, CURDATE(), 1);
 INSERT INTO Lieferantenlieferungen (lieferantenlieferungID, Eingangsdatum, LieferbestellungsID) VALUES (2, CURDATE()+1, 2);
-SELECT * FROM Lieferantenlieferungen;
+SELECT * FROM Lieferantenlieferungen WHERE LieferbestellungsID = 1;
 COMMIT;
 
 # Artikel

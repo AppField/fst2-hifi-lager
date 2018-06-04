@@ -1,3 +1,88 @@
+<?php
+$body = "";
+include "models/Bestellung.php";
+include "models/Lieferantenbestellung.php";
+include "models/Lieferung.php";
+include "models/Lieferantenlieferung.php";
+include "DB.php";
+
+if(isset($_GET["id"])){
+    $db = New DB();
+    $lieferantenbestellungen = $db->getLieferantenbestellungWithID($_GET["id"]);
+    $Lieferantenlieferungen = $db->getLieferantenlieferungenWithBestellungsID($_GET["id"]);
+$body = "<div class=\"row justify-content-center features\" style=\"padding-top:40px;padding-bottom:100px;\">
+                <div class=\"col-md-12\">
+                    <form method=\"post\">
+                        <div class=\"form-row\">
+                            <div class=\"col-md-12\">
+                                <h3>Allgemein<button class=\"btn btn-primary float-right m-auto\" type=\"button\" style=\"background-color:rgb(220,151,112);\" data-toggle=\"modal\" data-target=\"#exampleModalCenter\">Lieferung hinzufügen</button></h3>
+                            </div>
+                            <div class=\"col-md-6\">
+                                <div class=\"form-group\"><label><strong>Bestellung - ID</strong><br></label><input class=\"form-control\" type=\"text\" value=\"".$_GET["id"]."\" disabled=\"\" readonly=\"\" name=\"firstname\"></div><label><strong>Lieferant</strong></label><input class=\"form-control\"
+                                    type=\"text\" value=\"XYZ\" disabled=\"\" readonly=\"\" name=\"lastname\" style=\"margin-bottom:15px;\"><button class=\"btn btn-secondary m-auto\" type=\"button\" style=\"margin-bottom:0;background-color:rgb(220,151,112);\">Bestellschein anzeigen</button></div>
+                        </div>
+                        <hr>
+                    </form>
+                </div>
+                <div class=\"col\"> <h3>Bestellte Artikel</h3>
+              <div class=\"panel-body\">
+                                <table class=\"table table-striped table-bordered table-list\">
+                  <thead>
+                    <tr align = \"center\">
+                        <th class=\"hidden-xs\">Artikel - ID</th>
+                        <th>Bezeichnung</th>
+                        <th>Menge</th>
+                    </tr> 
+                  </thead>
+                  <tbody>
+                          <tr align = \"center\">
+                            <td class=\"hidden-xs\">1</td>
+                            <td>Artikel 1</td>
+                            <td>250</td>
+                          </tr>
+                          <tr align = \"center\">
+                            <td class=\"hidden-xs\">2</td>
+                            <td>Artikel 2</td>
+                            <td>250</td>
+                          </tr>
+                        </tbody>
+                </table>
+</div><hr> 
+<h3>Lieferungen</h3>
+              <div class=\"panel-body\">
+                <table class=\"table table-striped table-bordered table-list\">
+                  <thead>
+                    <tr align = \"center\">
+                        <th class=\"hidden-xs\">Lieferung - ID</th>
+                        <th>Lieferschein</th>
+                        <th>Datum</th>
+                    </tr> 
+                  </thead>
+                  ";
+foreach ($Lieferantenlieferungen as $lieferung){
+      $body .="<tbody>
+                          <tr align = \"center\">
+                            <td class=\"hidden-xs\">".$lieferung->getLieferungsID()."</td>
+                            <td align=\"center\">
+                              <a class=\"btn btn-default\">
+                                  <button>
+                                      <em class=\"fa fa-file-word-o\"></em>
+                                  </button>
+                              </a>
+                            </td>
+                            <td>".$lieferung->getDatum()."</td>
+                          </tr>
+                        </tbody>";
+}
+$body .=  "</table>
+            </div>
+             </div>
+            </div>
+        </div>";
+}else {
+    $body = "error";
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -47,83 +132,10 @@
             <div class="intro">
                 <h2 class="text-center" style="font-size:58px;padding-top:30px;">Bestelldetails</h2>
             </div>
-            <div class="row justify-content-center features" style="padding-top:40px;padding-bottom:100px;">
-                <div class="col-md-12">
-                    <form method="post">
-                        <div class="form-row">
-                            <div class="col-md-12">
-                                <h3>Allgemein<button class="btn btn-primary float-right m-auto" type="button" style="background-color:rgb(220,151,112);" data-toggle="modal" data-target="#exampleModalCenter">Lieferung hinzufügen</button></h3>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group"><label><strong>Bestellung - ID</strong><br></label><input class="form-control" type="text" value="123" disabled="" readonly="" name="firstname"></div><label><strong>Lieferant</strong></label><input class="form-control"
-                                    type="text" value="XYZ" disabled="" readonly="" name="lastname" style="margin-bottom:15px;"><button class="btn btn-secondary m-auto" type="button" style="margin-bottom:0;background-color:rgb(220,151,112);">Bestellschein anzeigen</button></div>
-                        </div>
-                        <hr>
-                    </form>
-                </div>
-                <div class="col"> <h3>Bestellte Artikel</h3>
-              <div class="panel-body">
-                                <table class="table table-striped table-bordered table-list">
-                  <thead>
-                    <tr align = "center">
-                        <th class="hidden-xs">Artikel - ID</th>
-                        <th>Bezeichnung</th>
-                        <th>Menge</th>
-                    </tr> 
-                  </thead>
-                  <tbody>
-                          <tr align = "center">
-                            <td class="hidden-xs">1</td>
-                            <td>Artikel 1</td>
-                            <td>250</td>
-                          </tr>
-                          <tr align = "center">
-                            <td class="hidden-xs">2</td>
-                            <td>Artikel 2</td>
-                            <td>250</td>
-                          </tr>
-                        </tbody>
-                </table>
-</div><hr> 
-<h3>Lieferungen</h3>
-              <div class="panel-body">
-                                <table class="table table-striped table-bordered table-list">
-                  <thead>
-                    <tr align = "center">
-                        <th class="hidden-xs">Lieferung - ID</th>
-                        <th>Lieferschein</th>
-                        <th>Datum</th>
-                    </tr> 
-                  </thead>
-                  <tbody>
-                          <tr align = "center">
-                            <td class="hidden-xs">1</td>
-                            <td align="center">
-                              <a class="btn btn-default">
-                                  <button>
-                                      <em class="fa fa-file-word-o"></em>
-                                  </button>
-                              </a>
-                            </td>
-                            <td>02/01/2018</td>
-                          </tr>
-                          <tr align = "center">
-                            <td class="hidden-xs">2</td>
-                            <td align="center">
-                              <a class="btn btn-default">
-                                  <button>
-                                      <em class="fa fa-file-word-o"></em>
-                                  </button>
-                              </a>
-                            </td>
-                            <td>03/01/2018</td>
-                          </tr>
-                        </tbody>
-                </table>
-</div>
-</div>
-            </div>
-        </div><!-- Modal -->
+            <?php
+            echo $body;
+            ?>
+            <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">

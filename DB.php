@@ -35,7 +35,8 @@ class DB{
     }
 
     /**
-     * @return Alle Kundenbestellungen aus der Datenbank
+     * Kundenbestellungen aus der Datenbank
+     * @return array of Kundenbestellungen()
      */
     function getKundenbestellungen(){
         $this->doConnect();
@@ -49,8 +50,10 @@ class DB{
         return $Bestellungen;
     }
 
+
     /**
-     * @return Alle Kundenlieferungen aus der Datenbank
+     * Kundenlieferungen aus der Datenbank
+     * @return array of Kundenlieferungen()
      */
     function getKundenlieferungen(){
         $this->doConnect();
@@ -65,7 +68,7 @@ class DB{
     }
 
     /**
-     * @return Alle Lieferantenbestellungen aus der Datenbank
+     * @return array of Lieferantenbestellungen()
      */
     function getLieferantenbestellung(){
         $this->doConnect();
@@ -80,12 +83,44 @@ class DB{
     }
 
     /**
-     * @return Alle Kundenlieferungen aus der Datenbank
+     * @param $id of Lieferantenbestellung
+     * @return Lieferantenbestellung|null
+     */
+    function getLieferantenbestellungWithID($id){
+        $this->doConnect();
+        $bestellung = null;
+        $result = $this->dbobject->query("SELECT * FROM Lieferantenbestellung WHERE LieferantenbestellungsID = ".$id);
+        while ($row = $result->fetch_object()) {
+            $bestellung = new Lieferantenbestellung( $row->LieferantenbestellungsID, $row->LieferantID);
+        }
+        $this->close();
+        return $bestellung;
+    }
+
+    /**
+     * liefert alle lieferantenlieferungen aus der Datenbank
+     * @return array of lieferantenlieferungen
      */
     function getLieferantenlieferungen(){
         $this->doConnect();
         $Lieferungen = array();
         $result = $this->dbobject->query("SELECT * FROM Lieferantenlieferungen");
+        while ($row = $result->fetch_object()) {
+            $Lieferung = new Lieferantenlieferung($row->LieferantenLieferungID, $row->LieferbestellungsID,$row->Eingangsdatum, $row->Lieferschein);
+            array_push($Lieferungen, $Lieferung);
+        }
+        $this->close();
+        return $Lieferungen;
+    }
+
+    /**
+     * @param $id
+     * @return array
+     */
+    function getLieferantenlieferungenWithBestellungsID($id){
+        $this->doConnect();
+        $Lieferungen = array();
+        $result = $this->dbobject->query("SELECT * FROM Lieferantenlieferungen WHERE LieferbestellungsID = ".$id);
         while ($row = $result->fetch_object()) {
             $Lieferung = new Lieferantenlieferung($row->LieferantenLieferungID, $row->LieferbestellungsID,$row->Eingangsdatum, $row->Lieferschein);
             array_push($Lieferungen, $Lieferung);

@@ -2,4 +2,8 @@
 Implemntierung der Fallstudie 2
 
 TODO:
-alles
+- status feld bei bestellungen?
+- lagerort bei artikel?
+- .class.php refactoring
+- artikel.php änderungs funktion
+

@@ -10,7 +10,7 @@ foreach ($lieferantenbestellungen as $bestellung) {
                             <td class=\"hidden-xs\">".$bestellung->getBestellungsID()."</td>
                             <td>Offen</td>
                             <td align=\"center\">
-                                <a class=\"\" href=\"bestelldetails.php\">
+                                <a class=\"\" href=\"bestelldetails.php?id=".$bestellung->getBestellungsID()."\">
                                     <button class=\"btn fa fa-edit\" ></button>
                                 </a>
                             </td>

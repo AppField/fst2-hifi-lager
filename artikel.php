@@ -1,3 +1,22 @@
+<?php
+include "models/Artikel.php";
+include "DB.php";
+$db = New DB();
+$artikelarray = $db->getArtikel();
+$artikelTable = "";
+foreach ($artikelarray as $artikel) {
+    $artikelTable .= "<tr align = \"center\">
+                            <td class=\"hidden-xs\">".$artikel->getArtikelID()."</td>
+                            <td>".$artikel->getArtikelname()."</td>
+                            <td><input type =\"text\" value=\"".$artikel->getLagerbestandAktuel()."\"></td>
+                            <td><input type =\"text\" value=\"".$artikel->getLagerbestandVerfuegbar()."\"></td>
+                            <td>Regal 1</td>
+                            <td align=\"center\">
+                              <a class=\"btn btn-default\"><em class=\"fa fa-pencil\"></em></a>
+                            </td>
+                          </tr>";
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -37,9 +56,9 @@
                     <div class="collapse navbar-collapse flex-row-reverse" id="navcol-1" style="padding-right:0px;">
                         <ul class="nav navbar-nav" style="margin-right:0;padding-right:0px;padding-left:30px;">
                             <li class="nav-item" role="presentation"><a class="nav-link" href="index.html">Home</a></li>
-                            <li class="nav-item" role="presentation"><a class="nav-link active" href="artikel.html">Artikel</a></li>
-                            <li class="nav-item" role="presentation"><a class="nav-link" href="artikeleingang.html">Artikeleingang</a></li>
-                            <li class="nav-item" role="presentation"><a class="nav-link" href="artikelausgang.html">Artikelausgang</a></li>
+                            <li class="nav-item" role="presentation"><a class="nav-link active" href="artikel.php">Artikel</a></li>
+                            <li class="nav-item" role="presentation"><a class="nav-link" href="artikeleingang.php">Artikeleingang</a></li>
+                            <li class="nav-item" role="presentation"><a class="nav-link" href="artikelausgang.php">Artikelausgang</a></li>
                         </ul>
                     </div>
                 </div>
@@ -80,26 +99,9 @@
                     </tr> 
                   </thead>
                   <tbody>
-                          <tr align = "center">
-                            <td class="hidden-xs">1</td>
-                            <td>Artikel 1</td>
-                            <td><input type ="text" value="250"></td>
-                            <td><input type ="text" value="200"></td>
-                            <td>Regal 1</td>
-                            <td align="center">
-                              <a class="btn btn-default"><em class="fa fa-pencil"></em></a>
-                            </td>
-                          </tr>
-                          <tr align = "center">
-                            <td class="hidden-xs">2</td>
-                            <td>Artikel 2</td>
-                            <td><input type ="text" value="250"></td>
-                            <td><input type ="text" value="200"></td>
-                            <td>Regal 2</td>
-                            <td align="center">
-                              <a class="btn btn-default"><em class="fa fa-pencil"></em></a>
-                            </td>
-                          </tr>
+                          <?php
+                          echo $artikelTable;
+                          ?>
                         </tbody>
                 </table>
             

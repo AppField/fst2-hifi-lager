@@ -72,7 +72,7 @@ class DB{
         $Bestellungen = array();
         $result = $this->dbobject->query("SELECT * FROM Lieferantenbestellung");
         while ($row = $result->fetch_object()) {
-            $bestellung = new Lieferantenbestellung($row->LieferantID, $row->LieferantenbestellungsID);
+            $bestellung = new Lieferantenbestellung( $row->LieferantenbestellungsID, $row->LieferantID);
             array_push($Bestellungen, $bestellung);
         }
         $this->close();

@@ -1,3 +1,22 @@
+<?php
+include "models/Bestellung.php";
+include "models/Lieferantenbestellung.php";
+include "DB.php";
+$db = New DB();
+$lieferantenbestellungen = $db->getLieferantenbestellung();
+$bestellungstable = "";
+foreach ($lieferantenbestellungen as $bestellung) {
+    $bestellungstable .= "<tr align = \"center\">
+                            <td class=\"hidden-xs\">".$bestellung->getBestellungsID()."</td>
+                            <td>Offen</td>
+                            <td align=\"center\">
+                                <a class=\"\" href=\"bestelldetails.php\">
+                                    <button class=\"btn fa fa-edit\" ></button>
+                                </a>
+                            </td>
+                          </tr>";
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -37,9 +56,9 @@
                     <div class="collapse navbar-collapse flex-row-reverse" id="navcol-1" style="padding-right:0px;">
                         <ul class="nav navbar-nav" style="margin-right:0;padding-right:0px;padding-left:30px;">
                             <li class="nav-item" role="presentation"><a class="nav-link" href="index.html">Home</a></li>
-                            <li class="nav-item" role="presentation"><a class="nav-link" href="artikel.html">Artikel</a></li>
-                            <li class="nav-item" role="presentation"><a class="nav-link active" href="artikeleingang.html">Artikeleingang</a></li>
-                            <li class="nav-item" role="presentation"><a class="nav-link" href="artikelausgang.html">Artikelausgang</a></li>
+                            <li class="nav-item" role="presentation"><a class="nav-link" href="artikel.php">Artikel</a></li>
+                            <li class="nav-item" role="presentation"><a class="nav-link active" href="artikeleingang.php">Artikeleingang</a></li>
+                            <li class="nav-item" role="presentation"><a class="nav-link" href="artikelausgang.php">Artikelausgang</a></li>
                         </ul>
                     </div>
                 </div>
@@ -77,24 +96,9 @@
                     </tr> 
                   </thead>
                   <tbody>
-                          <tr align = "center">
-                            <td class="hidden-xs">1</td>
-                            <td>Offen</td>
-                            <td align="center">
-                                <a class="" href="bestelldetails.html">
-                                    <button class="btn fa fa-edit" ></button>
-                                </a>
-                            </td>
-                          </tr>
-                          <tr align = "center">
-                            <td class="hidden-xs">2</td>
-                            <td>Offen</td>
-                            <td align="center">
-                                <a class="" href="bestelldetails.html">
-                                    <button class="btn fa fa-edit" ></button>
-                                </a>
-                            </td>
-                          </tr>
+                          <?php
+                          echo $bestellungstable;
+                          ?>
                         </tbody>
                 </table>
             

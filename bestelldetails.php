@@ -37,9 +37,9 @@
                     <div class="collapse navbar-collapse flex-row-reverse" id="navcol-1" style="padding-right:0px;">
                         <ul class="nav navbar-nav" style="margin-right:0;padding-right:0px;padding-left:30px;">
                             <li class="nav-item" role="presentation"><a class="nav-link" href="index.html">Home</a></li>
-                            <li class="nav-item" role="presentation"><a class="nav-link" href="artikel.html">Artikel</a></li>
-                            <li class="nav-item" role="presentation"><a class="nav-link active" href="artikeleingang.html">Artikeleingang</a></li>
-                            <li class="nav-item" role="presentation"><a class="nav-link" href="artikelausgang.html">Artikelausgang</a></li>
+                            <li class="nav-item" role="presentation"><a class="nav-link" href="artikel.php">Artikel</a></li>
+                            <li class="nav-item" role="presentation"><a class="nav-link active" href="artikeleingang.php">Artikeleingang</a></li>
+                            <li class="nav-item" role="presentation"><a class="nav-link" href="artikelausgang.php">Artikelausgang</a></li>
                         </ul>
                     </div>
                 </div>

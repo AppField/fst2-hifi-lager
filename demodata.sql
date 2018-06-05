@@ -47,4 +47,5 @@ COMMIT;
 INSERT INTO Lieferantenartikel (Anzahl, ArtikelID, LieferantenbestellungsID, LieferantenLieferungID) VALUES (15, 1,1,1);
 SELECT Anzahl FROM Lieferantenartikel WHERE LieferantenbestellungsID = 1 AND ArtikelID = 1;
 SELECT * FROM Lieferantenartikel;
+INSERT INTO Lieferantenartikel (Anzahl, ArtikelID, LieferantenbestellungsID, LieferantenLieferungID) VALUES (15, 3,2,2);
 COMMIT;

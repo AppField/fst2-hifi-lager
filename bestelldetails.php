@@ -41,7 +41,7 @@ if (isset($_GET["id"])) {
         $body .= "<tr align = \"center\">
                             <td class=\"hidden-xs\">1</td>
                             <td>".$artikel->getArtikelname()."</td>
-                            <td></td>
+                            <td>".$db->getLieferantenbestellungsArtikelAnzahl($_GET["id"], $artikel->getArtikelID())."</td>
                           </tr>";
     }
 

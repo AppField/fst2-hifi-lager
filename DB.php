@@ -164,4 +164,15 @@ class DB{
         return $artikel;
     }
 
+    function getLieferantenbestellungsArtikelAnzahl($lid, $aid){
+        $this->doConnect();
+        $result = $this->dbobject->query("SELECT Anzahl FROM Lieferantenartikel WHERE LieferantenbestellungsID = ".$lid." AND ArtikelID = ".$aid);
+        $artikelanzahl = -1;
+        while ($row = $result->fetch_object()) {
+            $artikelanzahl =$row->Anzahl;
+        }
+        $this->close();
+        return $artikelanzahl;
+    }
+
 }

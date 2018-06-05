@@ -1,6 +1,7 @@
 <?php
 $body = "";
 include "models/Bestellung.php";
+include "models/Artikel.php";
 include "models/Lieferantenbestellung.php";
 include "models/Lieferung.php";
 include "models/Lieferantenlieferung.php";

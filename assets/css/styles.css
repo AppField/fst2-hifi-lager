@@ -1,0 +1,38 @@
+/*html, body {*/
+    /*height: 100vh;*/
+    /*background-color: #eef4f7;*/
+    /*!*margin-bottom: 100px;*!*/
+/*}*/
+
+/*.footer-dark {*/
+    /*position: absolute;*/
+    /*bottom: 0;*/
+    /*left: 0;*/
+    /*right: 0;*/
+    /*padding: 0;*/
+    /*height: 100px;*/
+    /*display: flex;*/
+/*}*/
+
+/*footer {*/
+    /*width: 100%;*/
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*justify-content: center;*/
+/*}*/
+
+/*.footer-dark .copyright {*/
+    /*padding: 0;*/
+/*}*/
+
+.features .item .box {
+    transition: background-color .3s ease-out,
+    color .3s ease-out,
+    transform .3s ease-out;
+}
+
+.features .item .box:hover {
+    /*background-color: #eef4f7;*/
+    color: rgb(220, 151, 112);
+    transform: scale(1.05);
+}

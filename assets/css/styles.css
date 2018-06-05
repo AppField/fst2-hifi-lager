@@ -61,3 +61,7 @@ header, main, .footer-dark {
     text-decoration: none;
     transform: scale(1.05);
 }
+
+.name:hover{
+    text-decoration: none;
+}

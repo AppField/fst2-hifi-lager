@@ -16,7 +16,7 @@ foreach ($artikelarray as $artikel) {
                               data-toggle=\"modal\" 
                               data-target=\"#articleModal\" 
                               data-article-id=" . $artikel->getArtikelID() . "
-                              data-article-name=" . $artikel->getArtikelname() . "><em class=\"fa fa-pencil\"></em></a>
+                              data-article-name='" . $artikel->getArtikelname() . "'><em class=\"fa fa-pencil\"></em></a>
                             </td>
                           </tr>";
 }

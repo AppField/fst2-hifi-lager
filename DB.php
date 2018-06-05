@@ -153,7 +153,8 @@ class DB{
     function getLieferantenbestellungsArtikel($id){
         $this->doConnect();
         $artikel = array();
-        $result = $this->dbobject->query("SELECT * FROM Lieferantenartikel WHERE LieferantenbestellungsID = ".$id);
+        $result = $this->dbobject->query("SELECT ArtikelID, Artikelname, Einkaufspreis, Verkaufspreis, Mindestbestand, LagerstandAktuell, LagerstandVerfuegbar 
+                                          FROM Lieferantenartikel JOIN Artikel USING(ArtikelID) WHERE LieferantenbestellungsID = ".$id);
         while ($row = $result->fetch_object()) {
             $bestellung = new Artikel($row->ArtikelID, $row->Artikelname, $row->LagerstandAktuell,
                 $row->LagerstandVerfuegbar, $row->Einkaufspreis,

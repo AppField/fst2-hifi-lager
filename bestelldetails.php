@@ -6,11 +6,11 @@ include "models/Lieferung.php";
 include "models/Lieferantenlieferung.php";
 include "DB.php";
 
-if(isset($_GET["id"])){
+if (isset($_GET["id"])) {
     $db = New DB();
     $lieferantenbestellungen = $db->getLieferantenbestellungWithID($_GET["id"]);
     $Lieferantenlieferungen = $db->getLieferantenlieferungenWithBestellungsID($_GET["id"]);
-$body = "<div class=\"row justify-content-center features\" style=\"padding-top:40px;padding-bottom:100px;\">
+    $body = "<div class=\"row justify-content-center features\" style=\"padding-top:40px;padding-bottom:100px;\">
                 <div class=\"col-md-12\">
                     <form method=\"post\">
                         <div class=\"form-row\">
@@ -18,7 +18,7 @@ $body = "<div class=\"row justify-content-center features\" style=\"padding-top:
                                 <h3>Allgemein<button class=\"btn btn-primary float-right m-auto\" type=\"button\" style=\"background-color:rgb(220,151,112);\" data-toggle=\"modal\" data-target=\"#exampleModalCenter\">Lieferung hinzufügen</button></h3>
                             </div>
                             <div class=\"col-md-6\">
-                                <div class=\"form-group\"><label><strong>Bestellung - ID</strong><br></label><input class=\"form-control\" type=\"text\" value=\"".$_GET["id"]."\" disabled=\"\" readonly=\"\" name=\"firstname\"></div><label><strong>Lieferant</strong></label><input class=\"form-control\"
+                                <div class=\"form-group\"><label><strong>Bestellung - ID</strong><br></label><input class=\"form-control\" type=\"text\" value=\"" . $_GET["id"] . "\" disabled=\"\" readonly=\"\" name=\"firstname\"></div><label><strong>Lieferant</strong></label><input class=\"form-control\"
                                     type=\"text\" value=\"XYZ\" disabled=\"\" readonly=\"\" name=\"lastname\" style=\"margin-bottom:15px;\"><button class=\"btn btn-secondary m-auto\" type=\"button\" style=\"margin-bottom:0;background-color:rgb(220,151,112);\">Bestellschein anzeigen</button></div>
                         </div>
                         <hr>
@@ -59,10 +59,10 @@ $body = "<div class=\"row justify-content-center features\" style=\"padding-top:
                     </tr> 
                   </thead>
                   ";
-foreach ($Lieferantenlieferungen as $lieferung){
-      $body .="<tbody>
+    foreach ($Lieferantenlieferungen as $lieferung) {
+        $body .= "<tbody>
                           <tr align = \"center\">
-                            <td class=\"hidden-xs\">".$lieferung->getLieferungsID()."</td>
+                            <td class=\"hidden-xs\">" . $lieferung->getLieferungsID() . "</td>
                             <td align=\"center\">
                               <a class=\"btn btn-default\">
                                   <button>
@@ -70,16 +70,16 @@ foreach ($Lieferantenlieferungen as $lieferung){
                                   </button>
                               </a>
                             </td>
-                            <td>".$lieferung->getDatum()."</td>
+                            <td>" . $lieferung->getDatum() . "</td>
                           </tr>
                         </tbody>";
-}
-$body .=  "</table>
+    }
+    $body .= "</table>
             </div>
              </div>
             </div>
         </div>";
-}else {
+} else {
     $body = "error";
 }
 ?>
@@ -114,17 +114,25 @@ $body .=  "</table>
 </head>
 
 <body style="background-color:#eef4f7;">
+<main>
     <div class="features-boxed">
         <div class="container">
             <nav class="navbar navbar-light navbar-expand-md" style="margin-right:0px;">
-                <div class="container-fluid"><a class="navbar-brand" href="index.html" style="background-image:url(&quot;assets/img/icon_2.png&quot;);width:200px;background-repeat:no-repeat;background-size:cover;height:83px;margin-right:20px;"></a><button class="navbar-toggler" data-toggle="collapse"
-                        data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div class="container-fluid"><a class="navbar-brand" href="index.html"
+                                                style="background-image:url(&quot;assets/img/icon_2.png&quot;);width:200px;background-repeat:no-repeat;background-size:cover;height:83px;margin-right:20px;"></a>
+                    <button class="navbar-toggler" data-toggle="collapse"
+                            data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
+                                class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse flex-row-reverse" id="navcol-1" style="padding-right:0px;">
                         <ul class="nav navbar-nav" style="margin-right:0;padding-right:0px;padding-left:30px;">
                             <li class="nav-item" role="presentation"><a class="nav-link" href="index.html">Home</a></li>
-                            <li class="nav-item" role="presentation"><a class="nav-link" href="artikel.php">Artikel</a></li>
-                            <li class="nav-item" role="presentation"><a class="nav-link active" href="artikeleingang.php">Artikeleingang</a></li>
-                            <li class="nav-item" role="presentation"><a class="nav-link" href="artikelausgang.php">Artikelausgang</a></li>
+                            <li class="nav-item" role="presentation"><a class="nav-link" href="artikel.php">Artikel</a>
+                            </li>
+                            <li class="nav-item" role="presentation"><a class="nav-link active"
+                                                                        href="artikeleingang.php">Artikeleingang</a>
+                            </li>
+                            <li class="nav-item" role="presentation"><a class="nav-link" href="artikelausgang.php">Artikelausgang</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -136,58 +144,62 @@ $body .=  "</table>
             echo $body;
             ?>
             <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Lieferung hinzufügen</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-         <form>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Eingehende Artikel:</label>
-            <div class="form-row">
-            <div class="col">
-              <input type="text" class="form-control" placeholder="Artikel Bezeichnung">
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Lieferung hinzufügen</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">Eingehende Artikel:</label>
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <input type="text" class="form-control" placeholder="Artikel Bezeichnung">
+                                        </div>
+                                        <div class="col">
+                                            <input type="text" class="form-control" placeholder="Menge">
+                                        </div>
+                                        <div class="col">
+                                            <button class
+                                            "btn btn-secondary">Reihe hinzufügen</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="message-text" class="col-form-label">Datum:</label>
+                                    <input type="date" class="form-control" id="datum">
+                                </div>
+                                <div class="form-group">
+                                    <label for="message-text" class="col-form-label">Lieferschein:</label>
+                                    <input type="file" class="form-control" id="lieferschein">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-success">Hinzufügen</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col">
-              <input type="text" class="form-control" placeholder="Menge">
-            </div>
-            <div class="col">
-                <button class"btn btn-secondary">Reihe hinzufügen</button>
-            </div>
-          </div>
-          </div>
-          <div class="form-group">
-            <label for="message-text" class="col-form-label">Datum:</label>
-            <input type ="date" class="form-control" id="datum">
-          </div>
-          <div class="form-group">
-            <label for="message-text" class="col-form-label">Lieferschein:</label>
-            <input type ="file" class="form-control" id="lieferschein">
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-success">Hinzufügen</button>
-      </div>
-    </div>
-  </div>
-</div></div>
-    <div class="footer-dark">
-        <footer class="m-auto" style="width:1000px;">
-            <div class="container">
-                <p class="copyright">HiFiSound© 2018</p>
-            </div>
-        </footer>
-    </div>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/Profile-Edit-Form.js"></script>
+        </div>
+</main>
+<div class="footer-dark">
+    <footer class="m-auto" style="width:1000px;">
+        <div class="container">
+            <p class="copyright">HiFiSound© 2018</p>
+        </div>
+    </footer>
+</div>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/js/Profile-Edit-Form.js"></script>
 </body>
 
 </html>

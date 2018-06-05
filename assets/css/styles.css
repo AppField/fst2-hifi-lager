@@ -57,15 +57,13 @@ header, main, .footer-dark {
 
 .features .item .box:hover {
     /*background-color: #eef4f7;*/
-    color: rgb(220, 151, 112);
+    color: rgb(220, 124, 68);
+    background-color: floralwhite;
     text-decoration: none;
     transform: scale(1.05);
-}
-
-.features .item .box.name:hover{
-    text-decoration: none;
 }
 
 .linkindex:hover{
     text-decoration: none;
 }
+

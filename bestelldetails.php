@@ -172,10 +172,6 @@ if (isset($_GET["id"])) {
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="message-text" class="col-form-label">Datum:</label>
-                                    <input type="date" class="form-control" id="datum">
-                                </div>
-                                <div class="form-group">
                                     <label for="message-text" class="col-form-label">Lieferschein:</label>
                                     <input type="file" class="form-control" id="lieferschein">
                                 </div>

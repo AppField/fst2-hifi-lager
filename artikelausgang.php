@@ -88,7 +88,7 @@
                                                 <th>Adresse</th>
                                                 <th>Lieferschein</th>
                                                 <th>Rechnung</th>
-                                                <th>Übernahmenschein</th>
+                                                <th>Übernahmeschein</th>
                                                 <th>Abgeschlossen</th>
                                             </tr>
                                             </thead>

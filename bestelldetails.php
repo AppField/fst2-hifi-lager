@@ -10,6 +10,7 @@ if (isset($_GET["id"])) {
     $db = New DB();
     $lieferantenbestellungen = $db->getLieferantenbestellungWithID($_GET["id"]);
     $Lieferantenlieferungen = $db->getLieferantenlieferungenWithBestellungsID($_GET["id"]);
+    $Lieferantenartiekl = $db->getLieferantenbestellungsArtikel($_GET["id"]);
     $body = "<div class=\"row justify-content-center features\" style=\"padding-top:40px;padding-bottom:100px;\">
                 <div class=\"col-md-12\">
                     <form method=\"post\">
@@ -34,18 +35,17 @@ if (isset($_GET["id"])) {
                         <th>Menge</th>
                     </tr> 
                   </thead>
-                  <tbody>
-                          <tr align = \"center\">
+                  <tbody>";
+
+    foreach ($Lieferantenartiekl as $artikel){
+        $body .= "<tr align = \"center\">
                             <td class=\"hidden-xs\">1</td>
-                            <td>Artikel 1</td>
-                            <td>250</td>
-                          </tr>
-                          <tr align = \"center\">
-                            <td class=\"hidden-xs\">2</td>
-                            <td>Artikel 2</td>
-                            <td>250</td>
-                          </tr>
-                        </tbody>
+                            <td>".$artikel->getArtikelname()."</td>
+                            <td></td>
+                          </tr>";
+    }
+
+   $body .= "</tbody>
                 </table>
 </div><hr> 
 <h3>Lieferungen</h3>

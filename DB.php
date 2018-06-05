@@ -146,6 +146,22 @@ class DB{
         return $artikel;
     }
 
-
+    /**
+     * @param $id
+     * @return array
+     */
+    function getLieferantenbestellungsArtikel($id){
+        $this->doConnect();
+        $artikel = array();
+        $result = $this->dbobject->query("SELECT * FROM Lieferantenartikel WHERE LieferantenbestellungsID = ".$id);
+        while ($row = $result->fetch_object()) {
+            $bestellung = new Artikel($row->ArtikelID, $row->Artikelname, $row->LagerstandAktuell,
+                $row->LagerstandVerfuegbar, $row->Einkaufspreis,
+                $row->Verkaufspreis, $row->Mindestbestand);
+            array_push($artikel, $bestellung);
+        }
+        $this->close();
+        return $artikel;
+    }
 
 }

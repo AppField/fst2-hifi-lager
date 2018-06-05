@@ -35,7 +35,7 @@ foreach ($artikelarray as $artikel) {
     <link rel="stylesheet" href="assets/css/Dark-Footer-2.css">
     <link rel="stylesheet" href="assets/css/Dark-Footer-3.css">
     <link rel="stylesheet" href="assets/css/Dark-Footer-4.css">
-    <link rel="stylesheet" href="assets/css/Dark-22Footer.css">
+    <link rel="stylesheet" href="assets/css/Dark-Footer.css">
     <link rel="stylesheet" href="assets/css/Features-Boxed.css">
     <link rel="stylesheet" href="assets/css/Header-Dark.css">
     <link rel="stylesheet" href="assets/css/MUSA_panel-table.css">

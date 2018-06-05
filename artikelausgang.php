@@ -8,20 +8,17 @@
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,700">
-    <link rel="stylesheet" href="assets/css/Contact-Form-Clean.css">
     <link rel="stylesheet" href="assets/css/Dark-Footer-1.css">
     <link rel="stylesheet" href="assets/css/Dark-Footer-2.css">
     <link rel="stylesheet" href="assets/css/Dark-Footer-3.css">
     <link rel="stylesheet" href="assets/css/Dark-Footer-4.css">
     <link rel="stylesheet" href="assets/css/Dark-Footer.css">
-    <link rel="stylesheet" href="assets/css/Data-Summary-Panel---3-Column-Overview--Mobile-Responsive.css">
     <link rel="stylesheet" href="assets/css/Features-Boxed.css">
     <link rel="stylesheet" href="assets/css/Footer-Dark.css">
     <link rel="stylesheet" href="assets/css/Formulario-Farmacia.css">
     <link rel="stylesheet" href="assets/css/FPE-Gentella-form-elements-1.css">
     <link rel="stylesheet" href="assets/css/FPE-Gentella-form-elements.css">
     <link rel="stylesheet" href="assets/css/Header-Dark.css">
-    <link rel="stylesheet" href="assets/css/MUSA_panel-table-1.css">
     <link rel="stylesheet" href="assets/css/MUSA_panel-table.css">
     <link rel="stylesheet" href="assets/css/Profile-Edit-Form-1.css">
     <link rel="stylesheet" href="assets/css/Profile-Edit-Form.css">

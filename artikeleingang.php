@@ -33,14 +33,8 @@ foreach ($lieferantenbestellungen as $bestellung) {
     <link rel="stylesheet" href="assets/css/Dark-Footer-4.css">
     <link rel="stylesheet" href="assets/css/Dark-Footer.css">
     <link rel="stylesheet" href="assets/css/Features-Boxed.css">
-    <link rel="stylesheet" href="assets/css/Footer-Dark.css">
-    <link rel="stylesheet" href="assets/css/Formulario-Farmacia.css">
-    <link rel="stylesheet" href="assets/css/FPE-Gentella-form-elements-1.css">
-    <link rel="stylesheet" href="assets/css/FPE-Gentella-form-elements.css">
     <link rel="stylesheet" href="assets/css/Header-Dark.css">
     <link rel="stylesheet" href="assets/css/MUSA_panel-table.css">
-    <link rel="stylesheet" href="assets/css/Profile-Edit-Form-1.css">
-    <link rel="stylesheet" href="assets/css/Profile-Edit-Form.css">
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 

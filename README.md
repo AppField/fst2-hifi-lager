@@ -13,3 +13,7 @@ Implemntierung der Fallstudie 2
 - artikel.php änderungs funktion
 
 
+#### Fragen: ???
+ - istAbgezogen bei Auftragsposition??
+ 
+

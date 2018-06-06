@@ -42,7 +42,7 @@ class Artikel{
     public $einkaufspreis=null;
     public $verkaufspreis=null;
     public $mindestbestand=null;
-    //public $aufschlag = null;
+    public $aufschlag = null;
     /**
      * Artikel constructor.
      * @param $artikelID

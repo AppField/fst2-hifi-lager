@@ -52,10 +52,18 @@ header, main, .footer-dark {
     transition: background-color .3s ease-out,
     color .3s ease-out,
     transform .3s ease-out;
+    color: rgb(220, 151, 112);
 }
 
 .features .item .box:hover {
     /*background-color: #eef4f7;*/
-    color: rgb(220, 151, 112);
+    color: rgb(220, 124, 68);
+    background-color: floralwhite;
+    text-decoration: none;
     transform: scale(1.05);
 }
+
+.linkindex:hover{
+    text-decoration: none;
+}
+

@@ -43,100 +43,103 @@ foreach ($artikelarray as $artikel) {
 </head>
 
 <body>
-<div class="features-boxed">
-    <div class="container">
-        <nav class="navbar navbar-light navbar-expand-md" style="margin-right:0px;">
-            <div class="container-fluid"><a class="navbar-brand" href="index.html"
-                                            style="background-image:url(&quot;assets/img/icon_2.png&quot;);width:200px;background-repeat:no-repeat;background-size:cover;height:83px;margin-right:20px;"></a>
-                <button class="navbar-toggler" data-toggle="collapse"
-                        data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
-                            class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse flex-row-reverse" id="navcol-1" style="padding-right:0px;">
-                    <ul class="nav navbar-nav" style="margin-right:0;padding-right:0px;padding-left:30px;">
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="index.html">Home</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link active"
-                                                                    href="artikel.php">Artikel</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="artikeleingang.php">Artikeleingang</a>
-                        </li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="artikelausgang.php">Artikelausgang</a>
-                        </li>
-                    </ul>
+<main>
+    <div class="features-boxed">
+        <div class="container">
+            <nav class="navbar navbar-light navbar-expand-md" style="margin-right:0px;">
+                <div class="container-fluid"><a class="navbar-brand" href="index.html"
+                                                style="background-image:url(&quot;assets/img/icon_2.png&quot;);width:200px;background-repeat:no-repeat;background-size:cover;height:83px;margin-right:20px;"></a>
+                    <button class="navbar-toggler" data-toggle="collapse"
+                            data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
+                                class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse flex-row-reverse" id="navcol-1" style="padding-right:0px;">
+                        <ul class="nav navbar-nav" style="margin-right:0;padding-right:0px;padding-left:30px;">
+                            <li class="nav-item" role="presentation"><a class="nav-link" href="index.html">Home</a></li>
+                            <li class="nav-item" role="presentation"><a class="nav-link active"
+                                                                        href="artikel.php">Artikel</a></li>
+                            <li class="nav-item" role="presentation"><a class="nav-link" href="artikeleingang.php">Artikeleingang</a>
+                            </li>
+                            <li class="nav-item" role="presentation"><a class="nav-link" href="artikelausgang.php">Artikelausgang</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
+            </nav>
+            <div class="intro">
+                <h2 class="text-center" style="font-size:58px;padding-top:30px;">Artikel</h2>
             </div>
-        </nav>
-        <div class="intro">
-            <h2 class="text-center" style="font-size:58px;padding-top:30px;">Artikel</h2>
-        </div>
-        <div class="row justify-content-center features" style="padding-top:40px;padding-bottom:100px;">
-            <div class="col">
-                <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css"
-                      rel='stylesheet' type='text/css'>
+            <div class="row justify-content-center features" style="padding-top:40px;padding-bottom:100px;">
+                <div class="col">
+                    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css"
+                          rel='stylesheet' type='text/css'>
 
-                <div class="container">
-                    <div class="row">
+                    <div class="container">
+                        <div class="row">
 
-                        <p></p>
+                            <p></p>
 
-                        <div class="col-md-12">
+                            <div class="col-md-12">
 
-                            <div class="panel panel-default panel-table">
-                                <div class="panel-heading">
-                                    <div class="row">
-                                        <div class="col col-xs-6">
-                                            <h3 class="panel-title">Artikelliste</h3>
+                                <div class="panel panel-default panel-table">
+                                    <div class="panel-heading">
+                                        <div class="row">
+                                            <div class="col col-xs-6">
+                                                <h3 class="panel-title">Artikelliste</h3>
+                                            </div>
+                                            <div class="col col-xs-6 text-right">
+                                            </div>
                                         </div>
-                                        <div class="col col-xs-6 text-right">
+                                    </div>
+                                    <div class="panel-body">
+                                        <table class="table table-striped table-bordered table-list">
+                                            <thead>
+                                            <tr align="center">
+                                                <th class="hidden-xs">Artikel - ID</th>
+                                                <th>Bezeichnung</th>
+                                                <th>Aktueller Bestand</th>
+                                                <th>Verfügbarer Bestand</th>
+                                                <th>Lagerort</th>
+                                                <th><em class="fa fa-cog"></em></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <?php
+                                            echo $artikelTable;
+                                            ?>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                    <div class="panel-footer">
+                                        <div class="row">
+                                            <div class="col col-xs-4">Page 1 of 5
+                                            </div>
+                                            <div class="col col-xs-8">
+                                                <ul class="pagination hidden-xs pull-right">
+                                                    <li><a href="#">1</a></li>
+                                                    <li><a href="#">2</a></li>
+                                                    <li><a href="#">3</a></li>
+                                                    <li><a href="#">4</a></li>
+                                                    <li><a href="#">5</a></li>
+                                                </ul>
+                                                <ul class="pagination visible-xs pull-right">
+                                                    <li><a href="#">«</a></li>
+                                                    <li><a href="#">»</a></li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="panel-body">
-                                    <table class="table table-striped table-bordered table-list">
-                                        <thead>
-                                        <tr align="center">
-                                            <th class="hidden-xs">Artikel - ID</th>
-                                            <th>Bezeichnung</th>
-                                            <th>Aktueller Bestand</th>
-                                            <th>Verfügbarer Bestand</th>
-                                            <th>Lagerort</th>
-                                            <th><em class="fa fa-cog"></em></th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <?php
-                                        echo $artikelTable;
-                                        ?>
-                                        </tbody>
-                                    </table>
 
-                                </div>
-                                <div class="panel-footer">
-                                    <div class="row">
-                                        <div class="col col-xs-4">Page 1 of 5
-                                        </div>
-                                        <div class="col col-xs-8">
-                                            <ul class="pagination hidden-xs pull-right">
-                                                <li><a href="#">1</a></li>
-                                                <li><a href="#">2</a></li>
-                                                <li><a href="#">3</a></li>
-                                                <li><a href="#">4</a></li>
-                                                <li><a href="#">5</a></li>
-                                            </ul>
-                                            <ul class="pagination visible-xs pull-right">
-                                                <li><a href="#">«</a></li>
-                                                <li><a href="#">»</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</main>
+
 <div class="footer-dark">
     <footer>
         <div class="container">

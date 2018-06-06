@@ -28,25 +28,21 @@ class Artikel{
     /**
      * @return null
      */
-    public function getLagerbestandAktuel()
+    public function getLagerstand()
     {
-        return $this->lagerbestandAktuel;
+        return $this->lagerstand;
     }
 
     /**
      * @return null
      */
-    public function getLagerbestandVerfuegbar()
-    {
-        return $this->lagerbestandVerfuegbar;
-    }
+
     public $artikelname=null;
-    public $lagerbestandAktuel=null;
-    public $lagerbestandVerfuegbar=null;
+    public $lagerstand=null;
     public $einkaufspreis=null;
     public $verkaufspreis=null;
     public $mindestbestand=null;
-    public $aufschlag = null;
+    //public $aufschlag = null;
     /**
      * Artikel constructor.
      * @param $artikelID
@@ -57,12 +53,11 @@ class Artikel{
      * @param $verkaufspreis
      * @param $mindestbestand
      */
-    public function __construct($artikelID, $artikelname, $lagerbestandAktuel, $lagerbestandVerfuegbar, $einkaufspreis, $verkaufspreis, $mindestbestand)
+    public function __construct($artikelID, $artikelname, $lagerstand, $einkaufspreis, $verkaufspreis, $mindestbestand)
     {
         $this->artikelID = $artikelID;
         $this->artikelname = $artikelname;
-        $this->lagerbestandAktuel = $lagerbestandAktuel;
-        $this->lagerbestandVerfuegbar = $lagerbestandVerfuegbar;
+        $this->lagerbestandAktuel = $lagerstand;
         $this->einkaufspreis = $einkaufspreis;
         $this->verkaufspreis = $verkaufspreis;
         $this->mindestbestand = $mindestbestand;

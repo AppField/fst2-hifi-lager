@@ -1,5 +1,5 @@
 # fst2-hifi-lager
-Implemntierung der Fallstudie 2
+Implementierung der Fallstudie 2
 
 TODO:
 - Spezifikationen anpassen

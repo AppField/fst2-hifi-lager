@@ -8,8 +8,7 @@ foreach ($artikelarray as $artikel) {
     $artikelTable .= "<tr align = \"center\">
                             <td class=\"hidden-xs\">" . $artikel->getArtikelID() . "</td>
                             <td>" . $artikel->getArtikelname() . "</td>
-                            <td><input type =\"text\" value=\"" . $artikel->getLagerbestandAktuel() . "\"></td>
-                            <td><input type =\"text\" value=\"" . $artikel->getLagerbestandVerfuegbar() . "\"></td>
+                            <td><input type =\"text\" value=\"" . $artikel->getLagerstand() . "\"></td>
                             <td>Regal 1</td>
                             <td align=\"center\">
                               <a class=\"btn btn-default\" 
@@ -97,7 +96,6 @@ foreach ($artikelarray as $artikel) {
                                                 <th class="hidden-xs">Artikel - ID</th>
                                                 <th>Bezeichnung</th>
                                                 <th>Aktueller Bestand</th>
-                                                <th>Verfügbarer Bestand</th>
                                                 <th>Lagerort</th>
                                                 <th><em class="fa fa-cog"></em></th>
                                             </tr>

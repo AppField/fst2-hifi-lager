@@ -31,7 +31,6 @@
     loadArticles();
 
 
-
     class ArtikelModal {
 
         constructor(artikelid) {
@@ -40,6 +39,9 @@
             this.name = $('#artikelname');
             this.bestand = $('#bestand');
             this.lagerort = $('#lagerort');
+            this.saveBtn = $('#saveArtikelBtn');
+
+            this.saveBtn.on('click',(this.saveArtikel));
 
             $.ajax({
                 url: '../php/artikel.php?artikelid=' + artikelid
@@ -50,11 +52,26 @@
                 });
         }
 
-        setValues(artikel) {
+        setValues(artikel)  {
             this.id.val(artikel.artikelID);
             this.name.val(artikel.artikelname);
             this.bestand.val(artikel.lagerstand);
             this.lagerort.val(artikel.lagerort);
+        }
+
+        saveArtikel() {
+            $.ajax({
+                url: '../php/artikelAave.php?artikelid=' + artikelid,
+                data: {
+                    artikelid: this.id.val,
+                    artikelname: this.name.val,
+                    lagerort: this.lagerort.val
+                }
+            })
+                .done(result => {
+                    if (result) articleModal.modal('dispose');
+                    else console.error('save failed');
+                });
         }
     }
 

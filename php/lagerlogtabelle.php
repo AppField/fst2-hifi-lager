@@ -15,17 +15,19 @@ foreach ($lagerlog as $log) {
     $anzahl = 0;
     if ($log->getAenderung() == 'A'){
         $anzahl = -$log->getAnzahl();
+        $cell = "<td style='color: crimson'>".$anzahl."</td>";
     }else{
         $anzahl = $log->getAnzahl();
+        $cell = "<td style='color: mediumseagreen'>".$anzahl."</td>";
     }
 
     $logtable .= "<tr align = \"center\">
                             <td>".$log->getAenderung()."</td>
                             <td>".$log->getLieferungsID()."</td>
                             <td>".$log->getArtikelID()."</td>
-                            <td>".$log->getBezeichnung()."</td>
-                            <td>".$anzahl."</td>
-                            <td>".$log->getDatum()."</td>
+                            <td>".$log->getBezeichnung()."</td>"
+                            .$cell.
+                            "<td>".$log->getDatum()."</td>
                           </tr>";
 }
 echo $logtable;

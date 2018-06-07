@@ -16,6 +16,7 @@ $bestellungstable = "";
 foreach ($lieferantenbestellungen as $bestellung) {
     $bestellungstable .= "<tr align = \"center\">
                             <td class=\"hidden-xs\">" . $bestellung->getBestellungsID() . "</td>
+                            <td>Name</td>
                             <td>Offen</td>
                             <td align=\"center\">
                                 <a class=\"\" href=\"bestelldetails.php?id=" . $bestellung->getBestellungsID() . "\">

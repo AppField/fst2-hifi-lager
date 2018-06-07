@@ -16,4 +16,8 @@ Implemntierung der Fallstudie 2
 #### Fragen: ???
  - istAbgezogen bei Auftragsposition??
  
-
+##### Modal Lagerlog
+ - ArtikelID
+ - Anzahl
+ 
+ 

@@ -95,7 +95,7 @@ class DB{
         $this->doConnect();
         $this->dbobject->query("SET NAMES 'utf8'");
         $bestellung = null;
-        $result = $this->dbobject->query("SELECT * FROM Lieferantenbestellung WHERE LieferantenbestellungsID = ".$id."JOIN lieferant USING(lieferantID)");
+        $result = $this->dbobject->query("SELECT * FROM Lieferantenbestellung JOIN lieferant USING(lieferantID) WHERE LieferantenbestellungsID = ".$id);
         while ($row = $result->fetch_object()) {
             $bestellung = new Lieferantenbestellung( $row->LieferantenbestellungsID, $row->LieferantID, $row->Name);
         }

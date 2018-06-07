@@ -11,9 +11,9 @@ class Lieferantenlieferung extends Lieferung {
     public $status;
 
 
-    public function __construct($lieferungsID,$bestellungsID,$datum,$lieferschein)
+    public function __construct($lieferungsID,$bestellungsID,$datum)
     {
-        parent::__construct($lieferungsID,$bestellungsID,$datum,$lieferschein);
+        parent::__construct($lieferungsID,$bestellungsID,$datum);
         //$this->uebernahmeschein = $uebernahmeschein;
         $this->status="offen";
         //$this->ablehnen = null;

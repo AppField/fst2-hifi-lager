@@ -51,12 +51,12 @@ abstract class Lieferung{
      * @param $datum
      * @param $lieferschein
      */
-    public function __construct($lieferungsID, $bestellungsID, $datum, $lieferschein)
+    public function __construct($lieferungsID, $bestellungsID, $datum)
     {
         $this->lieferungsID = $lieferungsID;
         $this->bestellungsID = $bestellungsID;
         $this->datum = $datum;
-        $this->lieferschein = $lieferschein;
+        //$this->lieferschein = $lieferschein;
     }
 
 

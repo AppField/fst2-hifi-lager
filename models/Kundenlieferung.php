@@ -7,7 +7,7 @@
  */
 class Kundenlieferung extends Lieferung {
     public $uebernahmeschein=null;
-    public $rechnung;
+    //public $rechnung;
     public $abgeschlossen;
 
     /**
@@ -16,11 +16,11 @@ class Kundenlieferung extends Lieferung {
      * @param $rechnung
      * @param $abgeschlossen
      */
-    public function __construct($lieferungsID,$bestellungsID,$datum,$lieferschein,$rechnung)
+    public function __construct($lieferungsID,$bestellungsID,$datum)
     {
-        parent::__construct($lieferungsID,$bestellungsID,$datum,$lieferschein);
+        parent::__construct($lieferungsID,$bestellungsID,$datum);
         //$this->uebernahmeschein = $uebernahmeschein;
-        $this->rechnung = $rechnung;
+        //$this->rechnung = $rechnung;
         $this->abgeschlossen = false;
     }
 

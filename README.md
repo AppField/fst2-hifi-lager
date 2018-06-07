@@ -8,26 +8,16 @@ Implementierung der Fallstudie 2
 
 #### TODO:
 - bei artikel.hmtml lagerort oder bezeichnung anpassen function (über artikel id)
-- - echo false bzw true;
+    - echo false bzw true;
 - bei lagerstand.html lagerstand anpassen funciton (über artikel id)
-- - insert ins lagerlog
-- - echo false bzw true;
-- select für offene artikel bei bestellungen
-- bestelldetails artikel table
-- bestelldetails lieferungen table
-- bestelldetails lieferant
+    - insert ins lagerlog
+    - echo false bzw true;
+- bestelldetails lieferant ????
 - bestelldetails insert: lieferantenlieferung maxid +1, curdate() , bestellung
-- - insert post JSON artikel + menge
+     - insert post JSON artikel + menge
 - Spezifikationen anpassen
 - .class.php refactoring
 - artikel.php änderungs funktion
-- Trigger?? für lagereingang/ausgang
-
-#### Fragen: ???
- - istAbgezogen bei Auftragsposition??
  
-##### Modal Lagerlog
- - ArtikelID
- - Anzahl
  
  

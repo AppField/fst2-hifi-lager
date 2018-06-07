@@ -72,7 +72,7 @@ SELECT * FROM Lieferantenbestellung;
 SELECT * FROM Lieferantenartikel;
 SELECT * FROM Artikeleingang;
 DELETE FROM Artikeleingang;
-commit;
+commit
 Insert INTO Artikeleingang Values (1, 2, 2);
 UPDATE Artikeleingang SET Anzahl = 2 WHERE Anzahl = 3;
 
@@ -93,3 +93,4 @@ SELECT * FROM (SELECT SUM(Artikeleingang.Anzahl) as Eingangen, SUM(Lieferantenar
               JOIN Lieferantenartikel USING (LieferantenbestellungsID) GROUP BY(Artikel_ArtikelID) AND LieferantenBestellungsID = 1) AS t
               WHERE Eingangen < Bestellt;  
 SELECT * FROM Lieferantenartikel JOIN Lieferantenbestellung USING (LieferantenbestellungsID) WHERE LieferantenbestellungsID = 1;
+INSERT INTO Lieferantenartikel (ArtikelID, Anzahl, LieferantenbestellungsID) Values (2, 4, 1);

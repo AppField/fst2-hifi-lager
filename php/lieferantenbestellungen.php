@@ -9,7 +9,7 @@
 
 include "../models/Bestellung.php";
 include "../models/Lieferantenbestellung.php";
-include "DB.php";
+include "../DB.php";
 $db = New DB();
 $lieferantenbestellungen = $db->getLieferantenbestellung();
 $bestellungstable = "";

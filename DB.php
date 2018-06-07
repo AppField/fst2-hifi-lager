@@ -95,9 +95,9 @@ class DB{
         $this->doConnect();
         $this->dbobject->query("SET NAMES 'utf8'");
         $bestellung = null;
-        $result = $this->dbobject->query("SELECT * FROM Lieferantenbestellung WHERE LieferantenbestellungsID = ".$id);
+        $result = $this->dbobject->query("SELECT * FROM Lieferantenbestellung WHERE LieferantenbestellungsID = ".$id."JOIN lieferant USING(lieferantID)");
         while ($row = $result->fetch_object()) {
-            $bestellung = new Lieferantenbestellung( $row->LieferantenbestellungsID, $row->LieferantID);
+            $bestellung = new Lieferantenbestellung( $row->LieferantenbestellungsID, $row->LieferantID, $row->Name);
         }
         $this->close();
         return $bestellung;
@@ -113,7 +113,7 @@ class DB{
         $Lieferungen = array();
         $result = $this->dbobject->query("SELECT * FROM Lieferantenlieferungen");
         while ($row = $result->fetch_object()) {
-            $Lieferung = new Lieferantenlieferung($row->LieferantenLieferungID, $row->LieferbestellungsID,$row->Eingangsdatum, $row->Lieferschein);
+            $Lieferung = new Lieferantenlieferung($row->LieferantenLieferungID, $row->LieferbestellungsID,$row->Eingangsdatum);
             array_push($Lieferungen, $Lieferung);
         }
         $this->close();
@@ -130,7 +130,7 @@ class DB{
         $Lieferungen = array();
         $result = $this->dbobject->query("SELECT * FROM Lieferantenlieferungen WHERE LieferbestellungsID = ".$id);
         while ($row = $result->fetch_object()) {
-            $Lieferung = new Lieferantenlieferung($row->LieferantenLieferungID, $row->LieferbestellungsID,$row->Eingangsdatum, $row->Lieferschein);
+            $Lieferung = new Lieferantenlieferung($row->LieferantenLieferungID, $row->LieferbestellungsID,$row->Eingangsdatum);
             array_push($Lieferungen, $Lieferung);
         }
         $this->close();

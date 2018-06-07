@@ -120,28 +120,50 @@
             <p class="copyright">HiFiSound © 2018</p>
         </div>
     </footer>
-</div><!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-     aria-hidden="true">
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="articleModal" tabindex="-1" role="dialog"
+     aria-labelledby="articleModalTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Übernahmeschein hinzufügen</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Artikel</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form class="form-horizontal">
                     <div class="form-group">
-                        <label for="message-text" class="col-form-label">Übernahmeschein:</label>
-                        <input type="file" class="form-control" id="lieferschein">
+                        <label class="  control-label" for="artikelid">Artikel ID</label>
+                        <div class=" ">
+                            <input id="artikelid" name="artikelid" type="text" placeholder="Artikel ID"
+                                   class="form-control input-md" disabled>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="  control-label" for="artikelname">Artikel name</label>
+                        <div class=" ">
+                            <input id="artikelname" name="artikelname" type="text" placeholder="Artikel Name"
+                                   class="form-control input-md" required="" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="  control-label" for="bestand">Lagerbestand</label>
+                        <div class=" ">
+                            <input id="bestand" name="bestand" type="text" placeholder="Lagerbestand"
+                                   class="form-control input-md" required disabled>
+                        </div>
                     </div>
                 </form>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-success">Hinzufügen</button>
+                <button type="button" class="btn btn-success">Speichern</button>
             </div>
         </div>
     </div>

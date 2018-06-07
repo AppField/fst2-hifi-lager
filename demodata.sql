@@ -19,9 +19,14 @@ INSERT INTO KUNDE (KundeID, Name, Mail, Telefon, Strasse, OrtId) VALUES(2, "Mari
 Select * From kunde;
 COMMIT;
 
+# Demo Kundenzahlungsbedingung
+INSERT INTO zahlungsbedingungkunde VALUES (1, 'asdf', 1);
+SELECT * FROM zahlungsbedingungkunde;
+COMMIT;
+
 # Demo Kundenbestellungen
-INSERT INTO Kundenbestellung (KundenID, KundenbestellungsID) VALUES (2, 1);
-INSERT INTO Kundenbestellung (KundenID, KundenbestellungsID) VALUES (1, 2);
+INSERT INTO Kundenbestellung (KundenID, KundenbestellungsID, ZahlungsbedingungKundeID)  VALUES (2, 1, 1);
+INSERT INTO Kundenbestellung (KundenID, KundenbestellungsID, ZahlungsbedingungKundeID) VALUES (1, 2, 1);
 SELECT * FROM Kundenbestellung;
 COMMIT;
 

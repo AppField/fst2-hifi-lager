@@ -7,7 +7,7 @@
  */
 
 class Artikel{
-    protected $artikelID=null;
+    public $artikelID=null;
 
     /**
      * @return null

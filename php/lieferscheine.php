@@ -6,7 +6,7 @@
  * Time: 13:52
  */
 include "../models/Bestellung.php";
-include "../models/Kundenbestellung.php";
+include "../models/Kundenlieferung.php";
 include "../DB.php";
 $db = New DB();
 $kundenlieferungen = $db->getKundenlieferungen();

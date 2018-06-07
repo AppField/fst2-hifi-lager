@@ -14,7 +14,7 @@ foreach ($artikelarray as $artikel) {
     $artikelTable .= "<tr align = \"center\">
                             <td class=\"hidden-xs\">" . $artikel->getArtikelID() . "</td>
                             <td>" . $artikel->getArtikelname() . "</td>
-                            <td><input type =\"text\" value=\"" . $artikel->getLagerstand() . "\"></td>
+                            <td>" . $artikel->getLagerstand() . "</td>
                             <td align=\"center\">
                               <a class=\"btn btn-default\" 
                               data-toggle=\"modal\" 

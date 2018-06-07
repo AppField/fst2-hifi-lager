@@ -8,6 +8,13 @@
 
 class Artikel{
     public $artikelID=null;
+    public $artikelname=null;
+    public $lagerstand=null;
+    public $einkaufspreis=null;
+    public $verkaufspreis=null;
+    public $mindestbestand=null;
+    public $aufschlag = null;
+    public $lagerort = null;
 
     /**
      * @return null
@@ -32,19 +39,6 @@ class Artikel{
     {
         return $this->lagerstand;
     }
-
-    /**
-     * @return null
-     */
-
-    public $artikelname=null;
-    public $lagerstand=null;
-    public $einkaufspreis=null;
-    public $verkaufspreis=null;
-    public $mindestbestand=null;
-    public $aufschlag = null;
-
-    public $lagerort = null;
 
     /**
      * @return null

@@ -14,7 +14,7 @@ $logtable = "";
 foreach ($lagerlog as $log) {
     $anzahl = 0;
     if ($log->getAenderung() == 'A'){
-        $anzahl = "-".$log->getAnzahl();
+        $anzahl = -$log->getAnzahl();
     }else{
         $anzahl = $log->getAnzahl();
     }

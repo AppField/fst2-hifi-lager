@@ -3,5 +3,5 @@ language: generic
 
 after_success:
 
- - deploy.sh
+ - ./deploy.sh
 

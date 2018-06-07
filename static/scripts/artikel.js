@@ -31,6 +31,7 @@
     loadArticles();
 
 
+
     class ArtikelModal {
 
         constructor(artikelid) {
@@ -50,7 +51,7 @@
         }
 
         setValues(artikel) {
-            this.id.val(artikel.artikelid);
+            this.id.val(artikel.artikelID);
             this.name.val(artikel.artikelname);
             this.bestand.val(artikel.lagerstand);
             this.lagerort.val(artikel.lagerort);

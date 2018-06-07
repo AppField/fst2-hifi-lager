@@ -1,6 +1,6 @@
 <?php
-include "models/Artikel.php";
-include "DB.php";
+include "../models/Artikel.php";
+include "../DB.php";
 $db = New DB();
 $artikelarray = $db->getArtikel();
 $artikelTable = "";

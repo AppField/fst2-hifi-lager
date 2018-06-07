@@ -80,7 +80,7 @@ SELECT * FROM (SELECT SUM(Anzahl) as Eingegangen ,Artikel_ArtikelID as ArtikelID
               WHERE Lieferantenlieferungen.LieferbestellungsID = 1
               GROUP BY(Artikel_ArtikelID)) as Eingangen JOIN
 (SELECT SUM(Anzahl) as Bestellt, ArtikelID FROM Lieferantenartikel WHERE LieferantenbestellungsID = 1 GROUP BY (ArtikelID)) as Bestellt 
-  USING(ArtikelID) WHERE Eingegangen < Bestellt; 
+  USING(ArtikelID) JOIN Artikel USING (ArtikelID) WHERE Eingegangen < Bestellt; 
   
 
 ###

@@ -11,6 +11,7 @@ include "../../models/Lieferantenbestellung.php";
 include "../../models/Lieferung.php";
 include "../../models/Lieferantenlieferung.php";
 include "../../DB.php";
+$db = new DB();
 $body = "";
 if (isset($_GET["id"])) {
     $Lieferantenlieferungen = $db->getLieferantenlieferungenWithBestellungsID($_GET["id"]);

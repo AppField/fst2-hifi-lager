@@ -58,10 +58,13 @@ COMMIT;
 # Demo Lagerlog
 INSERT INTO Lagerlog (ArtikelID, Änderung, Anzahl, Datum, LieferungsID) VALUES (1, 'E', 15, CURDATE(), 1);
 SELECT ArtikelID, Änderung, Anzahl, Datum, LieferungsID, Artikelname FROM Lagerlog JOIN Artikel USING(ArtikelID);
-;
+
 SELECT * FROM Lagerlog;
 ALTER TABLE Lagerlog CHANGE COLUMN Änderung Aenderung CHAR(1);
 
+
+
+###
 DELETE FROM Artikeleingang;
 SELECT * FROM Lieferantenlieferungen;
 UPDATE Lieferantenlieferungen SET LieferbestellungsID = 1 WHERE LieferantenLieferungID = 2;

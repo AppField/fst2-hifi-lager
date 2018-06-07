@@ -12,6 +12,7 @@ include "../../models/Lieferung.php";
 include "../../models/Lieferantenlieferung.php";
 include "../../DB.php";
 $body = "";
+$db = new DB();
 if (isset($_GET["id"])) {
 $Lieferantenartiekl = $db->getLieferantenbestellungsArtikel($_GET["id"]);
 foreach ($Lieferantenartiekl as $artikel){
@@ -22,4 +23,3 @@ foreach ($Lieferantenartiekl as $artikel){
                           </tr>";
 }
 echo $body;
-}

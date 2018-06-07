@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: johannes
  * Date: 07.06.18
- * Time: 13:09
+ * Time: 13:36
  */
 include "../models/Artikel.php";
 include "../DB.php";
@@ -15,7 +15,6 @@ foreach ($artikelarray as $artikel) {
                             <td class=\"hidden-xs\">" . $artikel->getArtikelID() . "</td>
                             <td>" . $artikel->getArtikelname() . "</td>
                             <td><input type =\"text\" value=\"" . $artikel->getLagerstand() . "\"></td>
-                           <td>".$artikel->getLagerort()."</td>
                             <td align=\"center\">
                               <a class=\"btn btn-default\" 
                               data-toggle=\"modal\" 

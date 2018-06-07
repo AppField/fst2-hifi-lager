@@ -49,3 +49,9 @@ SELECT Anzahl FROM Lieferantenartikel WHERE LieferantenbestellungsID = 1 AND Art
 SELECT * FROM Lieferantenartikel;
 INSERT INTO Lieferantenartikel (Anzahl, ArtikelID, LieferantenbestellungsID, LieferantenLieferungID) VALUES (15, 3,2,2);
 COMMIT;
+
+# Demo Lagerlog
+INSERT INTO Lagerlog (ArtikelID, Änderung, Anzahl, Datum, LieferungsID) VALUES (1, 'E', 15, CURDATE(), 1);
+SELECT ArtikelID, Änderung, Anzahl, Datum, LieferungsID, Artikelname FROM Lagerlog JOIN Artikel USING(ArtikelID);
+;
+SELECT * FROM Lagerlog;

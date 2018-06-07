@@ -180,10 +180,9 @@ class DB{
         $result = $this->dbobject->qeury("SELECT ArtikelID, Änderung, Anzahl, Datum, LieferungsID, Artikelname FROM Lagerlog JOIN Artikel USING(ArtikelID)");
         $logArray = array();
         while ($row = $result->fetch_object()) {
-            $log = new Lagerlog($row->ArtikelID,$row->Artikelname, $row->Anzahl, $row->LieferungsID, $row->Änderung, $row->Datum);
+            $log = new Lagerlog($row->ArtikelID,$row->Artikelname, $row->Anzahl, $row->LieferungsID, $row->Aenderung, $row->Datum);
             array_push($logArray, $log);
         }
         return $logArray;
     }
-
 }

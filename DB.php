@@ -40,6 +40,7 @@ class DB{
      */
     function getKundenbestellungen(){
         $this->doConnect();
+        $this->dbobject->query("SET NAMES 'utf8'");
         $Bestellungen = array();
         $result = $this->dbobject->query("SELECT * FROM Kundenbestellung
                                           JOIN kunde ON Kundenbestellung.kundenID = kunde.kundeID;");
@@ -58,6 +59,7 @@ class DB{
      */
     function getKundenlieferungen(){
         $this->doConnect();
+        $this->dbobject->query("SET NAMES 'utf8'");
         $Lieferungen = array();
         $result = $this->dbobject->query("SELECT * FROM Kundenlieferung");
         while ($row = $result->fetch_object()) {
@@ -73,6 +75,7 @@ class DB{
      */
     function getLieferantenbestellung(){
         $this->doConnect();
+        $this->dbobject->query("SET NAMES 'utf8'");
         $Bestellungen = array();
         $result = $this->dbobject->query("SELECT * FROM Lieferantenbestellung
                                           JOIN lieferant USING(lieferantID)");
@@ -90,6 +93,7 @@ class DB{
      */
     function getLieferantenbestellungWithID($id){
         $this->doConnect();
+        $this->dbobject->query("SET NAMES 'utf8'");
         $bestellung = null;
         $result = $this->dbobject->query("SELECT * FROM Lieferantenbestellung WHERE LieferantenbestellungsID = ".$id);
         while ($row = $result->fetch_object()) {
@@ -105,6 +109,7 @@ class DB{
      */
     function getLieferantenlieferungen(){
         $this->doConnect();
+        $this->dbobject->query("SET NAMES 'utf8'");
         $Lieferungen = array();
         $result = $this->dbobject->query("SELECT * FROM Lieferantenlieferungen");
         while ($row = $result->fetch_object()) {
@@ -121,6 +126,7 @@ class DB{
      */
     function getLieferantenlieferungenWithBestellungsID($id){
         $this->doConnect();
+        $this->dbobject->query("SET NAMES 'utf8'");
         $Lieferungen = array();
         $result = $this->dbobject->query("SELECT * FROM Lieferantenlieferungen WHERE LieferbestellungsID = ".$id);
         while ($row = $result->fetch_object()) {
@@ -135,6 +141,7 @@ class DB{
      */
     function getArtikel(){
         $this->doConnect();
+        $this->dbobject->query("SET NAMES 'utf8'");
         $artikel = array();
         $result = $this->dbobject->query("SELECT * FROM Artikel");
         while ($row = $result->fetch_object()) {
@@ -172,6 +179,7 @@ class DB{
      */
     function getLieferantenbestellungsArtikel($id){
         $this->doConnect();
+        $this->dbobject->query("SET NAMES 'utf8'");
         $artikel = array();
         $result = $this->dbobject->query("SELECT ArtikelID, Artikelname, Einkaufspreis, Verkaufspreis, Mindestbestand, Lagerstand, Lagerort
                                           FROM Lieferantenartikel JOIN Artikel USING(ArtikelID) WHERE LieferantenbestellungsID = ".$id);

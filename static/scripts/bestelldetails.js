@@ -12,8 +12,8 @@ function getQueryVariable(variable)
     $('#bestellID').val(getQueryVariable('id'));
 
     $('#lieferant').load('../php/bestelldetails/getLieferant.php?'+getQueryVariable('id'), () => {
-};
+});
     $('#artikelTable').load('../php/bestelldetails/getLieferant.php?'+getQueryVariable('id'), () => {
-};
+});
 $('#lieferungen').load('../php/bestelldetails/getLieferungen.php?'+getQueryVariable('id'), () => {
-};
+});

@@ -10,10 +10,9 @@ function getQueryVariable(variable)
     }
 
     $('#bestellID').val(getQueryVariable('id'));
-
-    $('#lieferant').val(load('../php/bestelldetails/getLieferant.php?id='+getQueryVariable('id'), () => {
-}));
-    $('#artikelTable').load('../php/bestelldetails/getLieferant.php?id='+getQueryVariable('id'), () => {
+    $('#lieferant').valueOf().load('../php/bestelldetails/getLieferant.php?id='+getQueryVariable('id'), () => {
 });
-$('#lieferungen').load('../php/bestelldetails/getLieferungen.php?id='+getQueryVariable('id'), () => {
+    $('#artikelTable').load('../php/bestelldetails/artikelTable.php?id='+getQueryVariable('id'), () => {
+});
+    $('#lieferungen').load('../php/bestelldetails/getLieferungen.php?id='+getQueryVariable('id'), () => {
 });

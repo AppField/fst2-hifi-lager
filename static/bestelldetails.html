@@ -1,3 +1,11 @@
+<script type="text/javascript">
+    function $_GET(q,s) {
+        s = s ? s : window.location.search;
+        var re = new RegExp('&'+q+'(?:=([^&]*))?(?=&|$)','i');
+        return (s=s.replace(/^?/,'&').match(re)) ? (typeof s[1] == 'undefined' ? '' : decodeURIComponent(s[1])) : undefined;
+    }
+</script>
+
 <!DOCTYPE html>
 <html>
 
@@ -61,7 +69,7 @@
                             <div class="col-md-6">
                                 <div class="form-group"><label><strong>Bestellung - ID</strong><br></label><input
                                         class="form-control" type="text" value="123" disabled="" readonly=""
-                                        name="firstname"></div>
+                                        name="firstname" id = "bestellID"></div>
                                 <label><strong>Lieferant</strong></label><input class="form-control"
                                                                                 type="text" value="XYZ" disabled=""
                                                                                 readonly="" name="lastname"
@@ -190,6 +198,7 @@
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="assets/js/Profile-Edit-Form.js"></script>
+<script src="scripts/bestelldetails.js"></script>
 </body>
 
 </html>

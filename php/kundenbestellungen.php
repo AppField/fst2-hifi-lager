@@ -17,7 +17,7 @@ foreach ($kundenbestellungen as $bestellung) {
                             <td>" . $bestellung->getName() . "</td>
                             <td>Offen</td>
                             <td align=\"center\">
-                                <a class=\"\" href=\"bestelldetails.php?id=" . $bestellung->getBestellungsID() . "\">
+                                <a class=\"\" href=\"bestelldetails.html?id=" . $bestellung->getBestellungsID() . "\">
                                     <button class=\"btn fa fa-edit\" ></button>
                                 </a>
                             </td>

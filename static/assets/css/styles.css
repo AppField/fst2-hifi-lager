@@ -1,0 +1,88 @@
+/* BASIC PAGE LAYOUT */
+html, body {
+    background-color: #eef4f7;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+
+main {
+    flex-grow: 1;
+}
+
+header, main, .footer-dark {
+    flex-shrink: 0;
+}
+
+.intro .text-center {
+    font-size:58px;
+    padding-top:30px;
+    color: rgb(220, 155, 107);
+}
+
+/* END BASIC PAGE LAYOUT*/
+
+
+/*html, body {*/
+/*height: 100vh;*/
+/*background-color: #eef4f7;*/
+/*!*margin-bottom: 100px;*!*/
+/*}*/
+
+/*.footer-dark {*/
+/*position: absolute;*/
+/*bottom: 0;*/
+/*left: 0;*/
+/*right: 0;*/
+/*padding: 0;*/
+/*height: 100px;*/
+/*display: flex;*/
+/*}*/
+
+/*footer {*/
+/*width: 100%;*/
+/*display: flex;*/
+/*flex-direction: column;*/
+/*justify-content: center;*/
+/*}*/
+
+/*.footer-dark .copyright {*/
+/*padding: 0;*/
+/*}*/
+
+.features .item .box {
+    transition: background-color .3s ease-out,
+    color .3s ease-out,
+    transform .3s ease-out;
+    color: black;
+}
+
+.features .item .box:hover {
+    /*background-color: #eef4f7;*/
+    color: rgb(220, 155, 107);
+
+    text-decoration: none;
+    transform: scale(1.05);
+}
+
+.features .item .box .icon{
+    transition: background-color .3s ease-out,
+    color .3s ease-out,
+    transform .3s ease-out;
+    color:rgb(60,55,52);
+}
+
+.features .item .box:hover .icon {
+    /*background-color: #eef4f7;*/
+    color: rgb(220, 155, 107);
+}
+
+.linkindex:hover{
+    text-decoration: none;
+    color:rgb(60,55,52);
+}
+

@@ -13,7 +13,6 @@ $lagerlog = $db->getLagerlog();
 $logtable = "";
 foreach ($lagerlog as $log) {
     $logtable .= "<tr align = \"center\">
-                            <td class=\"hidden-xs\">2</td>
                             <td>".$log->getAenderung()."</td>
                             <td>".$log->getLieferungsID()."</td>
                             <td>".$log->getArtikelID()."</td>

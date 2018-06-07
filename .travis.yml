@@ -1,5 +1,7 @@
 os: osx
 language: generic
+notifications:
+  email: false
 
 after_success:
  - "find . -not -path '*/\\.*' -type f -exec curl -v --ftp-create-dirs -T {} -u $FTP_USER:$FTP_PASSWORD ftp://wi-project.technikum-wien.at:21/{} --ftp-port 21 {} \\;"

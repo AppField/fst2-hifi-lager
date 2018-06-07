@@ -127,7 +127,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Lieferung hinzufügen</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Änderung des Bestandes einfügen:</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -135,7 +135,7 @@
             <div class="modal-body">
                 <form>
                     <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Eingehende Artikel:</label>
+                        <label for="recipient-name" class="col-form-label">Art der Änderung: </label>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="E">
                                 <label class="form-check-label" for="inlineRadio1">Eingehend</label>
@@ -146,6 +146,9 @@
                             </div>
                             <br>
                         <div class="form-row">
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="Artikel ID">
+                            </div>
                             <div class="col">
                                 <input type="text" class="form-control" placeholder="Artikel Bezeichnung">
                             </div>

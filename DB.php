@@ -139,7 +139,7 @@ class DB{
 
             $bestellung = new Artikel($row->ArtikelID, $row->Artikelname, $row->Lagerstand,
                 $row->Einkaufspreis,
-                $row->Verkaufspreis, $row->Mindestbestand);
+                $row->Verkaufspreis, $row->Mindestbestand, $row->Lagerort);
             array_push($artikel, $bestellung);
         }
         $this->close();
@@ -153,11 +153,11 @@ class DB{
     function getLieferantenbestellungsArtikel($id){
         $this->doConnect();
         $artikel = array();
-        $result = $this->dbobject->query("SELECT ArtikelID, Artikelname, Einkaufspreis, Verkaufspreis, Mindestbestand, Lagerstand
+        $result = $this->dbobject->query("SELECT ArtikelID, Artikelname, Einkaufspreis, Verkaufspreis, Mindestbestand, Lagerstand, Lagerort
                                           FROM Lieferantenartikel JOIN Artikel USING(ArtikelID) WHERE LieferantenbestellungsID = ".$id);
         while ($row = $result->fetch_object()) {
             $bestellung = new Artikel($row->ArtikelID, $row->Artikelname, $row->Lagerstand,
-            $row->Einkaufspreis, $row->Verkaufspreis, $row->Mindestbestand);
+            $row->Einkaufspreis, $row->Verkaufspreis, $row->Mindestbestand, $row->Lagerort);
             array_push($artikel, $bestellung);
         }
         $this->close();

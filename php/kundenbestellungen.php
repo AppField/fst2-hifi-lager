@@ -7,7 +7,7 @@
  */
 include "../models/Bestellung.php";
 include "../models/Kundenbestellung.php";
-include "DB.php";
+include "../DB.php";
 $db = New DB();
 $kundenbestellungen = $db->getKundenbestellungen();
 $bestellungstable = "";

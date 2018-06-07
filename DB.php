@@ -41,9 +41,10 @@ class DB{
     function getKundenbestellungen(){
         $this->doConnect();
         $Bestellungen = array();
-        $result = $this->dbobject->query("SELECT * FROM Kundenbestellung");
+        $result = $this->dbobject->query("SELECT * FROM Kundenbestellung
+                                          JOIN kunde ON Kundenbestellung.kundenID = kunde.kundeID;");
         while ($row = $result->fetch_object()) {
-            $bestellung = new Kundenbestellung($row->KundenID, $row->KundenbestellungsID);
+            $bestellung = new Kundenbestellung($row->KundenID, $row->KundenbestellungsID, $row->Name);
             array_push($Bestellungen, $bestellung);
         }
         $this->close();
@@ -73,9 +74,10 @@ class DB{
     function getLieferantenbestellung(){
         $this->doConnect();
         $Bestellungen = array();
-        $result = $this->dbobject->query("SELECT * FROM Lieferantenbestellung");
+        $result = $this->dbobject->query("SELECT * FROM Lieferantenbestellung
+                                          JOIN lieferant USING(lieferantID)");
         while ($row = $result->fetch_object()) {
-            $bestellung = new Lieferantenbestellung( $row->LieferantenbestellungsID, $row->LieferantID);
+            $bestellung = new Lieferantenbestellung( $row->LieferantenbestellungsID, $row->LieferantID, $row->Name);
             array_push($Bestellungen, $bestellung);
         }
         $this->close();

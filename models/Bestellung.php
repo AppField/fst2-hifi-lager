@@ -8,10 +8,19 @@
 
 abstract class Bestellung{
     protected $bestellungsID;
+    protected $name;
 
-    /**
-     * @return BestellungsID einer Bestellung
-     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+
     public function getBestellungsID()
     {
         return $this->bestellungsID;
@@ -47,10 +56,11 @@ abstract class Bestellung{
      * @param $bestellungsID
      * @param $zugeordnet
      */
-    public function __construct($bestellungsID, $zugeordnet)
+    public function __construct($bestellungsID, $zugeordnet, $name)
     {
         $this->bestellungsID = $bestellungsID;
         $this->zugeordnet = $zugeordnet;
+        $this->name = $name;
     }
 
 

@@ -136,6 +136,15 @@
                 <form>
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Eingehende Artikel:</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="E">
+                                <label class="form-check-label" for="inlineRadio1">Eingehend</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="A">
+                                <label class="form-check-label" for="inlineRadio2">Ausgehend</label>
+                            </div>
+                            <br>
                         <div class="form-row">
                             <div class="col">
                                 <input type="text" class="form-control" placeholder="Artikel Bezeichnung">
@@ -143,19 +152,7 @@
                             <div class="col">
                                 <input type="text" class="form-control" placeholder="Menge">
                             </div>
-                            <div class="col">
-                                <button class
-                                "btn btn-secondary">Reihe hinzufügen</button>
-                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="message-text" class="col-form-label">Datum:</label>
-                        <input type="date" class="form-control" id="datum">
-                    </div>
-                    <div class="form-group">
-                        <label for="message-text" class="col-form-label">Lieferschein:</label>
-                        <input type="file" class="form-control" id="lieferschein">
                     </div>
                 </form>
             </div>

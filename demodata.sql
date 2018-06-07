@@ -61,3 +61,30 @@ SELECT ArtikelID, Änderung, Anzahl, Datum, LieferungsID, Artikelname FROM Lager
 ;
 SELECT * FROM Lagerlog;
 ALTER TABLE Lagerlog CHANGE COLUMN Änderung Aenderung CHAR(1);
+
+DELETE FROM Artikeleingang;
+SELECT * FROM Lieferantenlieferungen;
+UPDATE Lieferantenlieferungen SET LieferbestellungsID = 1 WHERE LieferantenLieferungID = 2;
+SELECT * FROM Lieferantenbestellung;
+SELECT * FROM Lieferantenartikel;
+SELECT * FROM Artikeleingang;
+Insert INTO Artikeleingang Values (1, 2, 2);
+UPDATE Artikeleingang SET Anzahl = 2;
+
+### select für offene Artikel 
+SELECT * FROM (SELECT SUM(Anzahl) as Eingegangen ,Artikel_ArtikelID as ArtikelID FROM Artikeleingang JOIN Lieferantenlieferungen USING (LieferantenLieferungID) 
+              JOIN Lieferantenbestellung ON (Lieferantenlieferungen.LieferbestellungsID = Lieferantenbestellung.LieferantenbestellungsID)
+              WHERE Lieferantenlieferungen.LieferbestellungsID = 1
+              GROUP BY(Artikel_ArtikelID)) as Eingangen JOIN
+(SELECT SUM(Anzahl) as Bestellt, ArtikelID FROM Lieferantenartikel WHERE LieferantenbestellungsID = 1 GROUP BY (ArtikelID)) as Bestellt 
+  USING(ArtikelID) WHERE Eingegangen < Bestellt; 
+  
+
+###
+INSERT INTO Artikeleingang (Artikel_ArtikelID, Anzahl, LieferantenLieferungID) VALUES (1,5,1);
+SELECT * FROM (SELECT SUM(Artikeleingang.Anzahl) as Eingangen, SUM(Lieferantenartikel.Anzahl) as Bestellt, ArtikelID, LieferantenBestellungsID FROM Artikeleingang 
+              JOIN Lieferantenlieferungen USING (LieferantenLieferungID) 
+              JOIN Lieferantenbestellung ON (Lieferantenlieferungen.LieferbestellungsID = Lieferantenbestellung.LieferantenbestellungsID) 
+              JOIN Lieferantenartikel USING (LieferantenbestellungsID) GROUP BY(Artikel_ArtikelID) AND LieferantenBestellungsID = 1) AS t
+              WHERE Eingangen < Bestellt;  
+SELECT * FROM Lieferantenartikel JOIN Lieferantenbestellung USING (LieferantenbestellungsID) WHERE LieferantenbestellungsID = 1;

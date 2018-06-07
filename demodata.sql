@@ -71,8 +71,10 @@ UPDATE Lieferantenlieferungen SET LieferbestellungsID = 1 WHERE LieferantenLiefe
 SELECT * FROM Lieferantenbestellung;
 SELECT * FROM Lieferantenartikel;
 SELECT * FROM Artikeleingang;
+DELETE FROM Artikeleingang;
+commit;
 Insert INTO Artikeleingang Values (1, 2, 2);
-UPDATE Artikeleingang SET Anzahl = 2;
+UPDATE Artikeleingang SET Anzahl = 2 WHERE Anzahl = 3;
 
 ### select für offene Artikel 
 SELECT * FROM (SELECT SUM(Anzahl) as Eingegangen ,Artikel_ArtikelID as ArtikelID FROM Artikeleingang JOIN Lieferantenlieferungen USING (LieferantenLieferungID) 

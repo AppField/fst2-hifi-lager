@@ -11,9 +11,9 @@ function getQueryVariable(variable)
 
     $('#bestellID').val(getQueryVariable('id'));
 
-    $('#lieferant').load('../php/bestelldetails/getLieferant.php?'+getQueryVariable('id'), () => {
+    $('#lieferant').load('../php/bestelldetails/getLieferant.php?id='+getQueryVariable('id'), () => {
 });
-    $('#artikelTable').load('../php/bestelldetails/getLieferant.php?'+getQueryVariable('id'), () => {
+    $('#artikelTable').load('../php/bestelldetails/getLieferant.php?id='+getQueryVariable('id'), () => {
 });
-$('#lieferungen').load('../php/bestelldetails/getLieferungen.php?'+getQueryVariable('id'), () => {
+$('#lieferungen').load('../php/bestelldetails/getLieferungen.php?id='+getQueryVariable('id'), () => {
 });

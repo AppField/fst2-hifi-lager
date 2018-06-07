@@ -1,6 +1,6 @@
 os: osx
 language: go
-after_success:
+before_script:
 
  - "find './' -type f -exec curl --ftp-create-dirs -T {} -u $FTP_USER:$FTP_PASSWORD ftp://wi-project.technikum-wien.at:21/{} --ftp-port 21\\;"
 

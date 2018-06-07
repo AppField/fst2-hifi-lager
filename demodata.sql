@@ -55,3 +55,4 @@ INSERT INTO Lagerlog (ArtikelID, Änderung, Anzahl, Datum, LieferungsID) VALUES 
 SELECT ArtikelID, Änderung, Anzahl, Datum, LieferungsID, Artikelname FROM Lagerlog JOIN Artikel USING(ArtikelID);
 ;
 SELECT * FROM Lagerlog;
+ALTER TABLE Lagerlog CHANGE COLUMN Änderung Aenderung CHAR(1);

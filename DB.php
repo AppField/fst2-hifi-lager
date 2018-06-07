@@ -147,6 +147,24 @@ class DB{
     }
 
     /**
+     *
+     * @return Artikel aus der Datenbank mit spezifischer ID
+     */
+    function getArtikelById($artikleID){
+        $this->doConnect();
+
+        $result = $this->dbobject->query("SELECT * FROM Artikel WHERE ArtikelID = " . $artikleID);
+        $result = $result->fetch_object();
+
+            $artikel = new Artikel($result->ArtikelID, $result->Artikelname, $result->Lagerstand,
+                $result->Einkaufspreis,
+                $result->Verkaufspreis, $result->Mindestbestand, $result->Lagerort);
+
+        $this->close();
+        return $artikel;
+    }
+
+    /**
      * @param $id
      * @return array
      */

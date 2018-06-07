@@ -144,11 +144,41 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form class="form-horizontal">
                     <div class="form-group">
+                        <label class="  control-label" for="artikelid">Artikel ID</label>
+                        <div class=" ">
+                            <input id="artikelid" name="artikelid" type="text" placeholder="Artikel ID"
+                                   class="form-control input-md" disabled>
+                            <small class="form-text text-muted">Wird automatisch erstellt</small>
+                        </div>
+                    </div>
 
+                    <div class="form-group">
+                        <label class="  control-label" for="artikelname">Artikel name</label>
+                        <div class=" ">
+                            <input id="artikelname" name="artikelname" type="text" placeholder="Artikel Name"
+                                   class="form-control input-md" required="" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="  control-label" for="bestand">Lagerbestand</label>
+                        <div class=" ">
+                            <input id="bestand" name="bestand" type="text" placeholder="Lagerbestand"
+                                   class="form-control input-md" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="  control-label" for="lagerort">Lagerort</label>
+                        <div class=" ">
+                            <input id="lagerort" name="lagerort" type="text" placeholder="Lagerot"
+                                   class="form-control input-md" required>
+                        </div>
                     </div>
                 </form>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>

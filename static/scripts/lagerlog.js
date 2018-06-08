@@ -1,6 +1,6 @@
 (function () {
 
-    $('#lagerlogliste').load('../php/Lagerlogtabelle.php', () => {
+    $('#lagerlogliste').load('../php/lagerlogtabelle.php', () => {
     });
 
 }());

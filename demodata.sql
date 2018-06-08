@@ -98,4 +98,4 @@ commit;
 
 
 SELECT * FROM ARTIKEL;
-UPDATE ARTIKEL SET Lagerort = "Am Boden" WHERE ArtikelID = 1;
+UPDATE ARTIKEL SET Lagerort = "am Boden" WHERE ArtikelID = 30;

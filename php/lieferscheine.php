@@ -16,7 +16,7 @@ foreach ($kundenlieferungen as $lieferung) {
                             <td class=\"hidden-xs\">" . $lieferung->getBestellungsID() . "</td>
                             <td>" . $lieferung->getLieferungsID() . "</td>
                             <td align=\"center\">
-                                <a class=\"\" href=\"bestelldetails.html\">
+                                <a class=\"\" href=\"lieferantenbestelldetails.html\">
                                     <button class=\"btn fa fa-print\" ></button>
                                 </a>
                             </td>

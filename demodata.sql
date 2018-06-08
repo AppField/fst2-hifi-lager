@@ -99,8 +99,7 @@ INSERT INTO Lieferantenartikel (ArtikelID, Anzahl, LieferantenbestellungsID) Val
 SELECT * FROM ARTIKEL;
 UPDATE ARTIKEL SET Lagerort = "am Boden" WHERE ArtikelID = 30;
 
-
-' Select für Lieferschein'
+ Select für Lieferschein'
 select row, KundenbestellungsID, Artikelname, auftragsposition.Anzahl, kunde.Name as KundenName, KundeID, Strasse, Hausnummer, ort.Bezeichnung
   from kundenlieferung
 	  join kundenbestellung using(kundenbestellungsid)

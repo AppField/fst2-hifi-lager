@@ -5,7 +5,7 @@
  * Date: 07.06.18
  * Time: 13:52
  */
-include "../models/Bestellung.php";
+include "../models/Lieferung.php";
 include "../models/Kundenlieferung.php";
 include "../DB.php";
 $db = New DB();

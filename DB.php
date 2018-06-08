@@ -237,7 +237,7 @@ class DB{
     function updateArtikelName($id, $name){
         $this->doConnect();
         $this->dbobject->query("SET NAMES 'utf8'");
-        $statement = $this->dbObject->prepare("UPDATE ARTIKEL SET Artikelname = ? WHERE ArtikelID = ?");
+        $statement = $this->dbobject->prepare("UPDATE ARTIKEL SET Artikelname = ? WHERE ArtikelID = ?");
 
         $statement->bind_param("ss", $id, $name);
         $statement->execute();
@@ -250,7 +250,7 @@ class DB{
     function updateArtikelLagerort($id, $ort){
         $this->doConnect();
         $this->dbobject->query("SET NAMES 'utf8'");
-        $statement = $this->dbObject->prepare("UPDATE ARTIKEL SET Lagerort = ? WHERE ArtikelID = ?");
+        $statement = $this->dbobject->prepare("UPDATE ARTIKEL SET Lagerort = ? WHERE ArtikelID = ?");
 
         $statement->bind_param("ss", $id, $ort);
         $statement->execute();

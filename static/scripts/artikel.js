@@ -39,9 +39,10 @@
             this.name = $('#artikelname');
             this.bestand = $('#bestand');
             this.lagerort = $('#lagerort');
-            this.saveBtn = $('#saveArtikelBtn');
+            this.saveBtn = $('#saveBtn');
 
-            this.saveBtn.on('click',(this.saveArtikel));
+            this.saveBtn.on('click', () => this.saveArtikel());
+
 
             $.ajax({
                 url: '../php/artikel.php?artikelid=' + artikelid
@@ -52,7 +53,7 @@
                 });
         }
 
-        setValues(artikel)  {
+        setValues(artikel) {
             this.id.val(artikel.artikelID);
             this.name.val(artikel.artikelname);
             this.bestand.val(artikel.lagerstand);
@@ -60,18 +61,23 @@
         }
 
         saveArtikel() {
+            const artikel = {
+                artikelid: this.id.val(),
+                artikelname: this.name.val(),
+                lagerort: this.lagerort.val()
+            };
+
             $.ajax({
-                url: '../php/artikelAave.php?artikelid=' + artikelid,
-                data: {
-                    artikelid: this.id.val,
-                    artikelname: this.name.val,
-                    lagerort: this.lagerort.val
+                method: "POST",
+                url: '../php/artikelSave.php',
+                data: artikel,
+                success: (result) => {
+                    console.log('Success Artikel:', result);
+                },
+                error: (error) => {
+                    console.error('error', error);
                 }
-            })
-                .done(result => {
-                    if (result) articleModal.modal('dispose');
-                    else console.error('save failed');
-                });
+            });
         }
     }
 

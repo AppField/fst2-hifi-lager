@@ -61,8 +61,8 @@ SELECT ArtikelID, Änderung, Anzahl, Datum, LieferungsID, Artikelname FROM Lager
 
 SELECT * FROM Lagerlog;
 ALTER TABLE Lagerlog CHANGE COLUMN Änderung Aenderung CHAR(1);
-
-
+ALTER TABLE lagerlog CHANGE COLUMN Aenderung AE CHAR(2);
+ALTER TABLE lagerlog CHANGE COLUMN AE Aenderung CHAR(2);
 
 ###
 DELETE FROM Artikeleingang;
@@ -94,7 +94,6 @@ SELECT * FROM (SELECT SUM(Artikeleingang.Anzahl) as Eingangen, SUM(Lieferantenar
               WHERE Eingangen < Bestellt;  
 SELECT * FROM Lieferantenartikel JOIN Lieferantenbestellung USING (LieferantenbestellungsID) WHERE LieferantenbestellungsID = 1;
 INSERT INTO Lieferantenartikel (ArtikelID, Anzahl, LieferantenbestellungsID) Values (2, 4, 1);
-commit;
 
 
 SELECT * FROM ARTIKEL;

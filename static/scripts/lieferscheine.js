@@ -1,6 +1,6 @@
 (function () {
 
-    $('#lieferscheinliste').load('../php/lieferschein.php', () => {
+    $('#lieferscheinliste').load('../php/lieferscheine.php', () => {
     });
 
 }());

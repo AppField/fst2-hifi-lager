@@ -1,6 +1,5 @@
 (function () {
 
-
     const articleModal = $('#articleModal');
 
     let articleModalInstanz = null;
@@ -43,7 +42,6 @@
 
             this.saveBtn.on('click', () => this.saveArtikel());
 
-
             $.ajax({
                 url: '../php/artikel.php?artikelid=' + artikelid
             })
@@ -72,7 +70,8 @@
                 url: '../php/artikelSave.php',
                 data: artikel,
                 success: (result) => {
-                    console.log('Success Artikel:', result);
+                    if (result) articleModal.modal('hide');
+                    else console.error('save failed');
                 },
                 error: (error) => {
                     console.error('error', error);

@@ -32,10 +32,14 @@
     class LagerbestandModal {
 
         constructor(artikelid) {
-
+            this.modal = modal;
             this.id = $('#artikelid');
             this.name = $('#artikelname');
             this.bestand = $('#bestand');
+
+            this.saveBtn = $('#saveBtn');
+
+            this.saveBtn.on('click', (() => this.saveBestand()));
 
             $.ajax({
                 url: '../php/lagerbestaende.php?artikelid=' + artikelid
@@ -50,6 +54,25 @@
             this.id.val(artikel.artikelID);
             this.name.val(artikel.artikelname);
             this.bestand.val(artikel.lagerstand);
+        }
+
+        saveBestand() {
+            const artikel = {
+                artikelid: this.id.val(),
+                bestand: this.bestand.val()
+            };
+            $.ajax({
+                type: 'POST',
+                url: '../php/lagerbestaendeSave.php',
+                data: artikel,
+                success: (result) => {
+                    if (result) modal.modal('hide');
+                    else console.error('save failed');
+                },
+                error: (error) => {
+                    console.error('error', error);
+                }
+            })
         }
     }
 

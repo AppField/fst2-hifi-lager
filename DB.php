@@ -244,6 +244,7 @@ class DB{
         if($statement->error){
             return false;
         }
+        $this->dbobject->query("commit");
         return true;
     }
 
@@ -257,6 +258,7 @@ class DB{
         if($statement->error){
             return false;
         }
+        $this->dbobject->query("commit");
         return true;
     }
 }

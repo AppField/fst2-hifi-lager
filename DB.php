@@ -233,4 +233,30 @@ class DB{
         $this->close();
         return $artikel;
     }
+
+    function updateArtikelName($id, $name){
+        $this->doConnect();
+        $this->dbobject->query("SET NAMES 'utf8'");
+        $statement = $dbObject->prepare("UPDATE ARTIKEL SET Artikelname = ? WHERE ArtikelID = ?");
+
+        $statement->bind_param("ss", $id, $name);
+        $statement->execute();
+        if($statement->error){
+            return false;
+        }
+        return true;
+    }
+
+    function updateArtikelLagerort($id, $ort){
+        $this->doConnect();
+        $this->dbobject->query("SET NAMES 'utf8'");
+        $statement = $dbObject->prepare("UPDATE ARTIKEL SET Lagerort = ? WHERE ArtikelID = ?");
+
+        $statement->bind_param("ss", $id, $name);
+        $statement->execute();
+        if($statement->error){
+            return false;
+        }
+        return true;
+    }
 }

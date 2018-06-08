@@ -94,3 +94,4 @@ SELECT * FROM (SELECT SUM(Artikeleingang.Anzahl) as Eingangen, SUM(Lieferantenar
               WHERE Eingangen < Bestellt;  
 SELECT * FROM Lieferantenartikel JOIN Lieferantenbestellung USING (LieferantenbestellungsID) WHERE LieferantenbestellungsID = 1;
 INSERT INTO Lieferantenartikel (ArtikelID, Anzahl, LieferantenbestellungsID) Values (2, 4, 1);
+commit;

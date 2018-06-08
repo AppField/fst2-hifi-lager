@@ -30,3 +30,8 @@ var_dump($lieferantenlieferungen);
 echo '</p>Artikel <p>';
 $artikel = $db->getArtikel();
 var_dump($artikel);
+
+
+echo '</br>';
+
+echo $db->updateArtikelName(999, "asdf");

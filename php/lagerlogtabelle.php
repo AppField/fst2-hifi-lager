@@ -13,7 +13,7 @@ $lagerlog = $db->getLagerlog();
 $logtable = "";
 foreach ($lagerlog as $log) {
     $anzahl = 0;
-    if ($log->getAenderung() == 'A'){
+    if ($log->getAenderung() == 'A' OR $log->getAenderung() == 'KA'){
         $anzahl = -$log->getAnzahl();
         $cell = "<td style='color: crimson'>".$anzahl."</td>";
     }else{

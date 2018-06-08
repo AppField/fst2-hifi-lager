@@ -99,3 +99,30 @@ commit;
 
 SELECT * FROM ARTIKEL;
 UPDATE ARTIKEL SET Lagerort = "am Boden" WHERE ArtikelID = 30;
+
+
+' Select für Lieferschein'
+select row, KundenbestellungsID, Artikelname, auftragsposition.Anzahl, kunde.Name as KundenName, KundeID, Strasse, Hausnummer, ort.Bezeichnung
+  from kundenlieferung
+	  join kundenbestellung using(kundenbestellungsid)
+    join auftragsposition using (kundenbestellungsid)
+    join artikel using(ArtikelID)
+    join kunde on kunde.kundeid = kundenbestellung.KundenID
+    join ort using(ortid)
+    where kundenlieferungsID = 1;
+
+'insert befehle für auftragspositionen'
+insert into auftragsposition (anzahl, artikelid, kundenbestellungsID)
+values(3, 1, 1);
+insert into auftragsposition (anzahl, artikelid, kundenbestellungsID)
+values(5, 10, 1);
+insert into auftragsposition (anzahl, artikelid, kundenbestellungsID)
+values(2, 5, 1);
+insert into auftragsposition (anzahl, artikelid, kundenbestellungsID)
+values(2, 2, 2);
+insert into auftragsposition (anzahl, artikelid, kundenbestellungsID)
+values(1, 6, 2);
+insert into auftragsposition (anzahl, artikelid, kundenbestellungsID)
+values(4, 7, 2);
+insert into auftragsposition (anzahl, artikelid, kundenbestellungsID)
+values(1, 13, 2);

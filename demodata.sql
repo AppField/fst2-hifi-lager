@@ -61,8 +61,8 @@ SELECT ArtikelID, Änderung, Anzahl, Datum, LieferungsID, Artikelname FROM Lager
 
 SELECT * FROM Lagerlog;
 ALTER TABLE Lagerlog CHANGE COLUMN Änderung Aenderung CHAR(1);
-
-
+ALTER TABLE lagerlog CHANGE COLUMN Aenderung AE CHAR(2);
+ALTER TABLE lagerlog CHANGE COLUMN AE Aenderung CHAR(2);
 
 ###
 DELETE FROM Artikeleingang;

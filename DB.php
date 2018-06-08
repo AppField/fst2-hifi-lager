@@ -161,7 +161,7 @@ class DB{
      */
     function getArtikelById($artikleID){
         $this->doConnect();
-
+        $this->dbobject->query("SET NAMES 'utf8'");
         $result = $this->dbobject->query("SELECT * FROM Artikel WHERE ArtikelID = " . $artikleID);
         $result = $result->fetch_object();
 
@@ -194,6 +194,7 @@ class DB{
 
     function getLieferantenbestellungsArtikelAnzahl($lid, $aid){
         $this->doConnect();
+        $this->dbobject->query("SET NAMES 'utf8'");
         $result = $this->dbobject->query("SELECT Anzahl FROM Lieferantenartikel WHERE LieferantenbestellungsID = ".$lid." AND ArtikelID = ".$aid);
         $artikelanzahl = -1;
         while ($row = $result->fetch_object()) {
@@ -205,6 +206,7 @@ class DB{
 
     function getLagerlog(){
         $this->doConnect();
+        $this->dbobject->query("SET NAMES 'utf8'");
         $result = $this->dbobject->query("SELECT ArtikelID, Aenderung, Anzahl, Datum, LieferungsID, Artikelname FROM Lagerlog JOIN Artikel USING(ArtikelID)");
         $logArray = array();
         while ($row = $result->fetch_object()) {

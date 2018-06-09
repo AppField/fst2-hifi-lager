@@ -149,7 +149,6 @@
 
             const prevElem = dropData[3];
 
-            let newItem = null;
             const dropZone = event.target.tagName === "UL" ? $(event.target) : $(event.target.parentElement);
 
             if (prevElem === this.OFFENEARTIKELID) {
@@ -176,8 +175,10 @@
         handleDropOpen(dropZone, artikel) {
             if (dropZone.attr('id') === this.OFFENEARTIKELID) {
 
-                const newItem = this.createOpenItem(artikel.artikelId, artikel.artikelName, artikel.artikelAnzahl);
-                dropZone.append(newItem);
+                // const newItem = this.createOpenItem(artikel.artikelId, artikel.artikelName, artikel.artikelAnzahl);
+                // dropZone.append(newItem);
+                const assignedItem = this.getAssignedArticle(artikel.artikelId);
+                this.removeAssignedItem(assignedItem);
 
             }
         }
@@ -229,6 +230,11 @@
             const remaining = max - parseInt(newAmount);
 
             this.updateOpenAmount(artikelId, remaining);
+
+            // Remove assigned item if assigned amount is 0 (therefore nothing's assigned)
+            if (parseInt(newAmount) === 0) {
+                this.removeAssignedItem(event.target.parentElement);
+            }
         }
 
         createOpenItem(artikelId, artikelName, artikelAnzahl) {
@@ -251,7 +257,16 @@
                     `);
             newItem.find(`#artikelInput${artikelId}`).on('blur', (event) => this.updateAssignedAmount(event));
             newItem.find(`#artikelInput${artikelId}`).on('blur', (event) => this.preventWrongAmount(event));
+            this.setupDragAndDropEvents(newItem);
             return newItem;
+        }
+
+        removeAssignedItem(item) {
+            const artikelId = $(item).data('artikel-id');
+            const max = $(item).find('input').attr('max');
+
+            $(item).remove();
+            this.updateOpenAmount(artikelId, max);
         }
 
         preventWrongAmount(event) {

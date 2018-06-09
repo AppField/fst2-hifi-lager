@@ -264,5 +264,47 @@ class DB{
         return true;
     }
 
+    /**
+     *
+     * @return Artikel aus der Datenbank von einer bestimmten Kundenlieferung
+     */
+    function getKundenlieferungsArtikel($lieferungsID){
+        $this->doConnect();
+        $this->dbobject->query("SET NAMES 'utf8'");
+        $artikel = array();
+        $result = $this->dbobject->query("SELECT ArtikelID, Artikelname, Anzahl
+            FROM kundenlieferung 
+            JOIN artikelausgang USING(KundenlieferungsID)
+            JOIN artikel USING (ArtikelID)
+            JOIN kundenbestellung USING(KundenbestellungsID)
+            JOIN kunde ON kunde.KundeID= kundenbestellung.KundenID 
+            JOIN ort USING(OrtID)
+            WHERE KundenlieferungsID = ".$lieferungsID);
+        while ($row = $result->fetch_object()) {
+            $lieferung = new Lieferschein($row->ArtikelID, $row->Artikelname, $row->Anzahl);
+            array_push($artikel, $lieferung);
+        }
+        $this->close();
+        return $artikel;
+    }
+
+    function getKundenDetails($id){
+        $this->doConnect();
+        $this->dbobject->query("SET NAMES 'utf8'");
+        $result = $this->dbobject->query("SELECT kunde.Name as Kundenname, KundeID, Strasse, Hausnummer, ort.Bezeichnung as Ort, PLZ
+            FROM kundenlieferung 
+            JOIN artikelausgang USING(KundenlieferungsID)
+            JOIN artikel USING (ArtikelID)
+            JOIN kundenbestellung USING(KundenbestellungsID)
+            JOIN kunde ON kunde.KundeID= kundenbestellung.KundenID 
+            JOIN ort USING(OrtID)
+            WHERE KundenlieferungsID =".$id);
+        $result = $result->fetch_object();
+        $kunde = new Kunde($result->KundeID, $result->Kundenname, $result->Strasse, $result->Hausnummer, $result->Ort, $result->PLZ);
+        return $kunde;
+
+    }
+
+
 
 }

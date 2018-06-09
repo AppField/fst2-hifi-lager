@@ -17,9 +17,9 @@ if (isset($_GET["id"])) {
     $Lieferantenartiekl = $db->getOffeneArtikelLieferantenbestellung($_GET["id"]);
     foreach ($Lieferantenartiekl as $artikel){
         $body .= "<tr align = \"center\">
-                            <td class=\"hidden-xs\">".$artikel->getArtikelID()."</td>
-                            <td>".$artikel->getArtikelname()."</td>
-                            <td>".$db->getLieferantenbestellungsArtikelAnzahl($_GET["id"], $artikel->getArtikelID())."</td>
+                            <td class=\"hidden-xs\">".$artikel->getID()."</td>
+                            <td>".$artikel->getBezeichnung()."</td>
+                            <td>".$artikel->getAnzahl()."</td>
                           </tr>";
     }
 }

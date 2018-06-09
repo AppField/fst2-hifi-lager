@@ -54,3 +54,6 @@ echo '<p>Kunde für Lieferschein</p>';
 $kunde = $db->getKundenDetails(1);
 var_dump($kunde);
 
+echo 'Offene Artikel Lieferantenbestellung <p>'
+echo $db->getOffeneArtikelLieferantenbestellung(4)
+

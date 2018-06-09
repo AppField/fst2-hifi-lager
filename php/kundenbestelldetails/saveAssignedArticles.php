@@ -11,6 +11,7 @@ $db = new DB();
 if (isset($_POST['bestellungsId'])) {
 
     var_dump($_POST);
+    $artikel = json_decode();
 
 }
 echo $body;

@@ -99,15 +99,27 @@ INSERT INTO Lieferantenartikel (ArtikelID, Anzahl, LieferantenbestellungsID) Val
 SELECT * FROM ARTIKEL;
 UPDATE ARTIKEL SET Lagerort = "am Boden" WHERE ArtikelID = 30;
 
- Select für Lieferschein'
-select row, KundenbestellungsID, Artikelname, auftragsposition.Anzahl, kunde.Name as KundenName, KundeID, Strasse, Hausnummer, ort.Bezeichnung
-  from kundenlieferung
-	  join kundenbestellung using(kundenbestellungsid)
-    join auftragsposition using (kundenbestellungsid)
-    join artikel using(ArtikelID)
-    join kunde on kunde.kundeid = kundenbestellung.KundenID
-    join ort using(ortid)
-    where kundenlieferungsID = 1;
+ 'Select für Lieferschein'
+'Select für artikel für Lieferschein'
+SELECT ArtikelID, Artikelname, Anzahl
+	FROM kundenlieferung
+	JOIN artikelausgang USING(KundenlieferungsID)
+    JOIN artikel USING (ArtikelID)
+    JOIN kundenbestellung USING(KundenbestellungsID)
+    JOIN kunde ON kunde.KundeID= kundenbestellung.KundenID
+    JOIN ort USING(OrtID)
+    WHERE KundenlieferungsID = 1;
+
+'Select für Kundendaten für Lieferschein'
+SELECT kunde.Name as Kundenname, KundeID, Strasse, Hausnummer, ort.Bezeichnung as Ort
+	FROM kundenlieferung
+	JOIN artikelausgang USING(KundenlieferungsID)
+    JOIN artikel USING (ArtikelID)
+    JOIN kundenbestellung USING(KundenbestellungsID)
+    JOIN kunde ON kunde.KundeID= kundenbestellung.KundenID
+    JOIN ort USING(OrtID)
+    WHERE KundenlieferungsID = 1;
+
 
 'insert befehle für auftragspositionen'
 insert into auftragsposition (anzahl, artikelid, kundenbestellungsID)

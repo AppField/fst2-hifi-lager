@@ -18,7 +18,7 @@ Implementierung der Fallstudie 2
 - Spezifikationen anpassen
 - .class.php refactoring
 - artikel.php änderungs funktion
-- Diana: Icons in der Titelleiste einfuefen
+- Diana: Icons in der Titelleiste einfuefen - DONE
  
  
  

@@ -9,7 +9,6 @@ html, body {
     align-items: stretch;
 }
 
-
 main {
     flex-grow: 1;
 }
@@ -19,13 +18,12 @@ header, main, .footer-dark {
 }
 
 .intro .text-center {
-    font-size:58px;
-    padding-top:30px;
+    font-size: 58px;
+    padding-top: 30px;
     color: rgb(220, 155, 107);
 }
 
 /* END BASIC PAGE LAYOUT*/
-
 
 /*html, body {*/
 /*height: 100vh;*/
@@ -69,11 +67,11 @@ header, main, .footer-dark {
     transform: scale(1.05);
 }
 
-.features .item .box .icon{
+.features .item .box .icon {
     transition: background-color .3s ease-out,
     color .3s ease-out,
     transform .3s ease-out;
-    color:rgb(60,55,52);
+    color: rgb(60, 55, 52);
 }
 
 .features .item .box:hover .icon {
@@ -81,8 +79,25 @@ header, main, .footer-dark {
     color: rgb(220, 155, 107);
 }
 
-.linkindex:hover{
+.linkindex:hover {
     text-decoration: none;
-    color:rgb(60,55,52);
+    color: rgb(60, 55, 52);
 }
 
+/* BEGIN DRAG ANd DROP */
+
+.drag-and-drop .list-group-item:hover {
+    cursor: pointer;
+}
+
+.drag-held {
+    opacity: .5;
+    border-radius: 4px;
+}
+
+.drag-over {
+    border: 1px dashed #222;
+    border-radius: 4px;
+}
+
+/*END DRAG AND DROP*/

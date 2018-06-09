@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="assets/css/Header-Dark.css">
     <link rel="stylesheet" href="assets/css/MUSA_panel-table.css">
     <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="icon" href="assets/img/icon_orange.png" />
+    <link rel="icon" href="assets/img/icon_orange.png"/>
 </head>
 
 <body style="background-color:#eef4f7;">
@@ -55,14 +55,14 @@
                                 <h3>Allgemein
                                     <button class="btn btn-primary float-right m-auto" type="button"
                                             style="background-color:rgb(220,151,112);" data-toggle="modal"
-                                            data-target="#exampleModalCenter">Lieferung hinzufügen
+                                            data-target="#modal">Lieferung hinzufügen
                                     </button>
                                 </h3>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group"><label><strong>Bestellung - ID</strong><br></label><input
                                         class="form-control" type="text" value="0" disabled readonly=""
-                                        name="firstname" id = "bestellID"></div>
+                                        name="firstname" id="bestellID"></div>
                                 <label><strong>Lieferant</strong></label><input class="form-control" id="lieferant"
                                                                                 type="text" value="XYZ" disabled=""
                                                                                 readonly="" name="lastname"
@@ -105,7 +105,7 @@
                 </div>
             </div>
         </div><!-- Modal -->
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+        <div class="modal fade" id="modal" tabindex="-1" role="dialog"
              aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -116,35 +116,65 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Eingehende Artikel:</label>
-                                <div class="form-row">
-                                    <div class="col">
-                                        <input type="text" class="form-control" placeholder="Artikel Bezeichnung">
-                                    </div>
-                                    <div class="col">
-                                        <input type="text" class="form-control" placeholder="Menge">
-                                    </div>
-                                    <div class="col">
-                                        <button class
-                                        "btn btn-secondary">Reihe hinzufügen</button>
-                                    </div>
-                                </div>
+
+                        <label>Artikel zu Lieferung zuordnen</label>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>
+                                    <small>Offene Artikel</small>
+                                </label>
+                                <ul id="offeneArtikel" class="list-group drag-and-drop">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center"
+                                        draggable="true" data-artikel-id="1" data-artikel-name="Kopfhoerer"
+                                        data-artikel-anzahl="10">
+                                        Kopfhoerer
+                                        <span class="badge badge-primary badge-pill">10</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center"
+                                        draggable="true" data-artikel-id="2" data-artikel-name="Lautsprehcer"
+                                        data-artikel-anzahl="3">
+                                        Lautsprecher
+                                        <span class="badge badge-primary badge-pill">3</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center"
+                                        draggable="true" data-artikel-id="3" data-artikel-name="Heimkinosystem"
+                                        data-artikel-anzahl="1">
+                                        Heimkinosystem
+                                        <span class="badge badge-primary badge-pill">1</span>
+                                    </li>
+                                </ul>
                             </div>
-                            <div class="form-group">
-                                <label for="message-text" class="col-form-label">Datum:</label>
-                                <input type="date" class="form-control" id="datum">
+                            <div class="col-md-6">
+                                <label>
+                                    <small>Zugeordnete Artikel</small>
+                                </label>
+                                <ul id="zugeordneteArtikel" class="list-group drag-and-drop">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center"
+                                        draggable="true" data-artikel-id="1" data-artikel-name="Kopfhoerer"
+                                        data-artikel-anzahl="10">
+                                        Kopfhoerer
+                                        <span class="badge badge-primary badge-pill">10</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center"
+                                        draggable="true" data-artikel-id="2" data-artikel-name="Lautsprecher"
+                                        data-artikel-anzahl="3">
+                                        Lautsprecher
+                                        <span class="badge badge-primary badge-pill">3</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center"
+                                        draggable="true" data-artikel-id="3" data-artikel-name="Heimkinosystem"
+                                        data-artikel-anzahl="1">
+                                        Heimkinosystem
+                                        <span class="badge badge-primary badge-pill">1</span>
+                                    </li>
+                                </ul>
                             </div>
-                            <div class="form-group">
-                                <label for="message-text" class="col-form-label">Lieferschein:</label>
-                                <input type="file" class="form-control" id="lieferschein">
-                            </div>
-                        </form>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-success">Hinzufügen</button>
+                        <button type="button" id="saveBtn" class="btn btn-success">Hinzufügen</button>
                     </div>
                 </div>
             </div>
@@ -161,7 +191,7 @@
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="assets/js/Profile-Edit-Form.js"></script>
-<script src="scripts/lieferantenbestelldetails.js"></script>
+<script src="scripts/kundenbestelldetails.js"></script>
 </body>
 
 </html>

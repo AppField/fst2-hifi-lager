@@ -78,9 +78,6 @@
         setupDragAndDrop() {
             this.offeneArtikel = this.offeneArtikelContainer.find('.list-group-item');
             this.zugeordneteArtikel = this.zugeordneteArtikelContainer.find('.list-group-item');
-            console.log(this.offeneArtikel);
-            console.log(this.zugeordneteArtikel);
-
 
             this.offeneArtikel.map(idx => {
                 this.setupDragAndDropEvents(this.offeneArtikel[idx]);
@@ -108,6 +105,7 @@
         }
 
         dragstart(event) {
+            if (event == null) return;
             $(this).addClass('drag-held');
 
             const target = $(event.target);
@@ -167,6 +165,7 @@
         }
 
         dragend(event) {
+            if (this == null) return;
             $(this).removeClass('drag-held');
             $(this.parentElement).removeClass('drag-over');
         }
@@ -212,7 +211,6 @@
         }
 
         updateOpenAmount(artikelId, newAmount) {
-            console.log('UPDATE OPEN AMOUNT', newAmount);
             const artikel = this.getOpenArticle(artikelId);
             artikel.find('.anzahl-badge').text(newAmount);
 
@@ -220,7 +218,6 @@
         }
 
         updateAssignedAmount(event) {
-            console.log('UPDATE ASSIGNED AMOUNT');
             const artikelId = $(event.target.parentElement).data('artikel-id');
             const newAmount = event.target.value;
             const artikel = this.getAssignedArticle(artikelId);
@@ -286,23 +283,37 @@
 
         saveLieferung() {
             const lieferung = {
-                // artikelid: this.id.val(),
-                // artikelname: this.name.val(),
-                // lagerort: this.lagerort.val()
+                bestellungsId: $('#bestellID').val(),
+                lieferantID: $('#lieferant').val(),
+                artikel: []
             };
+            console.log('hi');
+            console.log(this.zugeordneteArtikel);
+            const artikelItems = $('#zugeordneteArtikel .list-group-item');
+            artikelItems.map((idx, value) => {
 
-            // $.ajax({
-            //     method: "POST",
-            //     // url: '../php/artikelSave.php',
-            //     data: artikel,
-            //     success: (result) => {
-            //         if (result) articleModal.modal('hide');
-            //         else console.error('save failed');
-            //     },
-            //     error: (error) => {
-            //         console.error('error', error);
-            //     }
-            // });
+                const artikel = $(value);
+                lieferung.artikel.push({
+                    artikelId: artikel.data('artikel-id'),
+                    artikelName: artikel.data('artikel-name'),
+                    artikelAnzahl: artikel.data('artikel-anzahl')
+                });
+            });
+
+            console.log('lieferung', lieferung);
+
+            $.ajax({
+                method: "POST",
+                url: '../php/saveAssignedArticles.php',
+                data: lieferung,
+                success: (result) => {
+                    if (result) modal.modal('hide');
+                    else console.error('save failed');
+                },
+                error: (error) => {
+                    console.error('error', error);
+                }
+            });
         }
     }
 

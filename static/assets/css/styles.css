@@ -86,8 +86,31 @@ header, main, .footer-dark {
 
 /* BEGIN DRAG ANd DROP */
 
+.drag-and-drop {
+    flex: 1;
+}
+
+.dnd-half {
+    display: flex;
+    flex-direction: column;
+}
+
 .drag-and-drop .list-group-item:hover {
     cursor: pointer;
+}
+
+.drag-and-drop .badge {
+    background-color: rgb(220, 155, 107);
+}
+
+.drag-and-drop .form-control {
+    background-color: rgb(220, 155, 107);
+    color: white;
+    padding: .1em .6em;
+    font-size: 75%;
+    font-weight: 700;
+    width: 50px;
+    border-radius: 10rem;
 }
 
 .drag-held {
@@ -98,6 +121,18 @@ header, main, .footer-dark {
 .drag-over {
     border: 1px dashed #222;
     border-radius: 4px;
+}
+
+.dnd-info {
+    list-style: none;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-self: center;;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: grey;
+    font-weight: lighter;
 }
 
 /*END DRAG AND DROP*/

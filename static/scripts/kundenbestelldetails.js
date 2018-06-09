@@ -122,7 +122,6 @@
 
         dragenter(event) {
             event.preventDefault();
-            console.log('DRAG ENTER!');
             this.lastEnter = event;
             $(this).addClass('drag-over');
         }
@@ -133,7 +132,6 @@
 
         dragleave(event) {
             event.preventDefault();
-            console.log('DRAG LEAVE');
             if (this.lastEnter.target === event.target) {
                 $(this).removeClass('drag-over');
             }
@@ -143,33 +141,29 @@
         drop(event) {
             const data = event.originalEvent.dataTransfer.getData('text/html');
             const dropData = data.split('|');
-            const artikelId = dropData[0];
-            const artikelName = dropData[1];
-            const artikelAnzahl = dropData[2];
+            const artikel = {
+                artikelId: dropData[0],
+                artikelName: dropData[1],
+                artikelAnzahl: dropData[2],
+            };
 
-            console.log(artikelId, artikelName, artikelAnzahl);
             const prevElem = dropData[3];
 
             let newItem = null;
-            const dropZone = $(event.target.parentElement);
+            const dropZone = event.target.tagName === "UL" ? $(event.target) : $(event.target.parentElement);
+
             if (prevElem === this.OFFENEARTIKELID) {
-                if (dropZone.attr('id') === this.ZUGEORDNETEARTIKELID) {
 
-                    newItem = this.createAssignedItem(artikelId, artikelName, artikelAnzahl);
-                    dropZone.append(newItem);
+                this.handleDropAssigned(dropZone, artikel);
 
-                }
             } else if (prevElem === this.ZUGEORDNETEARTIKELID) {
-                if (dropZone.attr('id') === this.OFFENEARTIKELID) {
 
-                    newItem = this.createOpenItem(artikelId, artikelName, artikelAnzahl);
-                    dropZone.append(newItem);
+                this.handleDropOpen(dropZone, artikel);
 
-                }
             }
 
             $(this).removeClass('drag-held');
-            $(this.parentElement).removeClass('drag-over');
+            dropZone.removeClass('drag-over');
             event.preventDefault();
         }
 
@@ -178,25 +172,102 @@
             $(this.parentElement).removeClass('drag-over');
         }
 
+
+        handleDropOpen(dropZone, artikel) {
+            if (dropZone.attr('id') === this.OFFENEARTIKELID) {
+
+                const newItem = this.createOpenItem(artikel.artikelId, artikel.artikelName, artikel.artikelAnzahl);
+                dropZone.append(newItem);
+
+            }
+        }
+
+        handleDropAssigned(dropZone, artikel) {
+            if (dropZone.attr('id') === this.ZUGEORDNETEARTIKELID) {
+
+                if (!this.isAssigned(artikel.artikelId)) {
+                    const newItem = this.createAssignedItem(artikel.artikelId, artikel.artikelName, artikel.artikelAnzahl);
+                    $('.dnd-info').hide();
+                    dropZone.append(newItem);
+                    this.updateOpenAmount(artikel.artikelId, 0);
+                }
+
+            }
+        }
+
+        /*
+         * Used to prevent adding the same article again
+         */
+        isAssigned(artikelId) {
+            return this.getAssignedArticle(artikelId).length !== 0;
+        }
+
+        getOpenArticle(artikelId) {
+            return $(`#offeneArtikel [data-artikel-id=${artikelId}]`);
+        }
+
+        getAssignedArticle(artikelId) {
+            return $(`#zugeordneteArtikel [data-artikel-id=${artikelId}]`);
+        }
+
+        updateOpenAmount(artikelId, newAmount) {
+            console.log('UPDATE OPEN AMOUNT', newAmount);
+            const artikel = this.getOpenArticle(artikelId);
+            artikel.find('.anzahl-badge').text(newAmount);
+
+            artikel.attr('data-artikel-anzahl', newAmount);
+        }
+
+        updateAssignedAmount(event) {
+            console.log('UPDATE ASSIGNED AMOUNT');
+            const artikelId = $(event.target.parentElement).data('artikel-id');
+            const newAmount = event.target.value;
+            const artikel = this.getAssignedArticle(artikelId);
+            artikel.attr('data-artikel-anzahl', newAmount);
+
+            const max = parseInt(artikel.find('input').attr('max'));
+            const remaining = max - parseInt(newAmount);
+
+            this.updateOpenAmount(artikelId, remaining);
+        }
+
         createOpenItem(artikelId, artikelName, artikelAnzahl) {
             return $(`<li class="list-group-item d-flex justify-content-between align-items-center"
                         draggable="true" data-artikel-id="${artikelId}" data-artikel-name="${artikelName}"
                         data-artikel-anzahl="${artikelAnzahl}">
                         ${artikelName}
-                        <span class="badge badge-primary badge-pill">${artikelAnzahl}</span>
+                        <span class="anzahl-badge  badge badge-primary badge-pill">${artikelAnzahl}</span>
                     </li>         
                     `);
         }
 
         createAssignedItem(artikelId, artikelName, artikelAnzahl) {
-            return $(`<li class="list-group-item d-flex justify-content-between align-items-center"
+            const newItem = $(`<li class="list-group-item d-flex justify-content-between align-items-center"
                         draggable="true" data-artikel-id="${artikelId}" data-artikel-name="${artikelName}"
                         data-artikel-anzahl="${artikelAnzahl}">
                         ${artikelName}
-                        <span class="badge badge-primary badge-pill">${artikelAnzahl}</span>
+                        <input id="artikelInput${artikelId}" type="number" class="form-control" value="${artikelAnzahl}" max="${artikelAnzahl}" min="0"/>
                     </li>         
                     `);
+            newItem.find(`#artikelInput${artikelId}`).on('blur', (event) => this.updateAssignedAmount(event));
+            newItem.find(`#artikelInput${artikelId}`).on('blur', (event) => this.preventWrongAmount(event));
+            return newItem;
         }
+
+        preventWrongAmount(event) {
+            const max = parseInt($(event.target).attr('max'));
+            const keyCode = event.keyCode !== 46 || keyCode !== 8;// keycode for delete and backspace
+
+            if (event.target.value > max && keyCode) {
+                event.preventDefault();
+                $(event.target).val(max);
+            } else if (event.target.value < 0 && keyCode || event.target.value === '') {
+                $(event.target).val(0);
+            }
+            this.updateAssignedAmount(event);
+
+        }
+
 
         saveLieferung() {
             const lieferung = {

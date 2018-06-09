@@ -19,6 +19,31 @@ Implementierung der Fallstudie 2
 - .class.php refactoring
 - artikel.php änderungs funktion
 - Diana: Icons in der Titelleiste einfuefen - DONE
- 
+
+### Bestelldetails Lieferungen
+Drag and Drop wurde implementiert zum Zuordnen von Artikeln zu  Lieferungen.
+Frontend sendet folgendes zum Backend:
+
+- Datei: *saveAssignedArticles.php*
+- LieferantID wird bei der Bestellung derzeit nicht mitgegeben
+JSON Format:
+```json
+{
+  "bestellungsId": "1",
+  "lieferantID": "HappyLieferung Spediteur",
+  "artikel": [
+    {
+      "artikelId": 1,
+      "artikelName": "Kopfhoerer",
+      "artikelAnzahl": 10
+    },
+    {
+      "artikelId": 2,
+      "artikelName": "Lautsprecher",
+      "artikelAnzahl": 3
+    }
+  ]
+}
+```  
  
  

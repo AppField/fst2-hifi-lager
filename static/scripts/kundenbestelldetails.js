@@ -19,17 +19,17 @@
     $('#bestellID').val(getQueryVariable('id'));
 
     $.ajax({
-        url: '../php/lieferantenbestelldetails/getLieferant.php?id=' + getQueryVariable('id')
+        url: '../php/kundenbestelldetails/getLieferant.php?id=' + getQueryVariable('id')
     }).done(data => {
         lieferantInput.val(data);
     });
 
 
-    artikelTable.load('../php/lieferantenbestelldetails/artikelTable.php?id=' + getQueryVariable('id'), () => {
+    artikelTable.load('../php/kundenbestelldetails/artikelTable.php?id=' + getQueryVariable('id'), () => {
 
     });
 
-    lieferungenTable.load('../php/lieferantenbestelldetails/getLieferungen.php?id=' + getQueryVariable('id'), () => {
+    lieferungenTable.load('../php/kundenbestelldetails/getLieferungen.php?id=' + getQueryVariable('id'), () => {
 
     });
 
@@ -287,8 +287,7 @@
                 lieferantID: $('#lieferant').val(),
                 artikel: []
             };
-            console.log('hi');
-            console.log(this.zugeordneteArtikel);
+            
             const artikelItems = $('#zugeordneteArtikel .list-group-item');
             artikelItems.map((idx, value) => {
 
@@ -300,12 +299,11 @@
                 });
             });
 
-            console.log('lieferung', lieferung);
 
             $.ajax({
                 method: "POST",
-                url: '../php/saveAssignedArticles.php',
-                data: lieferung,
+                url: '../php/kundenbestelldetails/saveAssignedArticles.php',
+                data: JSON.stringify(lieferung),
                 success: (result) => {
                     if (result) modal.modal('hide');
                     else console.error('save failed');

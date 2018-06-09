@@ -16,7 +16,9 @@
         return (false);
     }
 
-    $('#bestellID').val(getQueryVariable('id'));
+    const bestellId = getQueryVariable('id');
+    $('#bestellID').val(bestellId);
+
 
     $.ajax({
         url: '../php/lieferantenbestelldetails/getLieferant.php?id=' + getQueryVariable('id')
@@ -41,14 +43,15 @@
     modal.on('show.bs.modal', (event) => {
         const button = $(event.relatedTarget);
 
-        modalInstanz = new LieferungHinzufuegenModal();
+        modalInstanz = new LieferungHinzufuegenModal(bestellId);
 
     });
 
 
     class LieferungHinzufuegenModal {
 
-        constructor() {
+        constructor(bestellId) {
+            this.bestellId = bestellId;
             this.OFFENEARTIKELID = 'offeneArtikel';
             this.ZUGEORDNETEARTIKELID = 'zugeordneteArtikel';
 
@@ -60,23 +63,14 @@
             this.saveBtn = $('#saveBtn');
             this.saveBtn.on('click', () => this.saveLieferung());
 
-            // $.ajax({
-            //     url: '../php/artikel.php?artikelid=' + artikelid
-            // })
-            //     .done((data) => {
-            //         const artikel = JSON.parse(data);
-            //         this.setValues(artikel);
-            //     });
+            this.offeneArtikelContainer.load('../php/lieferantenbestelldetails/getOffeneArtikel.php?id=' + this.bestellId);
+
 
             this.setupDragAndDrop();
         }
 
-        setValues(artikel) {
-            // this.id.val(artikel.artikelID);
-        }
-
         setupDragAndDrop() {
-            this.offeneArtikel = this.offeneArtikelContainer.find('.list-group-item');
+            this.offeneArtikel = this.offeneArtikelContainer.find('.lsist-group-item');
             this.zugeordneteArtikel = this.zugeordneteArtikelContainer.find('.list-group-item');
 
             this.offeneArtikel.map(idx => {

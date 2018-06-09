@@ -16,20 +16,21 @@
         return (false);
     }
 
-    $('#bestellID').val(getQueryVariable('id'));
+    const bestellId = getQueryVariable('id');
+    $('#bestellID').val(bestellId);
 
     $.ajax({
-        url: '../php/kundenbestelldetails/getLieferant.php?id=' + getQueryVariable('id')
+        url: '../php/kundenbestelldetails/getLieferant.php?id=' + bestellId
     }).done(data => {
         lieferantInput.val(data);
     });
 
 
-    artikelTable.load('../php/kundenbestelldetails/artikelTable.php?id=' + getQueryVariable('id'), () => {
+    artikelTable.load('../php/kundenbestelldetails/artikelTable.php?id=' + bestellId, () => {
 
     });
 
-    lieferungenTable.load('../php/kundenbestelldetails/getLieferungen.php?id=' + getQueryVariable('id'), () => {
+    lieferungenTable.load('../php/kundenbestelldetails/getLieferungen.php?id=' + bestellId, () => {
 
     });
 
@@ -41,14 +42,14 @@
     modal.on('show.bs.modal', (event) => {
         const button = $(event.relatedTarget);
 
-        modalInstanz = new LieferungHinzufuegenModal();
+        modalInstanz = new LieferungHinzufuegenModal(bestellId);
 
     });
 
 
     class LieferungHinzufuegenModal {
 
-        constructor() {
+        constructor(bestellId) {
             this.OFFENEARTIKELID = 'offeneArtikel';
             this.ZUGEORDNETEARTIKELID = 'zugeordneteArtikel';
 
@@ -60,13 +61,7 @@
             this.saveBtn = $('#saveBtn');
             this.saveBtn.on('click', () => this.saveLieferung());
 
-            // $.ajax({
-            //     url: '../php/artikel.php?artikelid=' + artikelid
-            // })
-            //     .done((data) => {
-            //         const artikel = JSON.parse(data);
-            //         this.setValues(artikel);
-            //     });
+            // this.offeneArtikelContainer.load('../php/kundenbestelldetails/getOffeneArtikel.php?id=' + bestellId);
 
             this.setupDragAndDrop();
         }
@@ -287,7 +282,7 @@
                 lieferantID: $('#lieferant').val(),
                 artikel: []
             };
-            
+
             const artikelItems = $('#zugeordneteArtikel .list-group-item');
             artikelItems.map((idx, value) => {
 

@@ -10,27 +10,28 @@ include "../../models/Artikel.php";
 include "../../models/Lieferantenbestellung.php";
 include "../../models/Lieferung.php";
 include "../../models/Lieferantenlieferung.php";
+include "../../models/OffenerArtikel.php";
 include "../../DB.php";
 $db = new DB();
 $body = "";
 if (isset($_GET["id"])) {
     $Lieferantenartiekl = $db->getOffeneArtikelLieferantenbestellung($_GET["id"]);
-    foreach ($Lieferantenartiekl as $artikel) {
+    foreach ($Lieferantenartiekl as $artikel){
         $body .= "<tr align = \"center\">
-                            <td class=\"hidden-xs\">" . $artikel->getArtikelID() . "</td>
-                            <td>" . $artikel->getArtikelname() . "</td>
-                            <td>" . $db->getLieferantenbestellungsArtikelAnzahl($_GET["id"], $artikel->getArtikelID()) . "</td>
+                            <td class=\"hidden-xs\">".$artikel->getID()."</td>
+                            <td>".$artikel->getBezeichnung()."</td>
+                            <td>".$artikel->getAnzahl()."</td>
                           </tr>";
+        $template = '<li class="list-group-item d-flex justify-content-between align-items-center"
+                draggable="true" data-artikel-id="'.$artikel->getID().'" data-artikel-name="'.$artikel->getBezeichnung().'"
+                data-artikel-anzahl="'.$artikel->getAnzahl().'">
+                    '.$artikel->getBezeichnung().'
+                <span class="anzahl-badge badge badge-primary badge-pill">'.$artikel->getAnzahl().'</span>
+            </li>';
     }
 }
 
 
-// TEMPLATE FUER OFFENEN ARTIKEL
 
-$template = '<li class="list-group-item d-flex justify-content-between align-items-center"
-                draggable="true" data-artikel-id="1" data-artikel-name="Kopfhoerer"
-                data-artikel-anzahl="10">
-                    Kopfhoerer
-                <span class="anzahl-badge badge badge-primary badge-pill">10</span>
-            </li>';
+
 echo $body;

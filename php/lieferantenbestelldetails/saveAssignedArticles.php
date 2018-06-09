@@ -10,7 +10,9 @@ $body = "true";
 $db = new DB();
 if (isset($_POST['bestellungsId'])) {
 
-    var_dump($_POST);
+    foreach ($_POST['artikel'] as $artikel) {
+        ///TODO: Implement Insert into Artikeleingang w/ new LieferungsID
+    }
 
 }
 echo $body;

@@ -37,9 +37,14 @@ var_dump($artikel);
 
 echo '</br>';
 
+
 echo $db->updateArtikelName(999, "asdf");
 
 echo '<br>';
+
+echo date("d.m.Y");
+
+echo "</br>";
 echo '<p>Artikel für Lieferschein</p>';
 $lieferungsartikel = $db->getKundenlieferungsArtikel(1);
 var_dump($lieferungsartikel);
@@ -48,3 +53,4 @@ echo '<br>';
 echo '<p>Kunde für Lieferschein</p>';
 $kunde = $db->getKundenDetails(1);
 var_dump($kunde);
+

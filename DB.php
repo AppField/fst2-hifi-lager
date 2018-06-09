@@ -291,7 +291,7 @@ class DB{
     function getKundenDetails($id){
         $this->doConnect();
         $this->dbobject->query("SET NAMES 'utf8'");
-        $result = $this->dbobject->query("SELECT kunde.Name as Kundenname, KundeID, Strasse, Hausnummer, ort.Bezeichnung as Ort
+        $result = $this->dbobject->query("SELECT kunde.Name as Kundenname, KundeID, Strasse, Hausnummer, ort.Bezeichnung as Ort, PLZ
             FROM kundenlieferung 
             JOIN artikelausgang USING(KundenlieferungsID)
             JOIN artikel USING (ArtikelID)
@@ -300,7 +300,7 @@ class DB{
             JOIN ort USING(OrtID)
             WHERE KundenlieferungsID =".$id);
         $result = $result->fetch_object();
-        $kunde = new Kunde($result->KundeID, $result->Kundenname, $result->Strasse, $result->Hausnummer, $result->Ort);
+        $kunde = new Kunde($result->KundeID, $result->Kundenname, $result->Strasse, $result->Hausnummer, $result->Ort, $result->PLZ);
         return $kunde;
 
     }

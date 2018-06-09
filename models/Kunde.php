@@ -13,6 +13,7 @@ class Kunde{
     public $strasse;
     public $hausnummer;
     public $ort;
+    public $plz;
 
     /**
      * Kunde constructor.
@@ -21,14 +22,16 @@ class Kunde{
      * @param $strasse
      * @param $hausnummer
      * @param $ort
+     * @param $plz
      */
-    public function __construct($kundenID, $name, $strasse, $hausnummer, $ort)
+    public function __construct($kundenID, $name, $strasse, $hausnummer, $ort, $plz)
     {
         $this->kundenID = $kundenID;
         $this->name = $name;
         $this->strasse = $strasse;
         $this->hausnummer = $hausnummer;
         $this->ort = $ort;
+        $this->plz = $plz;
     }
 
 

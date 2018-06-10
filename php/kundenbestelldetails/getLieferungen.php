@@ -18,13 +18,6 @@ if (isset($_GET["id"])) {
     foreach ($Lieferantenlieferungen as $lieferung) {
         $body .= " <tr align = \"center\">
                             <td class=\"hidden-xs\">" . $lieferung->getLieferungsID() . "</td>
-                            <td align=\"center\">
-                              <a class=\"btn btn-default\">
-                                  <button>
-                                      <em class=\"fa fa-file-word-o\"></em>
-                                  </button>
-                              </a>
-                            </td>
                             <td>" . $lieferung->getDatum() . "</td>
                           </tr>";
     }

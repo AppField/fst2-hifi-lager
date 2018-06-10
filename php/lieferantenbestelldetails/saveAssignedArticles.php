@@ -8,6 +8,8 @@
 include "../../DB.php";
 $body = "true";
 $db = new DB();
+var_dump($_POST);
+var_dump($_GET);
 if (isset($_POST['bestellungsId'])) {
     echo $_POST['bestellungsId'];
     foreach ($_POST['artikel'] as $artikel) {

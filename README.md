@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/TheAppField/fst2-hifi-lager.svg?branch=master)](https://travis-ci.org/TheAppField/fst2-hifi-lager)
 
-![alt text](https://github.com/TheAppField/fst2-hifi-lager/raw/master/assets/img/icon_2.png)
+![alt text](https://github.com/TheAppField/fst2-hifi-lager/raw/master/static/assets/img//icon_2.png)
 
 Implementierung der Fallstudie 2
 

@@ -20,10 +20,15 @@ foreach ($lagerlog as $log) {
         $anzahl = $log->getAnzahl();
         $cell = "<td style='color: mediumseagreen'>".$anzahl."</td>";
     }
+    if($log->getLieferungsID() == 999){
+        $lieferID = "<td>Korrektur</td>";
+    }else{
+        $lieferID = "<td>".$log->getLieferungsID()."</td>";
+    }
 
     $logtable .= "<tr align = \"center\">
                             <td>".$log->getAenderung()."</td>
-                            <td>".$log->getLieferungsID()."</td>
+                            .$lieferID.
                             <td>".$log->getArtikelID()."</td>
                             <td>".$log->getBezeichnung()."</td>"
                             .$cell.

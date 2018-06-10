@@ -207,7 +207,7 @@ class DB{
     function getLagerlog(){
         $this->doConnect();
         $this->dbobject->query("SET NAMES 'utf8'");
-        $result = $this->dbobject->query("SELECT ArtikelID, Aenderung, Anzahl, Datum, LieferungsID, Artikelname FROM Lagerlog JOIN Artikel USING(ArtikelID)");
+        $result = $this->dbobject->query("SELECT ArtikelID, Aenderung, Anzahl, Datum, LieferungsID, Artikelname FROM Lagerlog JOIN Artikel USING(ArtikelID) ORDER BY Datum DESC");
         $logArray = array();
         while ($row = $result->fetch_object()) {
             $log = new Lagerlog($row->ArtikelID,$row->Artikelname, $row->Anzahl, $row->LieferungsID, $row->Aenderung, $row->Datum);

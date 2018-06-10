@@ -30,5 +30,5 @@ DROP TRIGGER bestandAenderung;
 CREATE TRIGGER bestandAenderung
 BEFORE INSERT ON lagerlog
 FOR EACH ROW
-SET NEW.LieferungsID = IF(NEW.LieferungsID = 000,999,NEW.LieferungsID), NEW.Aenderung = IF(NEW.Aenderung != 'K%',CONCAT('K',NEW.Aenderung), NEW.Aenderung);
+SET NEW.Aenderung = IF(NEW.LieferungsID = 000 AND NEW.Aenderung != 'K%',CONCAT('K',NEW.Aenderung), NEW.Aenderung);
 COMMIT;

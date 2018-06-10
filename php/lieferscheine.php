@@ -15,11 +15,10 @@ foreach ($kundenlieferungen as $lieferung) {
     $bestellungstable .=     "<tr align = \"center\">
                             <td class=\"hidden-xs\">" . $lieferung->getBestellungsID() . "</td>
                             <td>" . $lieferung->getLieferungsID() . "</td>
-                            <td align=\"center\">
-                                <a class=\"\" href=\"lieferscheindetails.html?id=" . $lieferung->getLieferungsID() . "\
-                                    <button class=\"btn fa fa-print\" ></button>
-                                </a>
-                            </td>
+                           <td align=\"center\">
+                            <a class=\"\" href=\"lieferscheindetails.html?id=" . $lieferung->getLieferungsID()."\">
+                                <button class=\"btn fa fa-edit\" ></button>
+                            </a>
                           </tr>";
 }
 echo $bestellungstable;

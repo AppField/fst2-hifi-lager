@@ -1,6 +1,10 @@
 (function () {
 
-    $('#lieferscheinliste').load('../php/lieferscheine.php', () => {
+
+    $('#Kundendaten').load('../php/lieferscheindetails/getKundendaten.php', () => {
+    });
+
+    $('#LieferscheinArtikelTable').load('../php/lieferscheindetails/getArtikelTableLieferschein.php', () => {
     });
 
 }());

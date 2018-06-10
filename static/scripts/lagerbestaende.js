@@ -35,7 +35,7 @@
             this.modal = modal;
             this.id = $('#artikelid');
             this.name = $('#artikelname');
-            this.bestand = $('#bestand');
+            this.form = $('#modalForm');
 
             this.saveBtn = $('#saveBtn');
 

@@ -145,9 +145,44 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="modalZugeordneteLieferungArtikel" tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalZugeordneteLieferungArtikelTitle">Zugeordnete Artikel zu
+                                Lieferung</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                            <table class="table table-striped table-bordered table-list">
+                                <thead>
+                                <tr align="center">
+                                    <th>Artikel-ID</th>
+                                    <th>Artikel Bezeichnung</th>
+                                    <th>Menge</th>
+                                </tr>
+                                </thead>
+                                <tbody id="zugeordneteArtikelLiferungTable">
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
 </main>
+
 <div class="footer-dark">
     <footer class="m-auto" style="width:1000px;">
         <div class="container">
@@ -159,6 +194,7 @@
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="assets/js/Profile-Edit-Form.js"></script>
 <script src="scripts/lieferantenbestelldetails.js"></script>
+<script src="scripts/lieferantenZugeordneteArtikelModal.js"></script>
 </body>
 
 </html>

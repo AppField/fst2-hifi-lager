@@ -14,7 +14,7 @@ if(isset($_GET['id'])) {
 
     $db = New DB();
     $kunde = $db->getKundenDetails($_GET['id]']);
-    $lieferungen = $d->getKundenlieferungsArtikel($_GET['id']);
+    $lieferungen = $db->getKundenlieferungsArtikel($_GET['id']);
     $artikeltable = "";
 
 
@@ -24,7 +24,7 @@ if(isset($_GET['id'])) {
     if ($kunde->hausnummer != null) {
         $kundendaten .= $kunde->hausnummer;
     }
-    $kundendaten .= "</br>".$kunde->plz." ".kunde->ort."</br></p>";
+    $kundendaten .= "</br>".$kunde->plz." ".$kunde->ort."</br></p>";
     $kundendaten .= "<p>Datum: ".date("d.m.Y");
     $kundendaten .= "</br> Kunden-NR: ".$kunde->kundenID."</p>";
 
@@ -32,7 +32,7 @@ if(isset($_GET['id'])) {
     foreach ($lieferungen as $artikel) {
 
         $artikeltable .=     "<tr align = \"center\">
-                            <td class=\"hidden-xs\">" . $count. ".</td>
+                            <td class=\"hidden-xs no\">" . $count. ".</td>
                             <td>" . $artikel->artikelID . "</td>
                             <td>" . $artikel->bezeichnung . "</td>
                             <td>" . $artikel->menge. "</td>

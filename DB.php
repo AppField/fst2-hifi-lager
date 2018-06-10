@@ -78,7 +78,7 @@ class DB{
         $Lieferungen = array();
         $result = $this->dbobject->query("SELECT * FROM Kundenlieferung WHERE KundenbestellungsID = ".$id);
         while ($row = $result->fetch_object()) {
-            $Lieferung = new Kundenlieferung($row->KundenlieferungsID, $row->KundenbestellungsID,$row->Versandatum);
+            $Lieferung = new Kundenlieferung($row->KundenlieferungsID, $row->KundenbestellungsID,$row->Versanddatum);
             array_push($Lieferungen, $Lieferung);
         }
         $this->close();

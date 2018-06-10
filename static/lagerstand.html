@@ -64,9 +64,7 @@
                                     <div class="panel-heading">
                                         <div class="row">
                                             <div class="col col-xs-6">
-                                                <h3 class="panel-title">Arikelliste</h3>
-                                            </div>
-                                            <div class="col col-xs-6 text-right">
+                                                <h3 class="panel-title">Artikelliste</h3>
                                             </div>
                                             <p><input type="text" class="form-control" id="myInput" onkeyup="mySearch()" placeholder="Artikel-ID suchen"></p>
                                         </div>
@@ -78,14 +76,13 @@
                                                 <th class="hidden-xs">Artikel - ID</th>
                                                 <th>Bezeichnung</th>
                                                 <th>Bestand</th>
-                                                <th><em class="fa fa-pencil"></em></th>
+                                                <th>Korrekturbuchung<br>hinzuf&uumlgen</th>
                                             </tr>
                                             </thead>
                                             <tbody id="lagerbestaendeliste">
 
                                             </tbody>
                                         </table>
-
                                     </div>
                                 </div>
                             </div>
@@ -109,14 +106,14 @@
      aria-labelledby="articleModalTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Artikel</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form class="form-horizontal">
+            <form class="form-horizontal" id="modalForm">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Korrekturbuchung hinzuf&uumlgen - </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
                     <div class="form-group">
                         <label class="  control-label" for="artikelid">Artikel ID</label>
                         <div class=" ">
@@ -133,20 +130,39 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="  control-label" for="bestand">Lagerbestand</label>
-                        <div class=" ">
-                            <input id="bestand" name="bestand" type="text" placeholder="Lagerbestand"
-                                   class="form-control input-md" required>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Art der Korrekturbuchung:</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="korrekturbuchung" value="ke"
+                                       id="eingehend">
+                                <label class="form-check-label" for="eingehend">
+                                    Eingehend
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="korrekturbuchung" value="ka"
+                                       id="ausgehend">
+                                <label class="form-check-label" for="ausgehend">
+                                    Ausgehend
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label" for="menge">Mengen&aumlnderung</label>
+                                <input id="menge" name="number" type="text" placeholder="1" min="1"
+                                       class="form-control input-md">
+                            </div>
                         </div>
                     </div>
-                </form>
 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                <button type="button" id="saveBtn" class="btn btn-success">Speichern</button>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="button" id="saveBtn" class="btn btn-success">Speichern</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

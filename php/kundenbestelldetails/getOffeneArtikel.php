@@ -13,7 +13,7 @@ include "../../models/Lieferantenlieferung.php";
 include "../../models/OffenerArtikel.php";
 include "../../DB.php";
 $db = new DB();
-$body = "";
+$template = "";
 if (isset($_GET["id"])) {
     $Lieferantenartiekl = $db->getOffeneArtikelKundenbestellung($_GET["id"]);
     foreach ($Lieferantenartiekl as $artikel){

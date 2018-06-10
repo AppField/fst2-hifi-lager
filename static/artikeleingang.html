@@ -104,6 +104,45 @@
         </div>
     </div>
 </main>
+
+
+<!-- Modal -->
+<div class="modal fade" id="artikelLieferung" tabindex="-1" role="dialog"
+     aria-labelledby="articleModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <form class="form-horizontal" id="modalForm">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Korrekturbuchung hinzuf&uumlgen - </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="  control-label" for="artikelid">Artikel ID</label>
+                        <div class=" ">
+                            <input id="artikelid" name="artikelid" type="text" placeholder="Artikel ID"
+                                   class="form-control input-md" disabled>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="  control-label" for="artikelname">Artikel name</label>
+                        <div class=" ">
+                            <input id="artikelname" name="artikelname" type="text" placeholder="Artikel Name"
+                                   class="form-control input-md" disabled required>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="button" id="saveBtn" class="btn btn-success">Speichern</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <div class="footer-dark">
     <footer>
         <div class="container">

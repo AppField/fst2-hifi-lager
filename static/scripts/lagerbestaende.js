@@ -53,7 +53,6 @@
         setValues(artikel) {
             this.id.val(artikel.artikelID);
             this.name.val(artikel.artikelname);
-            this.bestand.val(artikel.lagerstand);
         }
 
         saveBestand() {

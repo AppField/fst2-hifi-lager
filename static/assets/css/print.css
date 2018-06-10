@@ -4,4 +4,12 @@
     {
         display: none !important;
     }
+
+
+    a[href]:after {
+        'content: none
+        display: none !important;
+
+    }
+
 }

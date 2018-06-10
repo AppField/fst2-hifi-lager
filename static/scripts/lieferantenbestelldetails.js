@@ -292,6 +292,8 @@
                 });
             });
 
+            if(lieferung.artikel.length === 0) return;
+
             $.ajax({
                 method: "POST",
                 url: '../php/lieferantenbestelldetails/saveAssignedArticles.php',

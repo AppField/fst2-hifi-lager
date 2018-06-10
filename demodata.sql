@@ -107,3 +107,20 @@ JOIN Lieferantenlieferungen USING(LieferantenLieferungID) WHERE Lieferbestellung
 USING (ArtikelID)) as Results JOIN Artikel USING(ArtikelID) WHERE Eingegangen is null OR Eingegangen < Bestellt;
 
 Select (5-null) from dual;
+SELECT * FROM Lagerlog;
+DELETE FROM Lagerlog WHERE Aenderung = "A" AND LieferungsID = 0;
+COMMIT;
+
+SELECT ArtikelID, Artikelname, (Bestellt-IFNULL(Eingegangen,0)) As Offen FROM (SELECT * FROM (SELECT Anzahl as Bestellt, ArtikelID 
+FROM Lieferantenartikel WHERE LieferantenbestellungsID = 1) as Bestellung Left JOIN
+(SELECT SUM(Anzahl) as Eingegangen, Artikel_ArtikelID as ArtikelID FROM Artikeleingang 
+JOIN Lieferantenlieferungen USING(LieferantenLieferungID) WHERE LieferbestellungsID = 1 GROUP BY Artikel_ArtikelID) as Lieferung
+USING (ArtikelID)) as Results JOIN Artikel USING(ArtikelID) WHERE Eingegangen is null OR Eingegangen < Bestellt;
+
+SELECT ArtikelID,Artikelname , (Bestellt-IFNULL(Ausgegangen,0)) As Offen FROM (SELECT * FROM (SELECT Anzahl as Bestellt, ArtikelID 
+FROM Auftragsposition WHERE KundenbestellungsID = 1) as Bestellung
+LEFT JOIN
+(SELECT Anzahl as Ausgegangen, ArtikelID
+FROM Artikelausgang JOIN Kundenlieferung USING(KundenlieferungsID) 
+JOIN Kundenbestellung USING(KundenbestellungsID) WHERE KundenbestellungsID = 1) as Lieferung USING(ArtikelID)) as Result JOIN Artikel
+USING(ArtikelID);

@@ -221,10 +221,29 @@ class DB{
         $this->dbobject->query("SET NAMES 'utf8'");
         $artikel = array();
         $result = $this->dbobject->query("SELECT ArtikelID, Artikelname, (Bestellt-IFNULL(Eingegangen,0)) As Offen FROM (SELECT * FROM (SELECT Anzahl as Bestellt, ArtikelID 
-FROM Lieferantenartikel WHERE LieferantenbestellungsID = ".$id.") as Bestellung Left JOIN
-(SELECT SUM(Anzahl) as Eingegangen, Artikel_ArtikelID as ArtikelID FROM Artikeleingang 
-JOIN Lieferantenlieferungen USING(LieferantenLieferungID) WHERE LieferbestellungsID = ".$id." GROUP BY Artikel_ArtikelID) as Lieferung
-USING (ArtikelID)) as Results JOIN Artikel USING(ArtikelID) WHERE Eingegangen is null OR Eingegangen < Bestellt");
+        FROM Lieferantenartikel WHERE LieferantenbestellungsID = ".$id.") as Bestellung Left JOIN
+        (SELECT SUM(Anzahl) as Eingegangen, Artikel_ArtikelID as ArtikelID FROM Artikeleingang 
+        JOIN Lieferantenlieferungen USING(LieferantenLieferungID) WHERE LieferbestellungsID = ".$id." GROUP BY Artikel_ArtikelID) as Lieferung
+        USING (ArtikelID)) as Results JOIN Artikel USING(ArtikelID) WHERE Eingegangen is null OR Eingegangen < Bestellt");
+        while ($row = $result->fetch_object()) {
+            $offener = new OffenerArtikel($row->ArtikelID, $row->Artikelname, $row->Offen);
+            array_push($artikel, $offener);
+        }
+        $this->close();
+        return $artikel;
+    }
+
+    function getOffeneArtikelKundenbestellung($id){
+        $this->doConnect();
+        $this->dbobject->query("SET NAMES 'utf8'");
+        $artikel = array();
+        $result = $this->dbobject->query("SELECT ArtikelID,Artikelname , (Bestellt-IFNULL(Ausgegangen,0)) As Offen FROM (SELECT * FROM (SELECT Anzahl as Bestellt, ArtikelID 
+        FROM Auftragsposition WHERE KundenbestellungsID = ".$id.") as Bestellung
+        LEFT JOIN
+        (SELECT Anzahl as Ausgegangen, ArtikelID
+        FROM Artikelausgang JOIN Kundenlieferung USING(KundenlieferungsID) 
+        JOIN Kundenbestellung USING(KundenbestellungsID) WHERE KundenbestellungsID = ".$id.") as Lieferung USING(ArtikelID)) as Result JOIN Artikel
+        USING(ArtikelID)  WHERE Ausgegangen is null OR Ausgegangen < Bestellt");
         while ($row = $result->fetch_object()) {
             $offener = new OffenerArtikel($row->ArtikelID, $row->Artikelname, $row->Offen);
             array_push($artikel, $offener);

@@ -10,12 +10,13 @@
 include "../../models/Lieferschein.php";
 include "../../DB.php";
 
-
+$db = New DB();
+$artikeltable = "";
 if(isset($_GET['id'])) {
 
-    $db = New DB();
-    $lieferungen = $d->getKundenlieferungsArtikel($_GET['id']);
-    $artikeltable = "";
+
+    $lieferungen = $db->getKundenlieferungsArtikel($_GET['id']);
+
 
     $count = 1;
     foreach ($lieferungen as $artikel) {

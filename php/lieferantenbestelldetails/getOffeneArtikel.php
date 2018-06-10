@@ -16,22 +16,20 @@ $db = new DB();
 $body = "";
 if (isset($_GET["id"])) {
     $Lieferantenartiekl = $db->getOffeneArtikelLieferantenbestellung($_GET["id"]);
-    foreach ($Lieferantenartiekl as $artikel){
-        $body .= "<tr align = \"center\">
-                            <td class=\"hidden-xs\">".$artikel->getID()."</td>
-                            <td>".$artikel->getBezeichnung()."</td>
-                            <td>".$artikel->getAnzahl()."</td>
-                          </tr>";
-        $template = '<li class="list-group-item d-flex justify-content-between align-items-center"
-                draggable="true" data-artikel-id="'.$artikel->getID().'" data-artikel-name="'.$artikel->getBezeichnung().'"
-                data-artikel-anzahl="'.$artikel->getAnzahl().'">
-                    '.$artikel->getBezeichnung().'
-                <span class="anzahl-badge badge badge-primary badge-pill">'.$artikel->getAnzahl().'</span>
+    foreach ($Lieferantenartiekl as $artikel) {
+//        $body .= "<tr align = \"center\">
+//                            <td class=\"hidden-xs\">".$artikel->getID()."</td>
+//                            <td>".$artikel->getBezeichnung()."</td>
+//                            <td>".$artikel->getAnzahl()."</td>
+//                          </tr>";
+        $body .= '<li class="list-group-item d-flex justify-content-between align-items-center"
+                draggable="true" data-artikel-id="' . $artikel->getID() . '" data-artikel-name="' . $artikel->getBezeichnung() . '"
+                data-artikel-anzahl="' . $artikel->getAnzahl() . '">
+                    ' . $artikel->getBezeichnung() . '
+                <span class="anzahl-badge badge badge-primary badge-pill">' . $artikel->getAnzahl() . '</span>
             </li>';
     }
 }
-
-
 
 
 echo $body;

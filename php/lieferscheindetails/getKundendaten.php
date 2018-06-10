@@ -8,10 +8,12 @@
 
 include "../../models/Kunde.php";
 include "../../DB.php";
+$db = New DB();
+$kundendaten = "test";
 
 if(isset($_GET['id'])) {
 
-    $db = New DB();
+
     $kunde = $db->getKundenDetails($_GET['id]']);
 
     $kundendaten = "<p>Firma</br>" .

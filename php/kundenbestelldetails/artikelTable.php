@@ -14,12 +14,12 @@ include "../../DB.php";
 $body = "";
 $db = new DB();
 if (isset($_GET["id"])) {
-    $Lieferantenartiekl = $db->getLieferantenbestellungsArtikel($_GET["id"]);
+    $Lieferantenartiekl = $db->getKundenbestellungsArtikel($_GET["id"]);
     foreach ($Lieferantenartiekl as $artikel) {
         $body .= "<tr align = \"center\">
                             <td class=\"hidden-xs\">" . $artikel->getArtikelID() . "</td>
                             <td>" . $artikel->getArtikelname() . "</td>
-                            <td>" . $db->getLieferantenbestellungsArtikelAnzahl($_GET["id"], $artikel->getArtikelID()) . "</td>
+                            <td>" . $db->getKundenArtikelAnzahl($_GET["id"], $artikel->getArtikelID()) . "</td>
                           </tr>";
     }
 }

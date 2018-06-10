@@ -123,4 +123,4 @@ LEFT JOIN
 (SELECT Anzahl as Ausgegangen, ArtikelID
 FROM Artikelausgang JOIN Kundenlieferung USING(KundenlieferungsID) 
 JOIN Kundenbestellung USING(KundenbestellungsID) WHERE KundenbestellungsID = 1) as Lieferung USING(ArtikelID)) as Result JOIN Artikel
-USING(ArtikelID);
+USING(ArtikelID) WHERE Ausgegangen is null OR Ausgegangen < Bestellt;

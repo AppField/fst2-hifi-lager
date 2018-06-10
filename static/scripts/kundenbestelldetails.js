@@ -20,7 +20,7 @@
     $('#bestellID').val(bestellId);
 
     $.ajax({
-        url: '../php/kundenbestelldetails/getLieferant.php?id=' + bestellId
+        url: '../php/kundenbestelldetails/getKundenName.php?id=' + bestellId
     }).done(data => {
         lieferantInput.val(data);
     });

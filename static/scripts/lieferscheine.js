@@ -2,5 +2,4 @@
 
     $('#lieferscheinliste').load('../php/lieferscheine.php', () => {
     });
-
 }());

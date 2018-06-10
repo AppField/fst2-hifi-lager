@@ -220,17 +220,14 @@ class DB{
         $this->doConnect();
         $this->dbobject->query("SET NAMES 'utf8'");
         $artikel = array();
-        $result = $this->dbobject->query("SELECT * FROM (SELECT SUM(Anzahl) as Eingegangen ,Artikel_ArtikelID as ArtikelID FROM Artikeleingang 
-              JOIN Lieferantenlieferungen USING (LieferantenLieferungID) 
-              JOIN Lieferantenbestellung ON (Lieferantenlieferungen.LieferbestellungsID = Lieferantenbestellung.LieferantenbestellungsID)
-              WHERE Lieferantenlieferungen.LieferbestellungsID = ".$id."
-              GROUP BY(Artikel_ArtikelID)) as Eingangen JOIN
-              (SELECT SUM(Anzahl) as Bestellt, ArtikelID FROM Lieferantenartikel WHERE LieferantenbestellungsID = ".$id." GROUP BY (ArtikelID)) as Bestellt 
-              USING(ArtikelID) JOIN Artikel USING (ArtikelID) WHERE Eingegangen < Bestellt");
+        $result = $this->dbobject->query("SELECT ArtikelID, Artikelname, (Bestellt-IFNULL(Eingegangen,0)) As Offen FROM (SELECT * FROM (SELECT Anzahl as Bestellt, ArtikelID 
+FROM Lieferantenartikel WHERE LieferantenbestellungsID = ".$id.") as Bestellung Left JOIN
+(SELECT SUM(Anzahl) as Eingegangen, Artikel_ArtikelID as ArtikelID FROM Artikeleingang 
+JOIN Lieferantenlieferungen USING(LieferantenLieferungID) WHERE LieferbestellungsID = ".$id." GROUP BY Artikel_ArtikelID) as Lieferung
+USING (ArtikelID)) as Results JOIN Artikel USING(ArtikelID) WHERE Eingegangen is null OR Eingegangen < Bestellt");
         while ($row = $result->fetch_object()) {
-            $bestellung = new Artikel($row->ArtikelID, $row->Artikelname, $row->Lagerstand,
-                $row->Einkaufspreis, $row->Verkaufspreis, $row->Mindestbestand, $row->Lagerort);
-            array_push($artikel, $bestellung);
+            $offener = new OffenerArtikel($row->ArtikelID, $row->Artikelname, $row->Offen);
+            array_push($artikel, $offener);
         }
         $this->close();
         return $artikel;
@@ -263,4 +260,48 @@ class DB{
         $this->dbobject->query("commit");
         return true;
     }
+
+    /**
+     *
+     * @return Artikel aus der Datenbank von einer bestimmten Kundenlieferung
+     */
+    function getKundenlieferungsArtikel($lieferungsID){
+        $this->doConnect();
+        $this->dbobject->query("SET NAMES 'utf8'");
+        $artikel = array();
+        $result = $this->dbobject->query("SELECT ArtikelID, Artikelname, Anzahl
+            FROM kundenlieferung 
+            JOIN artikelausgang USING(KundenlieferungsID)
+            JOIN artikel USING (ArtikelID)
+            JOIN kundenbestellung USING(KundenbestellungsID)
+            JOIN kunde ON kunde.KundeID= kundenbestellung.KundenID 
+            JOIN ort USING(OrtID)
+            WHERE KundenlieferungsID = ".$lieferungsID);
+        while ($row = $result->fetch_object()) {
+            $lieferung = new Lieferschein($row->ArtikelID, $row->Artikelname, $row->Anzahl);
+            array_push($artikel, $lieferung);
+        }
+        $this->close();
+        return $artikel;
+    }
+
+    function getKundenDetails($id){
+        $this->doConnect();
+        $this->dbobject->query("SET NAMES 'utf8'");
+        $result = $this->dbobject->query("SELECT kunde.Name as Kundenname, KundeID, Strasse, Hausnummer, ort.Bezeichnung as Ort, PLZ
+            FROM kundenlieferung 
+            JOIN artikelausgang USING(KundenlieferungsID)
+            JOIN artikel USING (ArtikelID)
+            JOIN kundenbestellung USING(KundenbestellungsID)
+            JOIN kunde ON kunde.KundeID= kundenbestellung.KundenID 
+            JOIN ort USING(OrtID)
+            WHERE KundenlieferungsID =".$id);
+        $result = $result->fetch_object();
+        $kunde = new Kunde($result->KundeID, $result->Kundenname, $result->Strasse, $result->Hausnummer, $result->Ort, $result->PLZ);
+        return $kunde;
+
+    }
+
+
+
 }

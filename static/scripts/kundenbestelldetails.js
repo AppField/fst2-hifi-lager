@@ -19,19 +19,18 @@
     const bestellId = getQueryVariable('id');
     $('#bestellID').val(bestellId);
 
-
     $.ajax({
-        url: '../php/lieferantenbestelldetails/getLieferant.php?id=' + getQueryVariable('id')
+        url: '../php/kundenbestelldetails/getLieferant.php?id=' + bestellId
     }).done(data => {
         lieferantInput.val(data);
     });
 
 
-    artikelTable.load('../php/lieferantenbestelldetails/artikelTable.php?id=' + getQueryVariable('id'), () => {
+    artikelTable.load('../php/kundenbestelldetails/artikelTable.php?id=' + bestellId, () => {
 
     });
 
-    lieferungenTable.load('../php/lieferantenbestelldetails/getLieferungen.php?id=' + getQueryVariable('id'), () => {
+    lieferungenTable.load('../php/kundenbestelldetails/getLieferungen.php?id=' + bestellId, () => {
 
     });
 
@@ -51,7 +50,6 @@
     class LieferungHinzufuegenModal {
 
         constructor(bestellId) {
-            this.bestellId = bestellId;
             this.OFFENEARTIKELID = 'offeneArtikel';
             this.ZUGEORDNETEARTIKELID = 'zugeordneteArtikel';
 
@@ -63,14 +61,17 @@
             this.saveBtn = $('#saveBtn');
             this.saveBtn.on('click', () => this.saveLieferung());
 
-            this.offeneArtikelContainer.load('../php/lieferantenbestelldetails/getOffeneArtikel.php?id=' + this.bestellId);
-
+            // this.offeneArtikelContainer.load('../php/kundenbestelldetails/getOffeneArtikel.php?id=' + bestellId);
 
             this.setupDragAndDrop();
         }
 
+        setValues(artikel) {
+            // this.id.val(artikel.artikelID);
+        }
+
         setupDragAndDrop() {
-            this.offeneArtikel = this.offeneArtikelContainer.find('.lsist-group-item');
+            this.offeneArtikel = this.offeneArtikelContainer.find('.list-group-item');
             this.zugeordneteArtikel = this.zugeordneteArtikelContainer.find('.list-group-item');
 
             this.offeneArtikel.map(idx => {
@@ -293,9 +294,10 @@
                 });
             });
 
+
             $.ajax({
                 method: "POST",
-                url: '../php/lieferantenbestelldetails/saveAssignedArticles.php',
+                url: '../php/kundenbestelldetails/saveAssignedArticles.php',
                 data: JSON.stringify(lieferung),
                 success: (result) => {
                     if (result) modal.modal('hide');

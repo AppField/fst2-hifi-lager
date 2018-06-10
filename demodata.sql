@@ -61,8 +61,8 @@ SELECT ArtikelID, Änderung, Anzahl, Datum, LieferungsID, Artikelname FROM Lager
 
 SELECT * FROM Lagerlog;
 ALTER TABLE Lagerlog CHANGE COLUMN Änderung Aenderung CHAR(1);
-ALTER TABLE lagerlog CHANGE COLUMN Aenderung AE CHAR(2);
-ALTER TABLE lagerlog CHANGE COLUMN AE Aenderung CHAR(2);
+
+
 
 ###
 DELETE FROM Artikeleingang;
@@ -81,7 +81,7 @@ SELECT * FROM (SELECT SUM(Anzahl) as Eingegangen ,Artikel_ArtikelID as ArtikelID
               JOIN Lieferantenbestellung ON (Lieferantenlieferungen.LieferbestellungsID = Lieferantenbestellung.LieferantenbestellungsID)
               WHERE Lieferantenlieferungen.LieferbestellungsID = 1
               GROUP BY(Artikel_ArtikelID)) as Eingangen JOIN
-(SELECT SUM(Anzahl) as Bestellt, ArtikelID FROM Lieferantenartikel WHERE LieferantenbestellungsID = 1 GROUP BY (ArtikelID)) as Bestellt 
+(SELECT Anzahl as Bestellt, ArtikelID FROM Lieferantenartikel WHERE LieferantenbestellungsID = 1 GROUP BY (ArtikelID)) as Bestellt 
   USING(ArtikelID) JOIN Artikel USING (ArtikelID) WHERE Eingegangen < Bestellt; 
   
 
@@ -90,37 +90,20 @@ INSERT INTO Artikeleingang (Artikel_ArtikelID, Anzahl, LieferantenLieferungID) V
 SELECT * FROM (SELECT SUM(Artikeleingang.Anzahl) as Eingangen, SUM(Lieferantenartikel.Anzahl) as Bestellt, ArtikelID, LieferantenBestellungsID FROM Artikeleingang 
               JOIN Lieferantenlieferungen USING (LieferantenLieferungID) 
               JOIN Lieferantenbestellung ON (Lieferantenlieferungen.LieferbestellungsID = Lieferantenbestellung.LieferantenbestellungsID) 
-              JOIN Lieferantenartikel USING (LieferantenbestellungsID) GROUP BY(Artikel_ArtikelID) AND LieferantenBestellungsID = 1) AS t
-              WHERE Eingangen < Bestellt;  
+              JOIN Lieferantenartikel USING (LieferantenbestellungsID) GROUP BY(Artikel_ArtikelID) AND LieferantenBestellungsID = 3) AS t;
+              WHERE Eingangen  Bestellt;  
 SELECT * FROM Lieferantenartikel JOIN Lieferantenbestellung USING (LieferantenbestellungsID) WHERE LieferantenbestellungsID = 1;
 INSERT INTO Lieferantenartikel (ArtikelID, Anzahl, LieferantenbestellungsID) Values (2, 4, 1);
-
-
+commit;
+SELECT Anzahl as Bestellt, ArtikelID FROM Lieferantenartikel WHERE LieferantenbestellungsID = 1;
+SELECT * FROM Artikeleingang;
+INSERT INTO Artikeleingang (Artikel_ArtikelID, LieferantenLieferungID, Anzahl) Values (5,3,2);
+commit;
 SELECT * FROM ARTIKEL;
 UPDATE ARTIKEL SET Lagerort = "am Boden" WHERE ArtikelID = 30;
+SELECT ArtikelID, Artikelname, (Bestellt-IFNULL(Eingegangen,0)) As Offen FROM (SELECT * FROM (SELECT Anzahl as Bestellt, ArtikelID FROM Lieferantenartikel WHERE LieferantenbestellungsID = 1) as Bestellung Left JOIN
+(SELECT SUM(Anzahl) as Eingegangen, Artikel_ArtikelID as ArtikelID FROM Artikeleingang 
+JOIN Lieferantenlieferungen USING(LieferantenLieferungID) WHERE LieferbestellungsID = 1 GROUP BY Artikel_ArtikelID) as Lieferung
+USING (ArtikelID)) as Results JOIN Artikel USING(ArtikelID) WHERE Eingegangen is null OR Eingegangen < Bestellt;
 
- Select für Lieferschein'
-select row, KundenbestellungsID, Artikelname, auftragsposition.Anzahl, kunde.Name as KundenName, KundeID, Strasse, Hausnummer, ort.Bezeichnung
-  from kundenlieferung
-	  join kundenbestellung using(kundenbestellungsid)
-    join auftragsposition using (kundenbestellungsid)
-    join artikel using(ArtikelID)
-    join kunde on kunde.kundeid = kundenbestellung.KundenID
-    join ort using(ortid)
-    where kundenlieferungsID = 1;
-
-'insert befehle für auftragspositionen'
-insert into auftragsposition (anzahl, artikelid, kundenbestellungsID)
-values(3, 1, 1);
-insert into auftragsposition (anzahl, artikelid, kundenbestellungsID)
-values(5, 10, 1);
-insert into auftragsposition (anzahl, artikelid, kundenbestellungsID)
-values(2, 5, 1);
-insert into auftragsposition (anzahl, artikelid, kundenbestellungsID)
-values(2, 2, 2);
-insert into auftragsposition (anzahl, artikelid, kundenbestellungsID)
-values(1, 6, 2);
-insert into auftragsposition (anzahl, artikelid, kundenbestellungsID)
-values(4, 7, 2);
-insert into auftragsposition (anzahl, artikelid, kundenbestellungsID)
-values(1, 13, 2);
+Select (5-null) from dual;

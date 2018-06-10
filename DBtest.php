@@ -14,6 +14,9 @@ include "models/Lieferantenlieferung.php";
 include 'models/Kundenbestellung.php';
 include "models/Kundenlieferung.php";
 include 'models/Artikel.php';
+include 'models/Lieferschein.php';
+include 'models/Kunde.php';
+
 $db = new DB();
 echo 'Kundenbestellungen <p>';
 $kundenbestellungen = $db->getKundenbestellungen();
@@ -34,4 +37,23 @@ var_dump($artikel);
 
 echo '</br>';
 
+
 echo $db->updateArtikelName(999, "asdf");
+
+echo '<br>';
+
+echo date("d.m.Y");
+
+echo "</br>";
+echo '<p>Artikel für Lieferschein</p>';
+$lieferungsartikel = $db->getKundenlieferungsArtikel(1);
+var_dump($lieferungsartikel);
+
+echo '<br>';
+echo '<p>Kunde für Lieferschein</p>';
+$kunde = $db->getKundenDetails(1);
+var_dump($kunde);
+
+echo 'Offene Artikel Lieferantenbestellung <p>'
+echo $db->getOffeneArtikelLieferantenbestellung(4)
+

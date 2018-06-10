@@ -14,7 +14,7 @@ $kundendaten = "";
 if(isset($_GET['id'])) {
 
 
-    $kunde = $db->getKundenDetails($_GET['id]']);
+    $kunde = $db->getKundenDetails($_GET['id']);
 
     $kundendaten = "<p>Firma</br>" .
         $kunde->name . "</br>" .

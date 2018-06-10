@@ -14,6 +14,6 @@ include "../../DB.php";
 $db = new DB();
 if (isset($_GET["id"])) {
     $db = New DB();
-    $bestellung = $db->getLieferantenbestellungWithID($_GET["id"]);
+    $bestellung = $db->getKundenbestellungenWithID($_GET["id"]);
     echo $bestellung->getName();
 }else echo "Fail";

@@ -21,7 +21,7 @@
 
 
     $.ajax({
-        url: '../php/lieferantenbestelldetails/getLieferant.php?id=' + getQueryVariable('id')
+        url: '../php/lieferantenbestelldetails/getKundenName.php?id=' + getQueryVariable('id')
     }).done(data => {
         lieferantInput.val(data);
     });

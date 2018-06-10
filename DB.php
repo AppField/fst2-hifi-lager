@@ -43,7 +43,7 @@ class DB{
         $this->dbobject->query("SET NAMES 'utf8'");
         $Bestellungen = array();
         $result = $this->dbobject->query("SELECT * FROM Kundenbestellung
-                                          JOIN kunde ON Kundenbestellung.kundenID = kunde.kundeID;");
+                                          JOIN kunde ON Kundenbestellung.kundenID = kunde.kundeID");
         while ($row = $result->fetch_object()) {
             $bestellung = new Kundenbestellung($row->KundenID, $row->KundenbestellungsID, $row->Name);
             array_push($Bestellungen, $bestellung);
@@ -51,7 +51,39 @@ class DB{
         $this->close();
         return $Bestellungen;
     }
+    /**
+     * @param $id of Kundenbestellungs
+     * @return Kundenbestellung|null
+     */
+    function getKundenbestellungenWithID($id){
+        $this->doConnect();
+        $this->dbobject->query("SET NAMES 'utf8'");
+        $bestellung = null;
+        $result = $this->dbobject->query("SELECT * FROM Kundenbestellung
+                                          JOIN kunde ON Kundenbestellung.kundenID = kunde.kundeID WHERE KundenbestellungsID = ".$id);
+        while ($row = $result->fetch_object()) {
+            $bestellung = new Kundenbestellung($row->KundenID, $row->KundenbestellungsID, $row->Name);
+        }
+        $this->close();
+        return $bestellung;
+    }
 
+    /**
+     * @param $id
+     * @return array
+     */
+    function getKundenlieferungenWithBestellungsID($id){
+        $this->doConnect();
+        $this->dbobject->query("SET NAMES 'utf8'");
+        $Lieferungen = array();
+        $result = $this->dbobject->query("SELECT * FROM Kundenlieferung WHERE KundenbestellungsID = ".$id);
+        while ($row = $result->fetch_object()) {
+            $Lieferung = new Kundenlieferung($row->KundenlieferungsID, $row->KundenbestellungsID,$row->Versandatum);
+            array_push($Lieferungen, $Lieferung);
+        }
+        $this->close();
+        return $Lieferungen;
+    }
 
     /**
      * Kundenlieferungen aus der Datenbank

@@ -14,7 +14,7 @@ include "../../DB.php";
 $db = new DB();
 $body = "";
 if (isset($_GET["id"])) {
-    $Lieferantenlieferungen = $db->getLieferantenlieferungenWithBestellungsID($_GET["id"]);
+    $Lieferantenlieferungen = $db->getKundenlieferungenWithBestellungsID($_GET["id"]);
     foreach ($Lieferantenlieferungen as $lieferung) {
         $body .= " <tr align = \"center\">
                             <td class=\"hidden-xs\">" . $lieferung->getLieferungsID() . "</td>

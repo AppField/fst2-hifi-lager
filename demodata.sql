@@ -128,3 +128,4 @@ USING(ArtikelID) WHERE Ausgegangen is null OR Ausgegangen < Bestellt;
 SELECT ArtikelID, Artikelname, Einkaufspreis, Verkaufspreis, Mindestbestand, Lagerstand, Lagerort
 FROM Auftragsposition JOIN Artikel USING(ArtikelID) WHERE KundenbestellungsID = 1;
 SELECT Anzahl FROM Auftragsposition WHERE KundenbestellungsID = 1 AND ArtikelID = 5;
+SELECT * FROM Kundenlieferung WHERE KundenbestellungsID = 1;

@@ -7,8 +7,6 @@
 Implementierung der Fallstudie 2
 
 #### TODO:
-- bei artikel.hmtml lagerort oder bezeichnung anpassen function (über artikel id)
-    - echo false bzw true;
 - bei lagerstand.html lagerstand anpassen funciton (über artikel id)
     - insert ins lagerlog
     - echo false bzw true;
@@ -17,7 +15,6 @@ Implementierung der Fallstudie 2
      - insert post JSON artikel + menge
 - Spezifikationen anpassen
 - .class.php refactoring
-- artikel.php änderungs funktion
 - Diana: Icons in der Titelleiste einfuefen - DONE
 
 

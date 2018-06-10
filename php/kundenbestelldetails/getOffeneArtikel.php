@@ -15,7 +15,7 @@ include "../../DB.php";
 $db = new DB();
 $body = "";
 if (isset($_GET["id"])) {
-    $Lieferantenartiekl = $db->getOffeneArtikelLieferantenbestellung($_GET["id"]);
+    $Lieferantenartiekl = $db->getOffeneArtikelKundenbestellung($_GET["id"]);
     foreach ($Lieferantenartiekl as $artikel){
         $template .= '<li class="list-group-item d-flex justify-content-between align-items-center"
                 draggable="true" data-artikel-id="'.$artikel->getID().'" data-artikel-name="'.$artikel->getBezeichnung().'"

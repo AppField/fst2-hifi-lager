@@ -14,7 +14,7 @@ $kundendaten = "";
 if(isset($_GET['id'])) {
 
 
-    $kunde = $db->getKundenDetails($_GET['id]']);
+    $kunde = $db->getKundenDetails($_GET['id']);
 
     $kundendaten = "<p>Firma</br>" .
         $kunde->name . "</br>" .
@@ -25,6 +25,7 @@ if(isset($_GET['id'])) {
     $kundendaten .= "</br>" . $kunde->plz . " " . $kunde->ort . "</br></p>";
     $kundendaten .= "<p>Datum: " . date("d.m.Y");
     $kundendaten .= "</br> Kunden-NR: " . $kunde->kundenID . "</p>";
+    $kundendaten .= "<p></p>";
 
 
 }

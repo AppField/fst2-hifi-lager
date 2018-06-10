@@ -63,14 +63,13 @@
             this.saveBtn = $('#saveBtn');
             this.saveBtn.on('click', () => this.saveLieferung());
 
-            this.offeneArtikelContainer.load('../php/lieferantenbestelldetails/getOffeneArtikel.php?id=' + this.bestellId);
-
-
-            this.setupDragAndDrop();
+            this.offeneArtikelContainer.load('../php/lieferantenbestelldetails/getOffeneArtikel.php?id=' + this.bestellId, () => {
+                this.setupDragAndDrop();
+            });
         }
 
         setupDragAndDrop() {
-            this.offeneArtikel = this.offeneArtikelContainer.find('.lsist-group-item');
+            this.offeneArtikel = this.offeneArtikelContainer.find('.list-group-item');
             this.zugeordneteArtikel = this.zugeordneteArtikelContainer.find('.list-group-item');
 
             this.offeneArtikel.map(idx => {

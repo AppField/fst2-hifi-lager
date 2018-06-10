@@ -61,14 +61,11 @@
             this.saveBtn = $('#saveBtn');
             this.saveBtn.on('click', () => this.saveLieferung());
 
-            // this.offeneArtikelContainer.load('../php/kundenbestelldetails/getOffeneArtikel.php?id=' + bestellId);
-
-            this.setupDragAndDrop();
+            this.offeneArtikelContainer.load('../php/kundenbestelldetails/getOffeneArtikel.php?id=' + bestellId, () => {
+                this.setupDragAndDrop();
+            });
         }
-
-        setValues(artikel) {
-            // this.id.val(artikel.artikelID);
-        }
+        
 
         setupDragAndDrop() {
             this.offeneArtikel = this.offeneArtikelContainer.find('.list-group-item');

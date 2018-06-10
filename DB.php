@@ -384,6 +384,21 @@ class DB{
         return $artikelanzahl;
     }
 
+    /**
+     * @param $bid
+     * @return insert_id
+     */
+    function createLieferantenLieferung($bid){
+        $this->doConnect();
+        $this->dbobject->query("SET NAMES 'utf8'");
+        $this->dbobject->query("INSERT INTO Lieferantenlieferungen VALUES (null, CURDATE(), ".$bid.")");
+        return $this->dbobject->insert_id;
+    }
 
+    function createArtikeleingang($aid, $anzahl, $lid){
+        $this->doConnect();
+        $this->dbobject->query("SET NAMES 'utf8'");
+        $this->dbobject->query("INSERT INTO Artikeleingang Values (".$aid.", ".$lid.", ".$anzahl.")");
+    }
 
 }

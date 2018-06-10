@@ -9,10 +9,11 @@ include "../../DB.php";
 $body = "true";
 $db = new DB();
 if (isset($_POST['bestellungsId'])) {
-
+    echo $_POST['bestellungsId'];
     foreach ($_POST['artikel'] as $artikel) {
-        ///TODO: Implement Insert into Artikeleingang w/ new LieferungsID
-    }
+        ///TODO: Implement Insert into Artikeleingang w/ new LieferungsIDs
 
+    }
+    var_dump($_POST['artikel']);
 }
 echo $body;

@@ -59,3 +59,20 @@ $template = '<li class="list-group-item d-flex justify-content-between align-ite
     <span class="anzahl-badge badge badge-primary badge-pill">10</span>
 </li>';
 ```
+curl --user fst2:pass4fst2 --data " {
+                                      "bestellungsId": "1",
+                                      "lieferantID": "HappyLieferung Spediteur",
+                                      "artikel": [
+                                        {
+                                          "artikelId": 1,
+                                          "artikelName": "Kopfhoerer",
+                                          "artikelAnzahl": 10
+                                        },
+                                        {
+                                          "artikelId": 2,
+                                          "artikelName": "Lautsprecher",
+                                          "artikelAnzahl": 3
+                                        }
+                                      ]
+                                    }" 
+                                    http://wi-project.technikum-wien.at/s18/s18-bvz2-fst-32/static/artikeleingang.html

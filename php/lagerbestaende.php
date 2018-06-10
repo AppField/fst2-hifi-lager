@@ -31,7 +31,7 @@ if (!empty($_GET['artikelid'])) {
                               data-toggle=\"modal\" 
                               data-target=\"#lagerstandModal\" 
                               data-article-id=" . $artikel->getArtikelID() . "
-                              data-article-name='" . $artikel->getArtikelname() . "'><em class=\"fa fa-pencil\"></em></a>
+                              data-article-name='" . $artikel->getArtikelname() . "'><em class=\"fa fa-plus\"></em></a>
                             </td>
                           </tr>";
     }

@@ -7,8 +7,6 @@
 Implementierung der Fallstudie 2
 
 #### TODO:
-- bei artikel.hmtml lagerort oder bezeichnung anpassen function (über artikel id)
-    - echo false bzw true;
 - bei lagerstand.html lagerstand anpassen funciton (über artikel id)
     - insert ins lagerlog
     - echo false bzw true;
@@ -17,7 +15,6 @@ Implementierung der Fallstudie 2
      - insert post JSON artikel + menge
 - Spezifikationen anpassen
 - .class.php refactoring
-- artikel.php änderungs funktion
 - Diana: Icons in der Titelleiste einfuefen - DONE
 
 
@@ -76,3 +73,22 @@ curl --user fst2:pass4fst2 --data " {
                                       ]
                                     }" 
                                     http://wi-project.technikum-wien.at/s18/s18-bvz2-fst-32/static/artikeleingang.html
+                                    
+                                    
+                                    
+                                    
+                                    
+### Lagerstaende Request zum Hinzufuegen von Korrekturbuchungen
+
+Datei (existiert nicht, name kann geandert werden)
+- lagerbestaendeSave.php
+
+JSON:
+
+```json
+{
+    "artikelid": "1",
+    "korrektur": "ke oder ka",
+    "anzahl": "12"
+}
+```

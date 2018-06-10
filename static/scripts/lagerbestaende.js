@@ -35,7 +35,7 @@
             this.modal = modal;
             this.id = $('#artikelid');
             this.name = $('#artikelname');
-            this.bestand = $('#bestand');
+            this.form = $('#modalForm');
 
             this.saveBtn = $('#saveBtn');
 
@@ -57,10 +57,14 @@
         }
 
         saveBestand() {
+            const data = this.form.serializeArray();
+            if (data.length === 0 || data.length === 1 || data[1].value === '') return;
             const artikel = {
                 artikelid: this.id.val(),
-                bestand: this.bestand.val()
+                korrektur: data[0].value,
+                anzahl: data[1].value
             };
+
             $.ajax({
                 type: 'POST',
                 url: '../php/lagerbestaendeSave.php',

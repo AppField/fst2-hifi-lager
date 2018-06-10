@@ -73,3 +73,22 @@ curl --user fst2:pass4fst2 --data " {
                                       ]
                                     }" 
                                     http://wi-project.technikum-wien.at/s18/s18-bvz2-fst-32/static/artikeleingang.html
+                                    
+                                    
+                                    
+                                    
+                                    
+### Lagerstaende Request zum Hinzufuegen von Korrekturbuchungen
+
+Datei (existiert nicht, name kann geandert werden)
+- lagerbestaendeSave.php
+
+JSON:
+
+```json
+{
+    "artikelid": "1",
+    "korrektur": "ke oder ka",
+    "anzahl": "12"
+}
+```

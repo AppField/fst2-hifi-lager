@@ -321,6 +321,37 @@ class DB{
 
     }
 
+    /**
+     * @param $id
+     * @return array
+     */
+    function getKundenbestellungsArtikel($id){
+        $this->doConnect();
+        $this->dbobject->query("SET NAMES 'utf8'");
+        $artikel = array();
+        $result = $this->dbobject->query("SELECT ArtikelID, Artikelname, Einkaufspreis, Verkaufspreis, Mindestbestand, Lagerstand, Lagerort
+                                          FROM Auftragsposition JOIN Artikel USING(ArtikelID) WHERE KundenbestellungsID = ".$id);
+        while ($row = $result->fetch_object()) {
+            $bestellung = new Artikel($row->ArtikelID, $row->Artikelname, $row->Lagerstand,
+                $row->Einkaufspreis, $row->Verkaufspreis, $row->Mindestbestand, $row->Lagerort);
+            array_push($artikel, $bestellung);
+        }
+        $this->close();
+        return $artikel;
+    }
+
+    function getKundenArtikelAnzahl($lid, $aid){
+        $this->doConnect();
+        $this->dbobject->query("SET NAMES 'utf8'");
+        $result = $this->dbobject->query("SELECT Anzahl FROM Auftragsposition WHERE KundenbestellungsID = ".$lid." AND ArtikelID = ".$aid);
+        $artikelanzahl = -1;
+        while ($row = $result->fetch_object()) {
+            $artikelanzahl =$row->Anzahl;
+        }
+        $this->close();
+        return $artikelanzahl;
+    }
+
 
 
 }

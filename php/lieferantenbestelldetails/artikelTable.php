@@ -13,7 +13,7 @@ include "../../models/Lieferantenlieferung.php";
 include "../../DB.php";
 $body = "";
 $db = new DB();
-if (isset($_GET["id"])) {
+
     $Lieferantenartiekl = $db->getLieferantenbestellungsArtikel($_GET["id"]);
     foreach ($Lieferantenartiekl as $artikel) {
         $body .= "<tr align = \"center\">
@@ -22,5 +22,5 @@ if (isset($_GET["id"])) {
                             <td>" . $db->getLieferantenbestellungsArtikelAnzahl($_GET["id"], $artikel->getArtikelID()) . "</td>
                           </tr>";
     }
-}
+
 echo $body;

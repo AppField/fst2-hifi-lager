@@ -129,3 +129,9 @@ SELECT ArtikelID, Artikelname, Einkaufspreis, Verkaufspreis, Mindestbestand, Lag
 FROM Auftragsposition JOIN Artikel USING(ArtikelID) WHERE KundenbestellungsID = 1;
 SELECT Anzahl FROM Auftragsposition WHERE KundenbestellungsID = 1 AND ArtikelID = 5;
 SELECT * FROM Kundenlieferung WHERE KundenbestellungsID = 1;
+SELECT * FROM Lieferantenlieferungen;
+INSERT INTO Lieferantenlieferungen VALUES (null, CURDATE(), 1);
+DELETE FROM Lieferantenlieferungen WHERE LieferantenLieferungID = 9;
+
+SELECT * FROM Artikeleingang;
+INSERT INTO Artikeleingang Values (

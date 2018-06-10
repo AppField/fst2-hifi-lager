@@ -9,7 +9,7 @@
 include "../../models/Kunde.php";
 include "../../DB.php";
 $db = New DB();
-$kundendaten = "test";
+$kundendaten = "";
 
 if(isset($_GET['id'])) {
 
@@ -26,7 +26,8 @@ if(isset($_GET['id'])) {
     $kundendaten .= "<p>Datum: " . date("d.m.Y");
     $kundendaten .= "</br> Kunden-NR: " . $kunde->kundenID . "</p>";
 
-    echo $kundendaten;
+
 }
+echo $kundendaten;
 ?>
 

@@ -76,7 +76,7 @@ class DB{
         $this->doConnect();
         $this->dbobject->query("SET NAMES 'utf8'");
         $Lieferungen = array();
-        $result = $this->dbobject->query("SELECT * FROM Kundenlieferungen WHERE KundenbestellungsID = ".$id);
+        $result = $this->dbobject->query("SELECT * FROM Kundenlieferung WHERE KundenbestellungsID = ".$id);
         while ($row = $result->fetch_object()) {
             $Lieferung = new Kundenlieferung($row->KundenlieferungsID, $row->KundenbestellungsID,$row->Versandatum);
             array_push($Lieferungen, $Lieferung);

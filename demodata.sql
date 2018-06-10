@@ -124,3 +124,7 @@ LEFT JOIN
 FROM Artikelausgang JOIN Kundenlieferung USING(KundenlieferungsID) 
 JOIN Kundenbestellung USING(KundenbestellungsID) WHERE KundenbestellungsID = 1) as Lieferung USING(ArtikelID)) as Result JOIN Artikel
 USING(ArtikelID) WHERE Ausgegangen is null OR Ausgegangen < Bestellt;
+
+SELECT ArtikelID, Artikelname, Einkaufspreis, Verkaufspreis, Mindestbestand, Lagerstand, Lagerort
+FROM Auftragsposition JOIN Artikel USING(ArtikelID) WHERE KundenbestellungsID = 1;
+SELECT Anzahl FROM Auftragsposition WHERE KundenbestellungsID = 1 AND ArtikelID = 5;

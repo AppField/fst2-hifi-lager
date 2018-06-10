@@ -9,12 +9,12 @@ include "../../models/Bestellung.php";
 include "../../models/Artikel.php";
 include "../../models/Lieferantenbestellung.php";
 include "../../models/Lieferung.php";
-include "../../models/Lieferantenlieferung.php";
+include "../../models/Kundenlieferung.php";
 include "../../DB.php";
 $db = new DB();
 $body = "";
 if (isset($_GET["id"])) {
-    $Lieferantenlieferungen = $db->getLieferantenlieferungenWithBestellungsID($_GET["id"]);
+    $Lieferantenlieferungen = $db->getKundenlieferungenWithBestellungsID($_GET["id"]);
     foreach ($Lieferantenlieferungen as $lieferung) {
         $body .= " <tr align = \"center\">
                             <td class=\"hidden-xs\">" . $lieferung->getLieferungsID() . "</td>

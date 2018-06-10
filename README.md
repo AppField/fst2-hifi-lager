@@ -16,6 +16,7 @@ Implementierung der Fallstudie 2
 - Spezifikationen anpassen
 - .class.php refactoring
 - Diana: Icons in der Titelleiste einfuefen - DONE
+- Trigger: Update trigger artikelbestaende
 
 
 ### Bestelldetails Lieferungen

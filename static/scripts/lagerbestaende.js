@@ -35,7 +35,7 @@
             this.modal = modal;
             this.id = $('#artikelid');
             this.name = $('#artikelname');
-            this.bestand = $('#bestand');
+            this.form = $('#modalForm');
 
             this.saveBtn = $('#saveBtn');
 
@@ -53,7 +53,6 @@
         setValues(artikel) {
             this.id.val(artikel.artikelID);
             this.name.val(artikel.artikelname);
-            this.bestand.val(artikel.lagerstand);
         }
 
         saveBestand() {

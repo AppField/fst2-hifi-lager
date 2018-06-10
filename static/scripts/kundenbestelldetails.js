@@ -291,6 +291,7 @@
                 });
             });
 
+            if(lieferung.artikel.length === 0) return;
 
             $.ajax({
                 method: "POST",

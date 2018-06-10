@@ -9,7 +9,7 @@ include "../../models/Bestellung.php";
 include "../../models/Artikel.php";
 include "../../models/Kundenbestellung.php";
 include "../../models/Lieferung.php";
-include "../../models/Lieferantenlieferung.php";
+include "../../models/Kundenlieferung.php";
 include "../../DB.php";
 $db = new DB();
 if (isset($_GET["id"])) {

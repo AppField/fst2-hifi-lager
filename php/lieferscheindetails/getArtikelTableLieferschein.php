@@ -13,8 +13,6 @@ include "../../DB.php";
 $db = New DB();
 $artikeltable = "";
 if(isset($_GET['id'])) {
-
-
     $lieferungen = $db->getKundenlieferungsArtikel($_GET['id']);
 
 
@@ -30,7 +28,7 @@ if(isset($_GET['id'])) {
         $count ++;
     }
 
-    echo $artikeltable;
 
 
 }
+echo $artikeltable;

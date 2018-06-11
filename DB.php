@@ -112,7 +112,10 @@ class DB{
         $result = $this->dbobject->query("SELECT * FROM Lieferantenbestellung
                                           JOIN lieferant USING(lieferantID)");
         while ($row = $result->fetch_object()) {
-            $bestellung = new Lieferantenbestellung( $row->LieferantenbestellungsID, $row->LieferantID, $row->Name);
+            $bestellung = new Lieferantenbestellung( $row->LieferantenbestellungsID,
+                                                     $row->LieferantID,
+                                                     $row->Name,
+                                                     $row->abgeschlossen);
             array_push($Bestellungen, $bestellung);
         }
         $this->close();
@@ -145,7 +148,9 @@ class DB{
         $Lieferungen = array();
         $result = $this->dbobject->query("SELECT * FROM Lieferantenlieferungen");
         while ($row = $result->fetch_object()) {
-            $Lieferung = new Lieferantenlieferung($row->LieferantenLieferungID, $row->LieferbestellungsID,$row->Eingangsdatum);
+            $Lieferung = new Lieferantenlieferung(  $row->LieferantenLieferungID,
+                                                    $row->LieferbestellungsID,
+                                                    $row->Eingangsdatum);
             array_push($Lieferungen, $Lieferung);
         }
         $this->close();

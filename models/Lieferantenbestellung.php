@@ -8,6 +8,15 @@
 
 class Lieferantenbestellung extends Bestellung {
     public $zahlungsmethodeID;
+    public $abgeschlossen;
+
+    public function __construct($bestellungsID, $zugeordnet, $name, $abgeschlossen)
+    {
+        $this->bestellungsID = $bestellungsID;
+        $this->zugeordnet = $zugeordnet;
+        $this->name = $name;
+        $this->abgeschlossen = $abgeschlossen;
+    }
 
     /**
      * @return mixed
@@ -42,10 +51,15 @@ class Lieferantenbestellung extends Bestellung {
     }
     public $bestellschein;
 
-    /**
-     * Lieferantenbestellung constructor.
-     * @param $bestellschein
-     */
 
+    public function getAbgeschlossen()
+    {
+        return $this->abgeschlossen;
+    }
+
+    public function setAbgeschlossen($abgeschlossen)
+    {
+        return $this->abgeschlossen = $abgeschlossen;
+    }
 
 }

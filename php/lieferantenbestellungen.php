@@ -13,12 +13,20 @@ include "../DB.php";
 $db = New DB();
 $lieferantenbestellungen = $db->getLieferantenbestellung();
 $bestellungstable = "";
+
 foreach ($lieferantenbestellungen as $bestellung) {
+
+    if($bestellung->getAbgeschlossen() == 1){
+        $status = "Abgeschlossen";
+    }else{
+        $status = "Offen";
+    }
+    echo $bestellung->getAbgeschlossen();
     $bestellungstable .= "<tr align = \"center\">
-                            <td class=\"hidden-xs\">" . $bestellung->getBestellungsID() . "</td>
-                            <td>" . $bestellung->getName() . "</td>
-                            <td>Offen</td>
-                            <td align=\"center\">
+                            <td class=\"hidden-xs filterDiv\">" . $bestellung->getBestellungsID() . "</td>
+                            <td class=\"filterDiv\">" . $bestellung->getName() . "</td>
+                            <td class=\"filterDiv " .$status."\">" . $status . "</td>
+                             <td class=\"filterDiv\"align='center'>
                                 <a class=\"\" href=\"lieferantenbestelldetails.html?id=" . $bestellung->getBestellungsID() . "\">
                                     <button class=\"btn fa fa-edit\" ></button>
                                 </a>

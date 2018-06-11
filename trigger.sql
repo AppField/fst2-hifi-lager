@@ -25,10 +25,10 @@ Select * from Lagerlog;
 Select * from artikelausgang;
 COMMIT;
 
-# trigger auf lagerlog lieferID = 000 und Aenderung = 'K+A/E'
+# trigger auf lagerlog um den Bestand anzupassen
 DROP TRIGGER bestandAenderung;
 CREATE TRIGGER bestandAenderung
-BEFORE INSERT ON lagerlog
+AFTER INSERT ON lagerlog
 FOR EACH ROW
-SET NEW.Aenderung = IF(NEW.LieferungsID = 000 AND NEW.Aenderung != 'K%',CONCAT('K',NEW.Aenderung), NEW.Aenderung);
+  UPDATE ARTIKEL SET Lagerstand =IF(NEW.Aenderung = 'KA',Lagerstand-NEW.anzahl, Lagerstand), Lagerstand =IF(NEW.Aenderung = 'KE',Lagerstand+NEW.anzahl, Lagerstand) WHERE ArtikelID = NEW.artikelID;
 COMMIT;

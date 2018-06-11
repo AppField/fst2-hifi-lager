@@ -8,9 +8,6 @@ Implementierung der Fallstudie 2
 
 #### TODO:
 - Db.php -> getLieferantenlieferungsArtikel(id) Funktion erstellen.
-- bei lagerstand.html lagerstand anpassen funciton (über artikel id)
-    - insert ins lagerlog
-    - echo false bzw true;
 - bestelldetails insert: lieferantenlieferung maxid +1, curdate() , bestellung
      - insert post JSON artikel + menge
 - Spezifikationen anpassen
@@ -76,26 +73,6 @@ curl --user fst2:pass4fst2 --data " {
                                     http://wi-project.technikum-wien.at/s18/s18-bvz2-fst-32/static/artikeleingang.html
                               
 ```
-      
-                                    
-                                    
-                                    
-                                    
-### Lagerstaende Request zum Hinzufuegen von Korrekturbuchungen
-
-Datei (existiert nicht, name kann geandert werden)
-- lagerbestaendeSave.php
-
-JSON:
-
-```json
-{
-    "artikelid": "1",
-    "korrektur": "KE oder KA",
-    "anzahl": "12"
-}
-```
-
 
 ### Besprechung 11.06.2018
 - Bestelldetails neue Spalte: 

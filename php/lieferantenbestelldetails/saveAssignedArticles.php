@@ -10,7 +10,8 @@ $body = "false";
 $db = new DB();
 if (isset($_POST['bestellungsId'])) {
     $lid = $db->createLieferantenLieferung($_POST['bestellungsId']);
-    if($lid == false){ echo "error beim erstellen der Lieferung"; return;}
+    echo $lid;
+    if($lid == false){ echo "error beim erstellen der Lieferung";}
     foreach ($_POST['artikel'] as $artikel) {
         ///TODO: Implement Insert into Artikeleingang w/ new LieferungsIDs
         if(!$db->createArtikeleingang($artikel['artikelId'],$artikel['artikelAnzahl'],$lid)){

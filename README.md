@@ -10,7 +10,6 @@ Implementierung der Fallstudie 2
 - bei lagerstand.html lagerstand anpassen funciton (über artikel id)
     - insert ins lagerlog
     - echo false bzw true;
-- bestelldetails lieferant ????
 - bestelldetails insert: lieferantenlieferung maxid +1, curdate() , bestellung
      - insert post JSON artikel + menge
 - Spezifikationen anpassen
@@ -55,6 +54,8 @@ $template = '<li class="list-group-item d-flex justify-content-between align-ite
     <span class="anzahl-badge badge badge-primary badge-pill">10</span>
 </li>';
 ```
+
+```
 curl --user fst2:pass4fst2 --data " {
                                       "bestellungsId": "1",
                                       "lieferantID": "HappyLieferung Spediteur",
@@ -72,7 +73,9 @@ curl --user fst2:pass4fst2 --data " {
                                       ]
                                     }" 
                                     http://wi-project.technikum-wien.at/s18/s18-bvz2-fst-32/static/artikeleingang.html
-                                    
+                              
+```
+      
                                     
                                     
                                     
@@ -91,3 +94,11 @@ JSON:
     "anzahl": "12"
 }
 ```
+
+
+### Besprechung 11.06.2018
+- Bestelldetails neue Spalte: 
+    - Artikel Verfuegbar JA/NEIN (Icon)
+- Boolean Feld fuer Gesamtlieferung hinzufuegen    
+- Lieferung hinzufuegen, offene Artikel:
+    - Nur Artikel laden, die verfuegbar sind oder die verfuegbaren Artikel.

@@ -134,4 +134,7 @@ INSERT INTO Lieferantenlieferungen VALUES (null, CURDATE(), 1);
 DELETE FROM Lieferantenlieferungen WHERE LieferantenLieferungID = 9;
 
 SELECT * FROM Artikeleingang;
-INSERT INTO Artikeleingang Values (
+
+INSERT INTO Lagerlog (`ArtikelID`,`Aenderung`,`Anzahl`,`Datum`,`LieferungsID`) Values ("1", "KA", "5", CURRENT_TIMESTAMP, "000");
+Select * from lagerlog Order by datum desc;
+

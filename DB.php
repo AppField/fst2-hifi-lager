@@ -397,7 +397,7 @@ class DB{
         $this->doConnect();
         $this->dbobject->query("SET NAMES 'utf8'");
         $this->dbobject->query("INSERT INTO Lieferantenlieferungen VALUES (null, CURDATE(), ".$bid.")");
-        if($statement->error){
+        if($this->dbobject->error){
             return false;
         }
         $this->dbobject->query("commit");

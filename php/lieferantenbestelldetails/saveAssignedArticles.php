@@ -12,13 +12,10 @@ var_dump($_REQUEST);
 var_dump($_POST);
 var_dump($_GET);
 if (isset($_POST['bestellungsId'])) {
-    echo $_POST['bestellungsId'];
     $lid = $db->createLieferantenLieferung($_POST['bestellungsId']);
     if($lid == false){ return;}
     foreach ($_POST['artikel'] as $artikel) {
         ///TODO: Implement Insert into Artikeleingang w/ new LieferungsIDs
-        echo $artikel['artikelId'];
-        echo $artikel['artikelAnzahl'];
         if(!$db->createArtikeleingang($artikel['artikelId'],$artikel['artikelAnzahl'],$lid)){
             return;
         };

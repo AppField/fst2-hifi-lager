@@ -9,10 +9,5 @@ include "../../DB.php";
 $body = "true";
 $db = new DB();
 if (isset($_POST['bestellungsId'])) {
-
-    var_dump($_POST);
-    echo ''
-    var_dump
-
 }
 echo $body;

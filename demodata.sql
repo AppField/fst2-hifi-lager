@@ -131,10 +131,8 @@ SELECT Anzahl FROM Auftragsposition WHERE KundenbestellungsID = 1 AND ArtikelID 
 SELECT * FROM Kundenlieferung WHERE KundenbestellungsID = 1;
 SELECT * FROM Lieferantenlieferungen;
 INSERT INTO Lieferantenlieferungen VALUES (null, CURDATE(), 1);
-DELETE FROM Lieferantenlieferungen WHERE LieferantenLieferungID = 9;
-
+DELETE FROM Lieferantenlieferungen WHERE LieferantenLieferungID = 10;
+SELECT * FROM Kundenlieferung;
 SELECT * FROM Artikeleingang;
-
-INSERT INTO Lagerlog (`ArtikelID`,`Aenderung`,`Anzahl`,`Datum`,`LieferungsID`) Values ("1", "KA", "5", CURRENT_TIMESTAMP, "000");
-Select * from lagerlog Order by datum desc;
-
+INSERT INTO Artikeleingang Values (;
+SELECT * FROM Lieferantenlieferungen;

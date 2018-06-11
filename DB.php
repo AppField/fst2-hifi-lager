@@ -289,6 +289,31 @@ class DB{
         return $artikel;
     }
 
+    /**
+     * @return Artikel aus der Datenbank von einer bestimmten Lieferantenlieferung
+     */
+    function getLieferantenlieferungsArtikel($lieferungsID)
+    {
+        $this->doConnect();
+        $this->dbobject->query("SET NAMES 'utf8'");
+        $artikel = array();
+        $result = $this->dbobject->query("SELECT ArtikelID, Artikelname, Anzahl
+            FROM lieferantenlieferungen 
+            JOIN artikelausgang USING(LieferantenlieferungsId)
+            JOIN artikel USING (ArtikelID)
+            JOIN lieferantenbestellung USING(LieferantenbestellungsId)
+            JOIN lieferant ON lieferant.LieferantID= lieferantenbestellung.LieferantID 
+            JOIN ort USING(OrtID)
+            WHERE LieferantenLieferungID = " . $lieferungsID);
+        while ($row = $result->fetch_object()) {
+            $lieferung = new Lieferschein($row->ArtikelID, $row->Artikelname, $row->Anzahl);
+            array_push($artikel, $lieferung);
+        }
+        $this->close();
+        return $artikel;
+    }
+
+
     function updateArtikelName($id, $name){
         $this->doConnect();
         $this->dbobject->query("SET NAMES 'utf8'");

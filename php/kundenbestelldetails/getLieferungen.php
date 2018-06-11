@@ -19,6 +19,10 @@ if (isset($_GET["id"])) {
         $body .= " <tr align = \"center\">
                             <td class=\"hidden-xs\">" . $lieferung->getLieferungsID() . "</td>
                             <td>" . $lieferung->getDatum() . "</td>
+                               <td><button data-lieferung-id='" . $lieferung->getLieferungsID() . "' 
+                                data-lieferung-datum='" . $lieferung->getDatum() . "'
+                                class='btn fa fa-info' 
+                                data-toggle='modal' data-target='#modalZugeordneteLieferungArtikel'></button></td>
                           </tr>";
     }
 }

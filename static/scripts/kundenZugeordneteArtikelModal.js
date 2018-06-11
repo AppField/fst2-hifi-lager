@@ -16,11 +16,12 @@
         modal.find('#zugeordneteArtikelLieferungTable').load('../php/kundenbestelldetails/getAssignedArtikel.php?id=' + lieferungId);
     });
 
-
+    //
     // class ZugeordneteArtikelModal {
     //
     //     constructor(lieferungId) {
     //         this.modal
+    //
     //     }
     // }
 

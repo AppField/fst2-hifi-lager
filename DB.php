@@ -417,17 +417,6 @@ class DB{
         $this->dbobject->query("commit");
     }
 
-    function createlagerlogTest(){
-        $time = "CURRENT_TIMESTAMP";
-//        $query = "INSERT INTO Lagerlog Values (".$aid.", ".$korrektur.", ".$anzahl.", ".$time.", 000");";
-        $query = "INSERT INTO Lagerlog (`ArtikelID`,`Aenderung`,`Anzahl`,`Datum`,`LieferungsID`)
-                  VALUES ('1', 'KA', '5', $time, '000');";
-        $this->doConnect();
-        $this->dbobject->query("SET NAMES 'utf8'");
-        $this->dbobject->query($query);
-        $this->dbobject->query("commit");
-    }
-
 /*    function updateLagerstand($id, $lagerstand){
         $this->doConnect();
         $this->dbobject->query("SET NAMES 'utf8'");

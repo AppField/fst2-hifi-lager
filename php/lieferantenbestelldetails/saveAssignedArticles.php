@@ -22,7 +22,7 @@ if (isset($_POST['bestellungsId'])) {
         if(!$db->createArtikeleingang($artikel['artikelId'],$artikel['artikelAnzahl'],$lid)){
             return;
         };
-    }
+}
     $body = $lid;
 }
 echo $body;

@@ -15,8 +15,6 @@ Implementierung der Fallstudie 2
      - insert post JSON artikel + menge
 - Spezifikationen anpassen
 - .class.php refactoring
-- Diana: Icons in der Titelleiste einfuefen - DONE
-- Trigger: Update trigger artikelbestaende
 
 
 ### Bestelldetails Lieferungen
@@ -89,7 +87,7 @@ JSON:
 ```json
 {
     "artikelid": "1",
-    "korrektur": "ke oder ka",
+    "korrektur": "KE oder KA",
     "anzahl": "12"
 }
 ```

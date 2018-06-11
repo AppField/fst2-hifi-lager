@@ -17,9 +17,13 @@ if (isset($_GET["id"])) {
     $Lieferantenlieferungen = $db->getLieferantenlieferungenWithBestellungsID($_GET["id"]);
     foreach ($Lieferantenlieferungen as $lieferung) {
         $body .= " <tr align = \"center\">
-                            <td class=\"hidden-xs\">" . $lieferung->getLieferungsID() . "</td>
-                            <td>" . $lieferung->getDatum() . "</td>
-                          </tr>";
+                    <td class=\"hidden-xs\">" . $lieferung->getLieferungsID() . "</td>
+                    <td>" . $lieferung->getDatum() . "</td>
+                    <td><button data-lieferung-id='" . $lieferung->getLieferungsID() . "' 
+                                data-lieferung-datum='" . $lieferung->getDatum() . "'
+                                class='btn fa fa-info' 
+                                data-toggle='modal' data-target='#modalZugeordneteLieferungArtikel'></button></td>
+                  </tr>";
     }
 }
 

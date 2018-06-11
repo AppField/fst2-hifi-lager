@@ -132,7 +132,7 @@ class DB{
         $bestellung = null;
         $result = $this->dbobject->query("SELECT * FROM Lieferantenbestellung JOIN lieferant USING(lieferantID) WHERE LieferantenbestellungsID = ".$id);
         while ($row = $result->fetch_object()) {
-            $bestellung = new Lieferantenbestellung( $row->LieferantenbestellungsID, $row->LieferantID, $row->Name);
+            $bestellung = new Lieferantenbestellung( $row->LieferantenbestellungsID, $row->LieferantID, $row->Name, $row->abgeschlossen);
         }
         $this->close();
         return $bestellung;
@@ -318,7 +318,6 @@ class DB{
     }
 
     /**
-     *
      * @return Artikel aus der Datenbank von einer bestimmten Kundenlieferung
      */
     function getKundenlieferungsArtikel($lieferungsID){
@@ -397,14 +396,21 @@ class DB{
         $this->doConnect();
         $this->dbobject->query("SET NAMES 'utf8'");
         $this->dbobject->query("INSERT INTO Lieferantenlieferungen VALUES (null, CURDATE(), ".$bid.")");
+        if($this->dbobject->error){
+            return false;
+        }
+        $retID = $this->dbobject->insert_id;
         $this->dbobject->query("commit");
-        return $this->dbobject->insert_id;
+        return $retID;
     }
 
     function createArtikeleingang($aid, $anzahl, $lid){
         $this->doConnect();
         $this->dbobject->query("SET NAMES 'utf8'");
         $this->dbobject->query("INSERT INTO Artikeleingang Values (".$aid.", ".$lid.", ".$anzahl.")");
+        if($this->dbobject->error){
+            return false;
+        }
         $this->dbobject->query("commit");
     }
 
@@ -422,20 +428,36 @@ class DB{
         $this->dbobject->query("commit");
     }
 
-/*    function updateLagerstand($id, $lagerstand){
+    /**
+     * @param $bid
+     * @return insert_id
+     */
+    function createKundenLieferung($bid){
         $this->doConnect();
         $this->dbobject->query("SET NAMES 'utf8'");
-        $statement = $this->dbobject->prepare("UPDATE ARTIKEL SET lagerstand = ? WHERE ArtikelID = ?");
-        $query = "INSERT INTO Lagerlog (`ArtikelID`,`Aenderung`,`Anzahl`,`Datum`,`LieferungsID`)
-                  VALUES ($aid, $korrektur, $anzahl, $time, '000');";
-        $statement->bind_param("ss", $lagerstand, $id);
-        $statement->execute();
-        if($statement->error){
+        $this->dbobject->query("INSERT INTO Lieferantenlieferungen VALUES (null, CURDATE(), ".$bid.")");
+        if($this->dbobject->error){
             return false;
         }
         $this->dbobject->query("commit");
-        return true;
-    }*/
+        return $this->dbobject->insert_id;
+    }
+
+
+    /*    function updateLagerstand($id, $lagerstand){
+            $this->doConnect();
+            $this->dbobject->query("SET NAMES 'utf8'");
+            $statement = $this->dbobject->prepare("UPDATE ARTIKEL SET lagerstand = ? WHERE ArtikelID = ?");
+            $query = "INSERT INTO Lagerlog (`ArtikelID`,`Aenderung`,`Anzahl`,`Datum`,`LieferungsID`)
+                      VALUES ($aid, $korrektur, $anzahl, $time, '000');";
+            $statement->bind_param("ss", $lagerstand, $id);
+            $statement->execute();
+            if($statement->error){
+                return false;
+            }
+            $this->dbobject->query("commit");
+            return true;
+        }*/
 
 
 }

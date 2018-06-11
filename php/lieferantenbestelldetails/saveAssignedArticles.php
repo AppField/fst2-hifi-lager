@@ -8,17 +8,17 @@
 include "../../DB.php";
 $body = "false";
 $db = new DB();
-var_dump($_REQUEST);
-var_dump($_POST);
-var_dump($_GET);
 if (isset($_POST['bestellungsId'])) {
-    echo $_POST['bestellungsId'];
     $lid = $db->createLieferantenLieferung($_POST['bestellungsId']);
+    echo $lid;
+    if($lid == false){ echo "error beim erstellen der Lieferung";}
     foreach ($_POST['artikel'] as $artikel) {
         ///TODO: Implement Insert into Artikeleingang w/ new LieferungsIDs
-        echo $artikel['artikelId'];
-        echo $artikel['artikelAnzahl'];
-        $db->createArtikeleingang($artikel['artikelId'],$artikel['artikelAnzahl'],$lid);
-    }
+        if(!$db->createArtikeleingang($artikel['artikelId'],$artikel['artikelAnzahl'],$lid)){
+            echo "error beim artikeleingang erstellen";
+            return;
+        };
+}
+    $body = $lid;
 }
 echo $body;

@@ -45,7 +45,7 @@ class DB{
         $result = $this->dbobject->query("SELECT * FROM Kundenbestellung
                                           JOIN kunde ON Kundenbestellung.kundenID = kunde.kundeID");
         while ($row = $result->fetch_object()) {
-            $bestellung = new Kundenbestellung($row->KundenID, $row->KundenbestellungsID, $row->Name);
+            $bestellung = new Kundenbestellung($row->KundenbestellungsID,  $row->Name, $row->Status, $row->KundenID);
             array_push($Bestellungen, $bestellung);
         }
         $this->close();

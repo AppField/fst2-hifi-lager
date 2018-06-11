@@ -21,7 +21,7 @@ foreach ($lieferantenbestellungen as $bestellung) {
     }else{
         $status = "Offen";
     }
-    echo $bestellung->getAbgeschlossen();
+
     $bestellungstable .= "<tr align = \"center\">
                             <td class=\"hidden-xs filterDiv\">" . $bestellung->getBestellungsID() . "</td>
                             <td class=\"filterDiv\">" . $bestellung->getName() . "</td>

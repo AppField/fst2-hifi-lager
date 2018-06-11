@@ -80,3 +80,4 @@ curl --user fst2:pass4fst2 --data " {
 - Boolean Feld fuer Gesamtlieferung hinzufuegen    
 - Lieferung hinzufuegen, offene Artikel:
     - Nur Artikel laden, die verfuegbar sind oder die verfuegbaren Artikel.
+- Lieferung nur hinzufügen können solange status "offen"

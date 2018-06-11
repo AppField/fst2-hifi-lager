@@ -412,6 +412,7 @@ class DB{
             return false;
         }
         $this->dbobject->query("commit");
+        return true;
     }
 
     function createlagerlog($aid, $anzahl, $korrektur){

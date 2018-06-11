@@ -295,7 +295,7 @@
             if(lieferung.artikel.length === 0) return;
 
             $.ajax({
-                method: "POST",
+                method: "GET",
                 url: '../php/lieferantenbestelldetails/saveAssignedArticles.php',
                 data: lieferung,
                 success: (result) => {

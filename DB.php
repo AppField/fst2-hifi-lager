@@ -132,7 +132,7 @@ class DB{
         $bestellung = null;
         $result = $this->dbobject->query("SELECT * FROM Lieferantenbestellung JOIN lieferant USING(lieferantID) WHERE LieferantenbestellungsID = ".$id);
         while ($row = $result->fetch_object()) {
-            $bestellung = new Lieferantenbestellung( $row->LieferantenbestellungsID, $row->LieferantID, $row->Name);
+            $bestellung = new Lieferantenbestellung( $row->LieferantenbestellungsID, $row->LieferantID, $row->Name, $row->abgeschlossen);
         }
         $this->close();
         return $bestellung;
@@ -397,6 +397,9 @@ class DB{
         $this->doConnect();
         $this->dbobject->query("SET NAMES 'utf8'");
         $this->dbobject->query("INSERT INTO Lieferantenlieferungen VALUES (null, CURDATE(), ".$bid.")");
+        if($statement->error){
+            return false;
+        }
         $this->dbobject->query("commit");
         return $this->dbobject->insert_id;
     }
@@ -405,6 +408,9 @@ class DB{
         $this->doConnect();
         $this->dbobject->query("SET NAMES 'utf8'");
         $this->dbobject->query("INSERT INTO Artikeleingang Values (".$aid.", ".$lid.", ".$anzahl.")");
+        if($statement->error){
+            return false;
+        }
         $this->dbobject->query("commit");
     }
 

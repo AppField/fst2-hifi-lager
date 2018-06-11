@@ -7,6 +7,7 @@
 Implementierung der Fallstudie 2
 
 #### TODO:
+- Db.php -> getLieferantenlieferungsArtikel(id) Funktion erstellen.
 - bei lagerstand.html lagerstand anpassen funciton (über artikel id)
     - insert ins lagerlog
     - echo false bzw true;

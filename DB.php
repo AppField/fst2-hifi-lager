@@ -318,7 +318,6 @@ class DB{
     }
 
     /**
-     *
      * @return Artikel aus der Datenbank von einer bestimmten Kundenlieferung
      */
     function getKundenlieferungsArtikel($lieferungsID){
@@ -397,20 +396,21 @@ class DB{
         $this->doConnect();
         $this->dbobject->query("SET NAMES 'utf8'");
         $this->dbobject->query("INSERT INTO Lieferantenlieferungen VALUES (null, CURDATE(), ".$bid.")");
-        /*if($this->dbobject->error){
-            return $this->dbobject->error;
-        }*/
+        if($this->dbobject->error){
+            return false;
+        }
+        $retID = $this->dbobject->insert_id;
         $this->dbobject->query("commit");
-        return $this->dbobject->insert_id;
+        return $retID;
     }
 
     function createArtikeleingang($aid, $anzahl, $lid){
         $this->doConnect();
         $this->dbobject->query("SET NAMES 'utf8'");
         $this->dbobject->query("INSERT INTO Artikeleingang Values (".$aid.", ".$lid.", ".$anzahl.")");
-        /*if($this->dbobject->error){
+        if($this->dbobject->error){
             return false;
-        }*/
+        }
         $this->dbobject->query("commit");
     }
 

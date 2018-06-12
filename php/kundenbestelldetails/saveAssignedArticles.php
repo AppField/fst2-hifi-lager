@@ -12,8 +12,8 @@ if (isset($_POST['bestellungsId'])) {
     $lid = $db->createKundenLieferung($_POST['bestellungsId']);
     if($lid == false){ echo "error beim erstellen der Lieferung"; return;}
     foreach ($_POST['artikel'] as $artikel) {
-        ///TODO: Implement Insert into Artikeleingang w/ new LieferungsIDs
         if(!$db->createArtikelausgang($artikel['artikelId'],$artikel['artikelAnzahl'],$lid)){
+            echo "error beim erstellen des Artikelausgang";
             return;
         };
     }

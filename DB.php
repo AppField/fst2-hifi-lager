@@ -449,7 +449,7 @@ JOIN Artikel ON Artikeleingang.Artikel_ArtikelID = Artikel.ArtikelID WHERE Liefe
     function createKundenLieferung($bid){
         $this->doConnect();
         $this->dbobject->query("SET NAMES 'utf8'");
-        $this->dbobject->query("INSERT INTO Kundenlieferung (KundenbestellungsID, Versanddatum, Abgeschlossen) Values(".$bid.", CURDATE(), 0)");
+        $this->dbobject->query("INSERT INTO Kundenlieferung (KundenbestellungsID, Versanddatum, Abgeschlossen) Values(".$bid." , CURDATE(), 0)");
         if($this->dbobject->error){
             return false;
         }
@@ -460,7 +460,7 @@ JOIN Artikel ON Artikeleingang.Artikel_ArtikelID = Artikel.ArtikelID WHERE Liefe
     function createArtikelausgang($aid, $anzahl, $lid){
         $this->doConnect();
         $this->dbobject->query("SET NAMES 'utf8'");
-        $this->dbobject->query("INSERT INTO Artikelausgang Values (".$aid.", ".$lid.", ".$anzahl.")");
+        $this->dbobject->query("INSERT INTO Artikelausgang (ArtikelID, KundenlieferungsID, Anzahl) Values (".$aid.", ".$lid.", ".$anzahl.")");
         if($this->dbobject->error){
             return false;
         }

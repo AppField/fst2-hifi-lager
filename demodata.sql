@@ -139,4 +139,8 @@ SELECT * FROM Lieferantenlieferungen;
 commit;
 SELECT * FROM Kundenbestellung;
 SELECT * FROM Kundenlieferung;
-INSERT INTO Kundenlieferung (KundenbestellungsID,
+INSERT INTO Kundenlieferung (KundenbestellungsID,;
+
+SELECT ArtikelID, Anzahl, Artikelname FROM Artikelausgang JOIN Artikel USING(ArtikelID) WHERE KundenlieferungsID = 1;
+SELECT ArtikelID, Anzahl, Artikelname FROM Artikeleingang 
+JOIN Artikel ON Artikeleingang.Artikel_ArtikelID = Artikel.ArtikelID WHERE LieferantenlieferungID = 19;

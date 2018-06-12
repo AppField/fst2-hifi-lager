@@ -25,14 +25,17 @@
         lieferantInput.val(data);
     });
 
+    loadData();
 
-    artikelTable.load('../php/kundenbestelldetails/artikelTable.php?id=' + bestellId, () => {
+    function loadData() {
+        artikelTable.load('../php/kundenbestelldetails/artikelTable.php?id=' + bestellId, () => {
 
-    });
+        });
 
-    lieferungenTable.load('../php/kundenbestelldetails/getLieferungen.php?id=' + bestellId, () => {
+        lieferungenTable.load('../php/kundenbestelldetails/getLieferungen.php?id=' + bestellId, () => {
 
-    });
+        });
+    }
 
     /* MODAL */
     const modal = $('#modal');
@@ -299,11 +302,22 @@
                 url: '../php/kundenbestelldetails/saveAssignedArticles.php',
                 data: lieferung,
                 success: (result) => {
-                    if (result) modal.modal('hide');
-                    else console.error('save failed');
+                    if (result == "true") {
+                        modal.modal('hide');
+                        console.log('saved successfully!');
+                        loadData();
+                        createNotifiction('Kundenlieferung wurde erfolgreich hinzugefügt', true);
+                    }
+                    else {
+                        console.error('save failed');
+                        loadData();
+                        createNotifiction(result, false);
+                    }
                 },
                 error: (error) => {
                     console.error('error', error);
+                    loadData();
+                    createNotifiction('Kundenlieferung konnte nicht hinzugefügt werden.', false);
                 }
             });
         }

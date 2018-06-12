@@ -18,7 +18,7 @@ class Notification {
     createTimer() {
         setTimeout(() => {
             this.element.alert('close');
-        }, 3000);
+        }, this.state ? 4000 : 10000);
     }
 
 

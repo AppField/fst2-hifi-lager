@@ -77,12 +77,7 @@ curl --user fst2:pass4fst2 --data " {
                                     http://wi-project.technikum-wien.at/s18/s18-bvz2-fst-32/static/artikeleingang.html
                               
 ```
-      
-                                    
-                                    
-                                    
-                                    
-### Lagerstaende Request zum Hinzufuegen von Korrekturbuchungen
+
 
 ### Besprechung 11.06.2018
 - Kundenbestelldetails neue Spalte: 

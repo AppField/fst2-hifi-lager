@@ -45,7 +45,7 @@ class DB{
         $result = $this->dbobject->query("SELECT * FROM Kundenbestellung
                                           JOIN kunde ON Kundenbestellung.kundenID = kunde.kundeID");
         while ($row = $result->fetch_object()) {
-            $bestellung = new Kundenbestellung($row->KundenID, $row->KundenbestellungsID, $row->Name);
+            $bestellung = new Kundenbestellung($row->KundenbestellungsID,  $row->Name, $row->Status, $row->KundenID);
             array_push($Bestellungen, $bestellung);
         }
         $this->close();
@@ -297,14 +297,8 @@ class DB{
         $this->doConnect();
         $this->dbobject->query("SET NAMES 'utf8'");
         $artikel = array();
-        $result = $this->dbobject->query("SELECT ArtikelID, Artikelname, Anzahl
-            FROM lieferantenlieferungen 
-            JOIN artikelausgang USING(LieferantenlieferungsId)
-            JOIN artikel USING (ArtikelID)
-            JOIN lieferantenbestellung USING(LieferantenbestellungsId)
-            JOIN lieferant ON lieferant.LieferantID= lieferantenbestellung.LieferantID 
-            JOIN ort USING(OrtID)
-            WHERE LieferantenLieferungID = " . $lieferungsID);
+        $result = $this->dbobject->query("SELECT ArtikelID, Anzahl, Artikelname FROM Artikeleingang 
+JOIN Artikel ON Artikeleingang.Artikel_ArtikelID = Artikel.ArtikelID WHERE LieferantenlieferungID =" . $lieferungsID);
         while ($row = $result->fetch_object()) {
             $lieferung = new Lieferschein($row->ArtikelID, $row->Artikelname, $row->Anzahl);
             array_push($artikel, $lieferung);
@@ -349,14 +343,8 @@ class DB{
         $this->doConnect();
         $this->dbobject->query("SET NAMES 'utf8'");
         $artikel = array();
-        $result = $this->dbobject->query("SELECT ArtikelID, Artikelname, Anzahl
-            FROM kundenlieferung 
-            JOIN artikelausgang USING(KundenlieferungsID)
-            JOIN artikel USING (ArtikelID)
-            JOIN kundenbestellung USING(KundenbestellungsID)
-            JOIN kunde ON kunde.KundeID= kundenbestellung.KundenID 
-            JOIN ort USING(OrtID)
-            WHERE KundenlieferungsID = ".$lieferungsID);
+        $result = $this->dbobject->query("SELECT ArtikelID, Anzahl, Artikelname FROM Artikelausgang 
+        JOIN Artikel USING(ArtikelID) WHERE KundenlieferungsID = ".$lieferungsID);
         while ($row = $result->fetch_object()) {
             $lieferung = new Lieferschein($row->ArtikelID, $row->Artikelname, $row->Anzahl);
             array_push($artikel, $lieferung);

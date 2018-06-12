@@ -6,7 +6,25 @@
  * Time: 11:17
  */
 class Kundenbestellung extends Bestellung {
+    public $status;
 
+
+    public function __construct($bestellungsID, $name, $status)
+    {
+        $this->bestellungsID = $bestellungsID;
+        $this->name = $name;
+        $this->status = $status;
+    }
+
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function setStatus($status)
+    {
+        return $this->status = $status;
+    }
 
     /**
      * Kundenbestellung constructor.

@@ -16,9 +16,9 @@ if (isset($_GET['id'])) {
     foreach ($assignedArtikel as $artikel) {
 
         $artikelTable .= '<tr align="center">
-                            <td>' . $artikel->artikelID . '</td>
-                            <td>' . $artikel->bezeichnung . '</td>
-                            <td>' . $artikel->menge . '</td>
+                            <td>' . $artikel->getArtikelID() . '</td>
+                            <td>' . $artikel->getBezeichnung(). '</td>
+                            <td>' . $artikel->getMenge() . '</td>
                           </tr>';
     }
 

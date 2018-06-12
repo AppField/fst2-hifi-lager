@@ -296,7 +296,7 @@
             $.ajax({
                 method: "POST",
                 url: '../php/kundenbestelldetails/saveAssignedArticles.php',
-                data: JSON.stringify(lieferung),
+                data: lieferung,
                 success: (result) => {
                     if (result) modal.modal('hide');
                     else console.error('save failed');

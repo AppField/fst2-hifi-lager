@@ -62,7 +62,7 @@ class DB{
         $result = $this->dbobject->query("SELECT * FROM Kundenbestellung
                                           JOIN kunde ON Kundenbestellung.kundenID = kunde.kundeID WHERE KundenbestellungsID = ".$id);
         while ($row = $result->fetch_object()) {
-            $bestellung = new Kundenbestellung($row->KundenID, $row->KundenbestellungsID, $row->Name);
+            $bestellung = new Kundenbestellung($row->KundenbestellungsID, $row->Name, $row->Status);
         }
         $this->close();
         return $bestellung;
@@ -451,14 +451,25 @@ JOIN Artikel ON Artikeleingang.Artikel_ArtikelID = Artikel.ArtikelID WHERE Liefe
     function createKundenLieferung($bid){
         $this->doConnect();
         $this->dbobject->query("SET NAMES 'utf8'");
-        $this->dbobject->query("INSERT INTO Lieferantenlieferungen VALUES (null, CURDATE(), ".$bid.")");
+        $this->dbobject->query("INSERT INTO Kundenlieferung (KundenbestellungsID, Versanddatum, Abgeschlossen) Values(".$bid." , CURDATE(), 0)");
+        if($this->dbobject->error){
+            return false;
+        }
+        $iid = $this->dbobject->insert_id;
+        $this->dbobject->query("commit");
+        return $iid;
+    }
+
+    function createArtikelausgang($aid, $anzahl, $lid){
+        $this->doConnect();
+        $this->dbobject->query("SET NAMES 'utf8'");
+        $this->dbobject->query("INSERT INTO Artikelausgang (ArtikelID, KundenlieferungsID, Anzahl) Values (".$aid.", ".$lid.", ".$anzahl.")");
         if($this->dbobject->error){
             return false;
         }
         $this->dbobject->query("commit");
-        return $this->dbobject->insert_id;
+        return true;
     }
-
 
     /*    function updateLagerstand($id, $lagerstand){
             $this->doConnect();

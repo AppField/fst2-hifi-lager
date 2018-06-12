@@ -13,7 +13,7 @@
 
         const modal = $(this);
         modal.find('.modal-title').text('Lieferung ' + lieferungId + ' am ' + lieferungDatum);
-        modal.find('#zugeordneteArtikelLieferungTable').load('../php/kundenbestelldetails/getAssignedArtikel.php?id=' + lieferungId);
+        modal.find('#zugeordneteArtikelLieferungTable').load('../php/lieferantenbestelldetails/getAssignedArtikel.php?id=' + lieferungId);
     });
 
 

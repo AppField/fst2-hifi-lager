@@ -453,8 +453,9 @@ JOIN Artikel ON Artikeleingang.Artikel_ArtikelID = Artikel.ArtikelID WHERE Liefe
         if($this->dbobject->error){
             return false;
         }
+        $iid = $this->dbobject->insert_id;
         $this->dbobject->query("commit");
-        return $this->dbobject->insert_id;
+        return $iid;
     }
 
     function createArtikelausgang($aid, $anzahl, $lid){

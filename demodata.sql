@@ -133,14 +133,10 @@ SELECT * FROM Lieferantenlieferungen;
 INSERT INTO Lieferantenlieferungen VALUES (null, CURDATE(), 1);
 DELETE FROM Lieferantenlieferungen WHERE LieferantenLieferungID = 16;
 SELECT * FROM Kundenlieferung;
-SELECT * FROM Artikeleingang;
+SELECT * FROM Artikelausgang;
 INSERT INTO Artikeleingang Values (;
 SELECT * FROM Lieferantenlieferungen;
 commit;
 SELECT * FROM Kundenbestellung;
 SELECT * FROM Kundenlieferung;
-INSERT INTO Kundenlieferung (KundenbestellungsID,;
-
-SELECT ArtikelID, Anzahl, Artikelname FROM Artikelausgang JOIN Artikel USING(ArtikelID) WHERE KundenlieferungsID = 1;
-SELECT ArtikelID, Anzahl, Artikelname FROM Artikeleingang 
-JOIN Artikel ON Artikeleingang.Artikel_ArtikelID = Artikel.ArtikelID WHERE LieferantenlieferungID = 19;
+INSERT INTO Kundenlieferung (KundenbestellungsID, Versanddatum, Abgeschlossen) Values("", CURDATE(), 0);

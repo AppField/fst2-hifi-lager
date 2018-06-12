@@ -136,3 +136,50 @@ header, main, .footer-dark {
 }
 
 /*END DRAG AND DROP*/
+
+/* BEGIN NOTIFICATIONS */
+
+.notification-wrapper {
+    position: fixed;
+    bottom: 50px;
+    left: 50%;
+}
+
+.notification {
+    position: relative;
+    left: -50%;
+    transform: scale(0);
+    animation: bounce-in .6s;
+    visibility: hidden;
+
+    /* Force Hardware Acceleration in WebKit */
+    -webkit-transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+
+    max-height: 100px;
+
+}
+
+.notification.bounce-in {
+
+    visibility: visible;
+    animation: bounce-in .6s;
+}
+
+@keyframes bounce-in {
+    0% {
+        opacity: 0;
+        transform: scale(.5);
+    }
+
+    60% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* ENDNOTIFICATIONS */

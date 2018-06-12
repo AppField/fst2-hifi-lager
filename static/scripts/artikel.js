@@ -40,6 +40,7 @@
             this.lagerort = $('#lagerort');
             this.saveBtn = $('#saveBtn');
 
+            this.saveBtn.unbind('click');
             this.saveBtn.on('click', () => this.saveArtikel());
 
             $.ajax({
@@ -70,8 +71,15 @@
                 url: '../php/artikelSave.php',
                 data: artikel,
                 success: (result) => {
-                    if (result) articleModal.modal('hide');
-                    else console.error('save failed');
+                    if (result == "true") {
+                        articleModal.modal('hide');
+                        console.log('saved successfully!');
+                        createNotifiction('Artikel wurde erfolgreich gespeichert', true);
+                    }
+                    else {
+                        console.error('save failed');
+                        createNotifiction(result.body, false);
+                    }
                 },
                 error: (error) => {
                     console.error('error', error);

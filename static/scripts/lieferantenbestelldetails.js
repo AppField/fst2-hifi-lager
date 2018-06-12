@@ -61,6 +61,8 @@
             this.lastEnter = null;
 
             this.saveBtn = $('#saveBtn');
+
+            this.saveBtn.unbind('click');
             this.saveBtn.on('click', () => this.saveLieferung());
 
             this.offeneArtikelContainer.load('../php/lieferantenbestelldetails/getOffeneArtikel.php?id=' + this.bestellId, () => {

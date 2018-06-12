@@ -39,6 +39,7 @@
 
             this.saveBtn = $('#saveBtn');
 
+            this.saveBtn.unbind('click');
             this.saveBtn.on('click', (() => this.saveBestand()));
 
             $.ajax({

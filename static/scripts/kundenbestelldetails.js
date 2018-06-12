@@ -59,13 +59,14 @@
             this.lastEnter = null;
 
             this.saveBtn = $('#saveBtn');
+            this.saveBtn.unbind('click');
             this.saveBtn.on('click', () => this.saveLieferung());
 
             this.offeneArtikelContainer.load('../php/kundenbestelldetails/getOffeneArtikel.php?id=' + bestellId, () => {
                 this.setupDragAndDrop();
             });
         }
-        
+
 
         setupDragAndDrop() {
             this.offeneArtikel = this.offeneArtikelContainer.find('.list-group-item');
@@ -291,7 +292,7 @@
                 });
             });
 
-            if(lieferung.artikel.length === 0) return;
+            if (lieferung.artikel.length === 0) return;
 
             $.ajax({
                 method: "POST",

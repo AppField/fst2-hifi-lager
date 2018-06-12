@@ -16,12 +16,4 @@
         modal.find('#zugeordneteArtikelLieferungTable').load('../php/lieferantenbestelldetails/getAssignedArtikel.php?id=' + lieferungId);
     });
 
-
-    // class ZugeordneteArtikelModal {
-    //
-    //     constructor(lieferungId) {
-    //         this.modal
-    //     }
-    // }
-
 }());

@@ -1,9 +1,5 @@
 const notificationWrapper = $(`<div id="notificationWrapper" class="notification-wrapper"></div>`).appendTo('main');
 
-$('#addAlert').on('click', () => {
-    createNotifiction('asdfasdf', false);
-});
-
 const createNotifiction = (message, state) => {
 
     const newNotification = new Notification(message, state);

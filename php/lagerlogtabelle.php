@@ -26,13 +26,18 @@ foreach ($lagerlog as $log) {
         $lieferID = "<td>".$log->getLieferungsID()."</td>";
     }
 
+    $alterbestand = $log->getAlterBestand();
+    $neuerbestand = $log->getNeuerBestand();
+
     $logtable .= "<tr align = \"center\">
                             <td>".$log->getAenderung()."</td>
                             .$lieferID.
                             <td>".$log->getArtikelID()."</td>
                             <td>".$log->getBezeichnung()."</td>"
                             .$cell.
-                            "<td>".$log->getDatum()."</td>
+                            "<td>".$alterbestand."</td>
+                            <td>".$neuerbestand."</td>
+                            <td>".$log->getDatum()."</td>
                           </tr>";
 }
 echo $logtable;

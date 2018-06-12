@@ -53,6 +53,8 @@ class Lagerlog
     public $lieferungsID;
     public $aenderung;
     public $datum;
+    public $alterBestand;
+    public $neuerBestand;
 
     /**
      * @return mixed
@@ -60,6 +62,16 @@ class Lagerlog
     public function getBezeichnung()
     {
         return $this->bezeichnung;
+    }
+
+    public function getAlterBestand()
+    {
+        return $this->alterBestand;
+    }
+
+    public function getNeuerBestand()
+    {
+        return $this->neuerBestand;
     }
 
     /**
@@ -70,7 +82,7 @@ class Lagerlog
      * @param $aenderung
      * @param $datum
      */
-    public function __construct($artikelID,$bezeichnung, $anzahl, $lieferungsID, $aenderung, $datum)
+    public function __construct($artikelID,$bezeichnung, $anzahl, $lieferungsID, $aenderung, $datum, $alterBestand, $neuerBestand)
     {
         $this->artikelID = $artikelID;
         $this->bezeichnung = $bezeichnung;
@@ -78,6 +90,8 @@ class Lagerlog
         $this->lieferungsID = $lieferungsID;
         $this->aenderung = $aenderung;
         $this->datum = $datum;
+        $this->alterBestand = $alterBestand;
+        $this->neuerBestand = $neuerBestand;
     }
 
 

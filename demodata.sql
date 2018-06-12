@@ -131,7 +131,7 @@ SELECT Anzahl FROM Auftragsposition WHERE KundenbestellungsID = 1 AND ArtikelID 
 SELECT * FROM Kundenlieferung; WHERE KundenbestellungsID = 1;
 SELECT * FROM Lieferantenlieferungen;
 INSERT INTO Lieferantenlieferungen VALUES (null, CURDATE(), 1);
-DELETE FROM Lieferantenlieferungen WHERE LieferantenLieferungID = 12;
+DELETE FROM Lieferantenlieferungen WHERE LieferantenLieferungID = 16;
 SELECT * FROM Kundenlieferung;
 SELECT * FROM Artikeleingang;
 INSERT INTO Artikeleingang Values (;

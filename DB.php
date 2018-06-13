@@ -280,7 +280,7 @@ class DB{
         $result = $this->dbobject->query("SELECT ArtikelID,Artikelname , (Bestellt-IFNULL(Ausgegangen,0)) As Offen FROM (SELECT * FROM (SELECT Anzahl as Bestellt, ArtikelID 
         FROM Auftragsposition WHERE KundenbestellungsID = ".$id.") as Bestellung
         LEFT JOIN
-        (SELECT Anzahl as Ausgegangen, ArtikelID
+        (SELECT SUM(Anzahl) as Ausgegangen, ArtikelID
         FROM Artikelausgang JOIN Kundenlieferung USING(KundenlieferungsID) 
         JOIN Kundenbestellung USING(KundenbestellungsID) WHERE KundenbestellungsID = ".$id." GROUP BY (ArtikelID)) as Lieferung USING(ArtikelID)) as Result JOIN Artikel
         USING(ArtikelID)  WHERE Ausgegangen is null OR Ausgegangen < Bestellt");

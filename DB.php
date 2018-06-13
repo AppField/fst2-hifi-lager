@@ -250,6 +250,7 @@ class DB{
             $log = new Lagerlog($row->ArtikelID,$row->Artikelname, $row->Anzahl, $row->LieferungsID, $row->Aenderung, $row->Datum);
             array_push($logArray, $log);
         }
+        $this->close();
         return $logArray;
     }
 
@@ -319,6 +320,7 @@ JOIN Artikel ON Artikeleingang.Artikel_ArtikelID = Artikel.ArtikelID WHERE Liefe
             return false;
         }
         $this->dbobject->query("commit");
+        $this->close();
         return true;
     }
 
@@ -333,6 +335,7 @@ JOIN Artikel ON Artikeleingang.Artikel_ArtikelID = Artikel.ArtikelID WHERE Liefe
             return false;
         }
         $this->dbobject->query("commit");
+        $this->close();
         return true;
     }
 
@@ -366,6 +369,7 @@ JOIN Artikel ON Artikeleingang.Artikel_ArtikelID = Artikel.ArtikelID WHERE Liefe
             WHERE KundenlieferungsID =".$id);
         $result = $result->fetch_object();
         $kunde = new Kunde($result->KundeID, $result->Kundenname, $result->Strasse, $result->Hausnummer, $result->Ort, $result->PLZ);
+        $this->close();
         return $kunde;
 
     }
@@ -414,6 +418,7 @@ JOIN Artikel ON Artikeleingang.Artikel_ArtikelID = Artikel.ArtikelID WHERE Liefe
         }
         $retID = $this->dbobject->insert_id;
         $this->dbobject->query("commit");
+        $this->close();
         return $retID;
     }
 
@@ -425,6 +430,7 @@ JOIN Artikel ON Artikeleingang.Artikel_ArtikelID = Artikel.ArtikelID WHERE Liefe
             return false;
         }
         $this->dbobject->query("commit");
+        $this->close();
         return true;
     }
 
@@ -440,6 +446,7 @@ JOIN Artikel ON Artikeleingang.Artikel_ArtikelID = Artikel.ArtikelID WHERE Liefe
             return false;
         }
         $this->dbobject->query("commit");
+        $this->close();
     }
 
     /**
@@ -455,6 +462,7 @@ JOIN Artikel ON Artikeleingang.Artikel_ArtikelID = Artikel.ArtikelID WHERE Liefe
         }
         $iid = $this->dbobject->insert_id;
         $this->dbobject->query("commit");
+        $this->close();
         return $iid;
     }
 
@@ -466,6 +474,7 @@ JOIN Artikel ON Artikeleingang.Artikel_ArtikelID = Artikel.ArtikelID WHERE Liefe
             return false;
         }
         $this->dbobject->query("commit");
+        $this->close();
         return true;
     }
 

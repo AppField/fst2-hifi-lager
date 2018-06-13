@@ -7,11 +7,6 @@
 Implementierung der Fallstudie 2
 
 #### TODO:
-- Db.php -> getLieferantenlieferungsArtikel(id) Funktion erstellen.
-    - erstellt, bitte Testen ob korrekt.
-- bei lagerstand.html lagerstand anpassen funciton (über artikel id)
-    - insert ins lagerlog
-    - echo false bzw true;
 - bestelldetails insert: lieferantenlieferung maxid +1, curdate() , bestellung
      - insert post JSON artikel + menge
 - Spezifikationen anpassen

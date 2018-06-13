@@ -15,19 +15,14 @@
         modal.find('.modal-title').text('Artikel ' + articleName);
     });
 
-    articleModal.on('hidden.bs.modal', (event) => {
-        loadArticles();
-    });
-
-
     // Artikel Tabelle laden.
-    const loadArticles = () => {
+    const loadData = () => {
         const artikelListe = $('#artikelListe');
         artikelListe.load('../php/artikel.php', () => {
         });
     };
 
-    loadArticles();
+    loadData();
 
 
     class ArtikelModal {
@@ -40,6 +35,7 @@
             this.lagerort = $('#lagerort');
             this.saveBtn = $('#saveBtn');
 
+            this.saveBtn.unbind('click');
             this.saveBtn.on('click', () => this.saveArtikel());
 
             $.ajax({
@@ -70,11 +66,22 @@
                 url: '../php/artikelSave.php',
                 data: artikel,
                 success: (result) => {
-                    if (result) articleModal.modal('hide');
-                    else console.error('save failed');
+                    if (result == "true") {
+                        articleModal.modal('hide');
+                        console.log('saved successfully!');
+                        loadData();
+                        createNotifiction('Artikel wurde erfolgreich gespeichert', true);
+                    }
+                    else {
+                        console.error('save failed');
+                        loadData();
+                        createNotifiction(result.body, false);
+                    }
                 },
                 error: (error) => {
                     console.error('error', error);
+                    loadData();
+                    createNotifiction('Artikel konnte nicht gespeichert werden.', false);
                 }
             });
         }

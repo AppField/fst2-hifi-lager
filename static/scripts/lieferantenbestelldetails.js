@@ -26,14 +26,17 @@
         lieferantInput.val(data);
     });
 
+    loadData();
 
-    artikelTable.load('../php/lieferantenbestelldetails/artikelTable.php?id=' + getQueryVariable('id'), () => {
+    function loadData() {
+        artikelTable.load('../php/lieferantenbestelldetails/artikelTable.php?id=' + getQueryVariable('id'), () => {
 
-    });
+        });
 
-    lieferungenTable.load('../php/lieferantenbestelldetails/getLieferungen.php?id=' + getQueryVariable('id'), () => {
+        lieferungenTable.load('../php/lieferantenbestelldetails/getLieferungen.php?id=' + getQueryVariable('id'), () => {
 
-    });
+        });
+    }
 
     /* MODAL */
     const modal = $('#modal');
@@ -61,6 +64,8 @@
             this.lastEnter = null;
 
             this.saveBtn = $('#saveBtn');
+
+            this.saveBtn.unbind('click');
             this.saveBtn.on('click', () => this.saveLieferung());
 
             this.offeneArtikelContainer.load('../php/lieferantenbestelldetails/getOffeneArtikel.php?id=' + this.bestellId, () => {
@@ -292,18 +297,29 @@
                 });
             });
 
-            if(lieferung.artikel.length === 0) return;
+            if (lieferung.artikel.length === 0) return;
 
             $.ajax({
                 method: "POST",
                 url: '../php/lieferantenbestelldetails/saveAssignedArticles.php',
                 data: lieferung,
                 success: (result) => {
-                    if (result) modal.modal('hide');
-                    else console.error('save failed');
+                    if (result == "true") {
+                        modal.modal('hide');
+                        console.log('saved successfully!');
+                        loadData();
+                        createNotifiction('Lieferantenlieferung wurde erfolgreich hinzugefügt', true);
+                    }
+                    else {
+                        console.error('save failed');
+                        loadData();
+                        createNotifiction(result.body, false);
+                    }
                 },
                 error: (error) => {
                     console.error('error', error);
+                    loadData();
+                    createNotifiction('Lieferantenlieferung konnte nicht hinzugefügt werden.', false);
                 }
             });
         }

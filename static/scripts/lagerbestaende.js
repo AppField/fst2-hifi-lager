@@ -1,12 +1,12 @@
 (function () {
 
     // Artikel Tabelle laden.
-    const loadBestaende = () => {
+    const loadData = () => {
         $('#lagerbestaendeliste').load('../php/lagerbestaende.php', () => {
         });
     };
 
-    loadBestaende();
+    loadData();
 
 
     const modal = $('#lagerstandModal');
@@ -24,10 +24,6 @@
         modal.find('.modal-title').text('Artikel ' + articleName);
     });
 
-    modal.on('hidden.bs.modal', (event) => {
-        loadBestaende();
-    });
-
 
     class LagerbestandModal {
 
@@ -39,6 +35,7 @@
 
             this.saveBtn = $('#saveBtn');
 
+            this.saveBtn.unbind('click');
             this.saveBtn.on('click', (() => this.saveBestand()));
 
             $.ajax({
@@ -69,11 +66,20 @@
                 url: '../php/lagerbestaendeSave.php',
                 data: artikel,
                 success: (result) => {
-                    if (result) modal.modal('hide');
-                    else console.error('save failed');
+                    if (result == "true") {
+                        modal.modal('hide');
+                        console.log('saved successfully!');
+                        loadData();
+                        createNotifiction('Korrekturbuchung wurde erfolgreich gespeichert', true);
+                    }
+                    else {
+                        console.error('save failed');
+                        createNotifiction(result, false);
+                    }
                 },
                 error: (error) => {
                     console.error('error', error);
+                    createNotifiction('Korrekturbuchung konnte nicht gespeichert werden..', false);
                 }
             })
         }

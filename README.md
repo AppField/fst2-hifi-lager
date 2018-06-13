@@ -9,8 +9,10 @@ Implementierung der Fallstudie 2
 #### TODO:
 - bestelldetails insert: lieferantenlieferung maxid +1, curdate() , bestellung
      - insert post JSON artikel + menge
+     - Bestellmenge vor dem insert muss überprüft werden
 - Spezifikationen anpassen
 - .class.php refactoring
+- Db funktion: Lieferung löschen
 
 
 ### Bestelldetails Lieferungen
@@ -81,5 +83,3 @@ curl --user fst2:pass4fst2 --data " {
 - Lieferung hinzufuegen, offene Artikel:
     - Nur Artikel laden, die verfuegbar sind oder die verfuegbaren Artikel.
 - Lieferung nur hinzufügen können solange status "offen" ( Status mit uebergeben)
-- Db funktion Lieferung löschen
-- Lieferstand vor erstellung überprüfen

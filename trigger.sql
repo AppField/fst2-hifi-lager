@@ -59,19 +59,63 @@ Select * from artikel where artikelID = 1;
 
 DELIMITER //
 CREATE TRIGGER lieferantenbestellungAbschliesen
-AFTER INSER ON Artikelausgang
+AFTER INSERT ON artikeleingang
 FOR EACH ROW
 BEGIN
-  DECLARE bestellID int, offeneArtikelCount int;
+  DECLARE bestellID int;
+  DECLARE offeneArtikelCount int;
+
+  INSERT INTO Lagerlog(artikelID, Aenderung, Anzahl, Datum, LieferungsID)
+  VALUES(NEW.Artikel_ArtikelID, 'E', NEW.anzahl, CURRENT_TIMESTAMP, NEW.LieferantenLieferungID);
+
   SELECT LieferbestellungsID INTO bestellID FROM Artikeleingang
-  JOIN Lieferantenlieferungen USING(LieferantenLieferungID) WHERE  LieferantenLieferungID = NEW.LieferantenLieferungID;
+  JOIN Lieferantenlieferungen USING(LieferantenLieferungID)
+  WHERE LieferantenLieferungID = NEW.LieferantenLieferungID;
+
   SELECT COUNT(*) INTO offeneArtikelCount FROM (SELECT * FROM (SELECT Anzahl as Bestellt, ArtikelID
         FROM Lieferantenartikel WHERE LieferantenbestellungsID = bestellID) as Bestellung Left JOIN
         (SELECT SUM(Anzahl) as Eingegangen, Artikel_ArtikelID as ArtikelID FROM Artikeleingang
         JOIN Lieferantenlieferungen USING(LieferantenLieferungID) WHERE LieferbestellungsID = bestellID GROUP BY Artikel_ArtikelID) as Lieferung
         USING (ArtikelID)) as Results JOIN Artikel USING(ArtikelID) WHERE Eingegangen is null OR Eingegangen < Bestellt;
-  IF offeneArtikelCount == 0 THEN
-  UPDATE Lieferantenbestellung SET abgeschlossen = 1 WHERE LieferantenbestellungsID = bestellID;
+
+  IF offeneArtikelCount = 0 THEN
+	UPDATE Lieferantenbestellung SET abgeschlossen = 1 WHERE LieferantenbestellungsID = bestellID;
   END IF;
 END; //
 DELIMITER ;
+
+DELIMITER //
+CREATE TRIGGER  kundenbestellungAbschliesen
+AFTER INSERT ON artikelausgang
+FOR EACH ROW
+BEGIN
+  DECLARE bestellID int;
+  DECLARE offeneArtikelCount int;
+
+  INSERT INTO Lagerlog(artikelID, Aenderung, Anzahl, Datum, LieferungsID)
+  VALUES(NEW.ArtikelID, 'A', NEW.anzahl, CURRENT_TIMESTAMP, NEW.KundenlieferungsID);
+
+  SELECT KundenbestellungsID INTO bestellID FROM artikelausgang
+  JOIN Kundenlieferung USING(KundenlieferungsID)
+  WHERE KundenlieferungsID = NEW.KundenlieferungsID;
+
+  SELECT Count(*) INTO offeneArtikelCount FROM (SELECT * FROM (SELECT Anzahl as Bestellt, ArtikelID
+        FROM Auftragsposition WHERE KundenbestellungsID = bestellID) as Bestellung
+        LEFT JOIN
+        (SELECT Anzahl as Ausgegangen, ArtikelID
+        FROM Artikelausgang JOIN Kundenlieferung USING(KundenlieferungsID)
+        JOIN Kundenbestellung USING(KundenbestellungsID) WHERE KundenbestellungsID = bestellID) as Lieferung USING(ArtikelID)) as Result JOIN Artikel
+        USING(ArtikelID)  WHERE Ausgegangen is null OR Ausgegangen < Bestellt;
+
+
+  IF offeneArtikelCount = 0 THEN
+	UPDATE Kundenbestellung SET status = 'A' WHERE KundenbestellungsID = bestellID;
+  END IF;
+END; //
+DELIMITER ;
+
+Select * from artikel;
+
+  SELECT KundenbestellungsID FROM artikelausgang
+  JOIN Kundenlieferung USING(KundenlieferungsID)
+  WHERE KundenlieferungsID = 1;

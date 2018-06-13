@@ -13,6 +13,12 @@ Implementierung der Fallstudie 2
 - Spezifikationen anpassen
 - .class.php refactoring
 - Db funktion: Lieferung löschen
+- Kundenbestelldetails neue Spalte: 
+    - Artikel Verfuegbar JA/NEIN (Icon)
+- Boolean Feld fuer Gesamtlieferung hinzufuegen    
+- Lieferung hinzufuegen, offene Artikel:
+    - Nur Artikel laden, die verfuegbar sind oder die verfuegbaren Artikel.
+- Lieferung nur hinzufügen können solange status "offen" ( Status mit uebergeben)
 
 
 ### Bestelldetails Lieferungen

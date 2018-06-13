@@ -140,3 +140,4 @@ commit;
 SELECT * FROM Kundenbestellung;
 SELECT * FROM Kundenlieferung;
 INSERT INTO Kundenlieferung (KundenbestellungsID, Versanddatum, Abgeschlossen) Values("", CURDATE(), 0);
+SELECT * FROM Artikeleingang;

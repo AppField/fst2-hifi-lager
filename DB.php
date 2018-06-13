@@ -282,7 +282,7 @@ class DB{
         LEFT JOIN
         (SELECT Anzahl as Ausgegangen, ArtikelID
         FROM Artikelausgang JOIN Kundenlieferung USING(KundenlieferungsID) 
-        JOIN Kundenbestellung USING(KundenbestellungsID) WHERE KundenbestellungsID = ".$id.") as Lieferung USING(ArtikelID)) as Result JOIN Artikel
+        JOIN Kundenbestellung USING(KundenbestellungsID) WHERE KundenbestellungsID = ".$id." GROUP BY (ArtikelID)) as Lieferung USING(ArtikelID)) as Result JOIN Artikel
         USING(ArtikelID)  WHERE Ausgegangen is null OR Ausgegangen < Bestellt");
         while ($row = $result->fetch_object()) {
             $offener = new OffenerArtikel($row->ArtikelID, $row->Artikelname, $row->Offen);

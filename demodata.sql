@@ -131,13 +131,71 @@ SELECT Anzahl FROM Auftragsposition WHERE KundenbestellungsID = 1 AND ArtikelID 
 SELECT * FROM Kundenlieferung; WHERE KundenbestellungsID = 1;
 SELECT * FROM Lieferantenlieferungen;
 INSERT INTO Lieferantenlieferungen VALUES (null, CURDATE(), 1);
-DELETE FROM Lieferantenlieferungen WHERE LieferantenLieferungID = 16;
+DELETE FROM Lieferantenlieferungen WHERE LieferantenLieferungID = 6;
 SELECT * FROM Kundenlieferung;
-SELECT * FROM Artikelausgang;
-INSERT INTO Artikeleingang Values (;
-SELECT * FROM Lieferantenlieferungen;
-commit;
 SELECT * FROM Kundenbestellung;
+SELECT * FROM Artikelausgang JOIN Kundenlieferung USING(KundenlieferungsID) WHERE KundenlieferunsID = ;
+INSERT INTO Artikeleingang Values (;
+SELECT * FROM Lieferantenlieferungen; FULL JOIN Artikeleingang USING(LieferantenLieferungID);
+commit;
+UPDATE Lieferantenbestellung SET abgeschlossen = 1 WHERE LieferantenbestellungsID = 1;
+SELECT * FROM Lieferantenbestellung;
 SELECT * FROM Kundenlieferung;
 INSERT INTO Kundenlieferung (KundenbestellungsID, Versanddatum, Abgeschlossen) Values("", CURDATE(), 0);
-SELECT * FROM Artikeleingang;
+SELECT * FROM Artikeleingang JOIN Lieferantenlieferungen USING(LieferantenLieferungID) WHERE LieferantenLieferungID = 1;
+
+SELECT COUNT(*) FROM (SELECT * FROM (SELECT Anzahl as Bestellt, ArtikelID
+        FROM Lieferantenartikel WHERE LieferantenbestellungsID = 1) as Bestellung Left JOIN
+        (SELECT SUM(Anzahl) as Eingegangen, Artikel_ArtikelID as ArtikelID FROM Artikeleingang
+        JOIN Lieferantenlieferungen USING(LieferantenLieferungID) WHERE LieferbestellungsID = 1 GROUP BY Artikel_ArtikelID) as Lieferung
+        USING (ArtikelID)) as Results JOIN Artikel USING(ArtikelID) WHERE Eingegangen is null OR Eingegangen < Bestellt;
+        
+SHOW TRIGGERS;
+DROP TRIGGER ausgangLog;
+
+commit
+;
+SELECT KundenbestellungsID FROM artikelausgang
+  JOIN Kundenlieferung USING(KundenlieferungsID) 
+  WHERE KundenlieferungsID = 1;
+
+SELECT * FROM artikelausgang;
+SELECT Count(*) FROM (SELECT * FROM (SELECT Anzahl as Bestellt, ArtikelID 
+        FROM Auftragsposition WHERE KundenbestellungsID = 1) as Bestellung
+        LEFT JOIN
+        (SELECT Anzahl as Ausgegangen, ArtikelID
+        FROM Artikelausgang JOIN Kundenlieferung USING(KundenlieferungsID) 
+        JOIN Kundenbestellung USING(KundenbestellungsID) WHERE KundenbestellungsID = 1) as Lieferung USING(ArtikelID)) as Result JOIN Artikel
+        USING(ArtikelID)  WHERE Ausgegangen is null OR Ausgegangen < Bestellt;
+        
+
+DELIMITER //
+CREATE TRIGGER  kundenbestellungAbschliesen
+AFTER INSERT ON artikelausgang
+FOR EACH ROW
+BEGIN
+  DECLARE bestellID int;
+  DECLARE offeneArtikelCount int;
+
+  INSERT INTO Lagerlog(artikelID, Aenderung, Anzahl, Datum, LieferungsID)
+  VALUES(NEW.ArtikelID, 'A', NEW.anzahl, CURRENT_TIMESTAMP, NEW.KundenlieferungsID);
+
+  SELECT KundenbestellungsID INTO bestellID FROM artikelausgang
+  JOIN Kundenlieferung USING(KundenlieferungsID)
+  WHERE KundenlieferungsID = NEW.KundenlieferungsID;
+
+  SELECT Count(*) INTO offeneArtikelCount FROM (SELECT * FROM (SELECT Anzahl as Bestellt, ArtikelID
+        FROM Auftragsposition WHERE KundenbestellungsID = bestellID) as Bestellung
+        LEFT JOIN
+        (SELECT Anzahl as Ausgegangen, ArtikelID
+        FROM Artikelausgang JOIN Kundenlieferung USING(KundenlieferungsID)
+        JOIN Kundenbestellung USING(KundenbestellungsID) WHERE KundenbestellungsID = bestellID) as Lieferung USING(ArtikelID)) as Result JOIN Artikel
+        USING(ArtikelID)  WHERE Ausgegangen is null OR Ausgegangen < Bestellt;
+
+
+  IF(offeneArtikelCount = 0, UPDATE Kundenbestellung SET status = 'A' WHERE KundenbestellungsID = bestellID);
+END; //
+DELIMITER ;
+
+
+SELECT * FROM Artikelausgang;

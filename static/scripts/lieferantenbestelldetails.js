@@ -188,6 +188,7 @@
                     $('.dnd-info').hide();
                     dropZone.append(newItem);
                     this.updateOpenAmount(artikel.artikelId, 0);
+                    newItem.find('input').focus()
                 }
 
             }

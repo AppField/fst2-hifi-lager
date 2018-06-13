@@ -26,7 +26,7 @@ foreach ($kundenbestellungen as $bestellung) {
                             <td class=\"filterDiv\">" . $bestellung->getName() . "</td>
                             <td class=\"filterDiv " .$status."\">" . $status . "</td>
                              <td class=\"filterDiv\"align='center'>
-                                <a class=\"\" href=\"kundenbestelldetails.html?id=" . $bestellung->getBestellungsID() . "\">
+                                <a class=\"\" href=\"kundenbestelldetails.html?id=" . $bestellung->getBestellungsID() . "&status=". $status ."\">
                                     <button class=\"btn fa fa-edit\" ></button>
                                 </a>
                             </td>

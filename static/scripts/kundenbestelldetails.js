@@ -27,6 +27,16 @@
 
     loadData();
 
+    const status = (location.search.split('status=')[1]||'').split('&')[0];
+    console.log(status);
+
+    // Lieferung hinzufuegen diabled true/false
+    if(status == 'Abgeschlossen'){
+        $('#lieferungHinzufuegenBtn').prop('disabled', true);
+    }else{
+        $('#lieferungHinzufuegenBtn').prop('disabled', false);
+    }
+
     function loadData() {
         artikelTable.load('../php/kundenbestelldetails/artikelTable.php?id=' + bestellId, () => {
 

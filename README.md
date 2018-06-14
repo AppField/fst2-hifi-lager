@@ -18,6 +18,7 @@ Implementierung der Fallstudie 2
 - Boolean Feld fuer Gesamtlieferung hinzufuegen    
 - Lieferung hinzufuegen, offene Artikel:
     - Nur Artikel laden, die verfuegbar sind oder die verfuegbaren Artikel.
+- Artikeleingang zu Lieferantenbestellung und Artikelausgang zu Kundenbestellungen ändern
 
 
 ### Bestelldetails Lieferungen

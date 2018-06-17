@@ -12,13 +12,10 @@ Implementierung der Fallstudie 2
      - Bestellmenge vor dem insert muss überprüft werden
 - Spezifikationen anpassen
 - .class.php refactoring
-- Db funktion: Lieferung löschen
 - Kundenbestelldetails neue Spalte: 
     - Artikel Verfuegbar JA/NEIN (Icon) 
 - Lieferung hinzufuegen, offene Artikel:
     - Nur Artikel laden, die verfuegbar sind oder die verfuegbaren Artikel.
-- Artikeleingang zu Lieferantenbestellung und Artikelausgang zu Kundenbestellungen ändern
-
 
 ### Bestelldetails Lieferungen
 Drag and Drop wurde implementiert zum Zuordnen von Artikeln zu  Lieferungen.

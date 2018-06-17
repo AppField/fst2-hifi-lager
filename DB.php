@@ -491,6 +491,28 @@ JOIN Artikel ON Artikeleingang.Artikel_ArtikelID = Artikel.ArtikelID WHERE Liefe
         return true;
     }
 
+    function deleteLieferantenLieferung($lid){
+        $this->doConnect();
+        $this->dbobject->query("SET NAMES 'utf8'");
+        $this->dbobject->query("DELETE FROM Lieferantenlieferungen WHERE  LieferantenLieferungID =".$lid.";");
+        if($this->dbobject->error){
+            return false;
+        }
+        $this->dbobject->query("commit");
+        $this->close();
+    }
+
+    function deleteKundenLieferung($lid){
+        $this->doConnect();
+        $this->dbobject->query("SET NAMES 'utf8'");
+        $this->dbobject->query("DELETE FROM kundenlieferung WHERE  KundenlieferungsID =".$lid.";");
+        if($this->dbobject->error){
+            return false;
+        }
+        $this->dbobject->query("commit");
+        $this->close();
+    }
+
     /*    function updateLagerstand($id, $lagerstand){
             $this->doConnect();
             $this->dbobject->query("SET NAMES 'utf8'");

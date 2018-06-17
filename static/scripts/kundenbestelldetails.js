@@ -1,6 +1,7 @@
 (function () {
     const lieferantInput = $('#lieferant');
     const artikelTable = $('#artikelTable');
+    const offeneArtikelTable = $('#offeneArtikelTable');
     const lieferungenTable = $('#lieferungen');
 
 
@@ -33,18 +34,22 @@
 
     loadData();
 
-    const status = (location.search.split('status=')[1]||'').split('&')[0];
+    const status = (location.search.split('status=')[1] || '').split('&')[0];
     console.log(status);
 
-    // Lieferung hinzufuegen diabled true/false
-    if(status == 'Abgeschlossen'){
+    // Lieferung hinzufuegen disabled true/false
+    if (status == 'Abgeschlossen') {
         $('#lieferungHinzufuegenBtn').prop('disabled', true);
-    }else{
+    } else {
         $('#lieferungHinzufuegenBtn').prop('disabled', false);
     }
 
     function loadData() {
         artikelTable.load('../php/kundenbestelldetails/artikelTable.php?id=' + bestellId, () => {
+
+        });
+
+        offeneArtikelTable.load('../php/kundenbestelldetails/getOffeneArtikelTable.php?id=' + bestellId, () => {
 
         });
 

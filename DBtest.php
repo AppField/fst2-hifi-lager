@@ -18,6 +18,10 @@ include 'models/Lieferschein.php';
 include 'models/Kunde.php';
 
 $db = new DB();
+echo 'Lagerstand Artikel 1 <p>';
+$bestand = $db->getOffenerArtikelBestand(1);
+var_dump($bestand);
+
 echo 'Kundenbestellungen <p>';
 $kundenbestellungen = $db->getKundenbestellungen();
 var_dump($kundenbestellungen);

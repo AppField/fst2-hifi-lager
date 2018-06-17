@@ -288,13 +288,14 @@ class DB{
         $this->doConnect();
         $this->dbobject->query("SET NAMES 'utf8'");
         $artikel = array();
-        $result = $this->dbobject->query("SELECT ArtikelID,Artikelname , (Bestellt-IFNULL(Ausgegangen,0)) As Offen FROM (SELECT * FROM (SELECT Anzahl as Bestellt, ArtikelID 
+        $result = $this->dbobject->query("    SELECT ArtikelID,Artikelname , (Bestellt-IFNULL(Ausgegangen,0)) As Offen FROM (SELECT * FROM (SELECT Anzahl as Bestellt, ArtikelID
         FROM Auftragsposition WHERE KundenbestellungsID = ".$id.") as Bestellung
         LEFT JOIN
         (SELECT SUM(Anzahl) as Ausgegangen, ArtikelID
-        FROM Artikelausgang JOIN Kundenlieferung USING(KundenlieferungsID) 
+        FROM Artikelausgang JOIN Kundenlieferung USING(KundenlieferungsID)
         JOIN Kundenbestellung USING(KundenbestellungsID) WHERE KundenbestellungsID = ".$id." GROUP BY (ArtikelID)) as Lieferung USING(ArtikelID)) as Result JOIN Artikel
-        USING(ArtikelID)  WHERE Ausgegangen is null OR Ausgegangen < Bestellt");
+        USING(ArtikelID)  WHERE Ausgegangen is null OR Ausgegangen < Bestellt;");
+
         while ($row = $result->fetch_object()) {
             $offener = new OffenerArtikel($row->ArtikelID, $row->Artikelname, $row->Offen);
             array_push($artikel, $offener);
@@ -511,6 +512,17 @@ JOIN Artikel ON Artikeleingang.Artikel_ArtikelID = Artikel.ArtikelID WHERE Liefe
         }
         $this->dbobject->query("commit");
         $this->close();
+    }
+
+    function getOffenerArtikelBestand($aid){
+        $this->doConnect();
+        $this->dbobject->query("SET NAMES 'utf8'");
+        $result = $this->dbobject->query("SELECT Lagerstand FROM Artikel WHERE ArtikelID = ".$aid);
+        while ($row = $result->fetch_object()) {
+            $artikelbestand =$row->Lagerstand;
+        }
+        $this->close();
+        return $artikelbestand;
     }
 
     /*    function updateLagerstand($id, $lagerstand){

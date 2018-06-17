@@ -41,6 +41,7 @@ class OffenerArtikel
      * @param $id
      * @param $bezeichnung
      * @param $anzahl
+     * @param $lagerstand
      */
     public function __construct($id, $bezeichnung, $anzahl)
     {

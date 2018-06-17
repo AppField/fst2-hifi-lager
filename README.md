@@ -12,10 +12,7 @@ Implementierung der Fallstudie 2
      - Bestellmenge vor dem insert muss überprüft werden
 - Spezifikationen anpassen
 - .class.php refactoring
-- Kundenbestelldetails neue Spalte: 
-    - Artikel Verfuegbar JA/NEIN (Icon) 
-- Lieferung hinzufuegen, offene Artikel:
-    - Nur Artikel laden, die verfuegbar sind oder die verfuegbaren Artikel.
+- Fehler in Auftragsposition: Primary Key ist momentan nur ArtikelID
 
 ### Bestelldetails Lieferungen
 Drag and Drop wurde implementiert zum Zuordnen von Artikeln zu  Lieferungen.

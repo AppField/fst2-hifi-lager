@@ -18,10 +18,22 @@ if (isset($_GET["id"])) {
     $kundenartikel = $db->getOffeneArtikelKundenbestellung($_GET["id"]);
 
     foreach ($kundenartikel as $artikel) {
+
+        $id = $artikel->getID();
+        $bestellt = $artikel->getAnzahl();
+        $lagerstand = $db->getOffenerArtikelBestand($id);
+
+        if($bestellt < $lagerstand){
+            $verfuegbar = "<i class=\"fa fa-check\" style='color: mediumseagreen'></i>";
+        }else{
+            $verfuegbar = "<i class=\"fa fa-times\" style='color: crimson'></i>";
+        }
+
         $body .= "<tr align = \"center\">
                     <td class=\"hidden-xs\">" . $artikel->getID() . "</td>
                     <td>" . $artikel->getBezeichnung() . "</td>
                     <td>" . $artikel->getAnzahl() . "</td>
+                    <td>" . $verfuegbar ."</td>
                   </tr>";
     }
 }

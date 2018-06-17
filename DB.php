@@ -68,6 +68,17 @@ class DB{
         return $bestellung;
     }
 
+
+    function getKundenbestellungsLieferungsTyp($bestellId) {
+        $this->doConnect();
+        $this->dbobject->query("SET NAMES 'utf8'");
+
+        $result = $this->dbobject->query("SELECT gesamtlieferung FROM kundenbestellung WHERE KundenbestellungsID = " . $bestellId);
+        $result = $result->fetch_object();
+        $this->close();
+        return $result->gesamtlieferung;
+    }
+
     /**
      * @param $id
      * @return array

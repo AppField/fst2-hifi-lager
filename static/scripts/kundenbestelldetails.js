@@ -25,6 +25,12 @@
         lieferantInput.val(data);
     });
 
+    $.ajax({
+        url: '../php/kundenbestelldetails/getLieferungstyp.php?id=' + bestellId
+    }).done(data => {
+        $('#lieferungstyp').val(data);
+    });
+
     loadData();
 
     const status = (location.search.split('status=')[1]||'').split('&')[0];

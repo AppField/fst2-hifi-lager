@@ -34,7 +34,7 @@ if (!empty($_GET['artikelid'])) {
                               data-article-name='" . $artikel->getArtikelname() . "'><em class=\"fa fa-plus\"></em></a>
                             </td>
                             <td>
-                                <button class=\"btn fa fa-bar-chart-o\"
+                                <button class=\"btn fa fa-book\"
                                             data-toggle=\"modal\"
                                             data-artikel-id='" .$artikel->getArtikelID()."'
                                             data-artikel-name='" .$artikel->getArtikelname()."'

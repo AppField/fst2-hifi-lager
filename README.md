@@ -12,6 +12,7 @@ Implementierung der Fallstudie 2
      - Bestellmenge vor dem insert muss überprüft werden
 - Spezifikationen anpassen
 - .class.php refactoring
+- Lieferschein: Id 11 fehlermeldungen (wsl gibt es im Artikelausgang die lieferid nicht.)
 - Fehler in Auftragsposition: Primary Key ist momentan nur ArtikelID
 
 ### Bestelldetails Lieferungen

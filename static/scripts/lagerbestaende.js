@@ -87,6 +87,25 @@
 
 }());
 
+(function () {
+
+    const modal = $('#modalLagerlogArtikelDetail');
+
+    let modalInstanz = null;
+
+    modal.on('show.bs.modal', function (event) {
+        const button = $(event.relatedTarget); // Button that triggered the modal
+        const artikelid = button.data('artikel-id'); // Extract info from data-* attributes
+        const artikelname = button.data('artikel-name');
+
+        // modalInstanz = new ZugeordneteArtikelModal(lieferungId);
+
+        const modal = $(this);
+        modal.find('.modal-title').text('Artiekl ' + artikelid + ': ' + artikelname);
+        modal.find('#gefilterterLagerlog').load('../php/lagerlogArtikelDetail.php?id=' + artikelid);
+    });
+
+}());
 
 function mySearch() {
     var input, filter, table, tr, td, i;

@@ -33,6 +33,14 @@ if (!empty($_GET['artikelid'])) {
                               data-article-id=" . $artikel->getArtikelID() . "
                               data-article-name='" . $artikel->getArtikelname() . "'><em class=\"fa fa-plus\"></em></a>
                             </td>
+                            <td>
+                                <button class=\"btn fa fa-bar-chart-o\"
+                                            data-toggle=\"modal\"
+                                            data-artikel-id='" .$artikel->getArtikelID()."'
+                                            data-artikel-name='" .$artikel->getArtikelname()."'
+                                            data-target=\"#modalLagerlogArtikelDetail\">
+                                </button>
+                            </td>
                           </tr>";
     }
     echo $artikelTable;

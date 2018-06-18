@@ -525,6 +525,24 @@ JOIN Artikel ON Artikeleingang.Artikel_ArtikelID = Artikel.ArtikelID WHERE Liefe
         return $artikelbestand;
     }
 
+    function getDetailedLagerlog($aid){
+        $this->doConnect();
+        $this->dbobject->query("SET NAMES 'utf8'");
+        $result = $this->dbobject->query("SELECT ArtikelID, Aenderung, Anzahl, Datum, LieferungsID, Artikelname, alterBestand, 
+                                          neuerBestand FROM Lagerlog JOIN Artikel USING(ArtikelID) 
+                                          WHERE ArtikelID = ".$aid."
+                                          ORDER BY Datum DESC");
+        $logArray = array();
+        while ($row = $result->fetch_object()) {
+            $log = new Lagerlog($row->ArtikelID,$row->Artikelname, $row->Anzahl,
+                $row->LieferungsID, $row->Aenderung, $row->Datum,
+                $row->alterBestand, $row->neuerBestand);
+            array_push($logArray, $log);
+        }
+        $this->close();
+        return $logArray;
+    }
+
     /*    function updateLagerstand($id, $lagerstand){
             $this->doConnect();
             $this->dbobject->query("SET NAMES 'utf8'");

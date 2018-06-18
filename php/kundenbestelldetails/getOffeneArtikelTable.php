@@ -26,7 +26,7 @@ if (isset($_GET["id"])) {
         if($bestellt < $lagerstand){
             $verfuegbar = "<i class=\"fa fa-check\" style='color: mediumseagreen'></i>";
         }else{
-            $verfuegbar = "<i class=\"fa fa-times\" style='color: crimson'></i>";
+            $verfuegbar = "<i class=\"fa fa-times\" style='color: crimson'></i> (".$lagerstand.")";
         }
 
         $body .= "<tr align = \"center\">

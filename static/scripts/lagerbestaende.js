@@ -1,10 +1,14 @@
 (function () {
 
     // Artikel Tabelle laden.
-    const loadData = () => {
-        $('#lagerbestaendeliste').load('../php/lagerbestaende.php', () => {
-        });
-    };
+    const loadData = () =
+>
+    {
+        $('#lagerbestaendeliste').load('../php/lagerbestaende.php', () = > {}
+    )
+        ;
+    }
+    ;
 
     loadData();
 
@@ -36,15 +40,18 @@
             this.saveBtn = $('#saveBtn');
 
             this.saveBtn.unbind('click');
-            this.saveBtn.on('click', (() => this.saveBestand()));
+            this.saveBtn.on('click', (() = > this.saveBestand())
+        )
+            ;
 
             $.ajax({
                 url: '../php/lagerbestaende.php?artikelid=' + artikelid
             })
-                .done((data) => {
-                    const artikel = JSON.parse(data);
-                    this.setValues(artikel);
-                });
+                .done((data) = > {
+                const artikel = JSON.parse(data);
+            this.setValues(artikel);
+        })
+            ;
         }
 
         setValues(artikel) {
@@ -65,23 +72,27 @@
                 type: 'POST',
                 url: '../php/lagerbestaendeSave.php',
                 data: artikel,
-                success: (result) => {
-                    if (result == "true") {
-                        modal.modal('hide');
-                        console.log('saved successfully!');
-                        loadData();
-                        createNotifiction('Korrekturbuchung wurde erfolgreich gespeichert', true);
-                    }
-                    else {
-                        console.error('save failed');
-                        createNotifiction(result, false);
-                    }
-                },
-                error: (error) => {
-                    console.error('error', error);
-                    createNotifiction('Korrekturbuchung konnte nicht gespeichert werden..', false);
-                }
-            })
+                success: (result) = > {
+                if(result == "true")
+            {
+                modal.modal('hide');
+                console.log('saved successfully!');
+                loadData();
+                createNotifiction('Korrekturbuchung wurde erfolgreich gespeichert', true);
+            }
+        else
+            {
+                console.error('save failed');
+                createNotifiction(result, false);
+            }
+        },
+            error: (error) =
+        >
+            {
+                console.error('error', error);
+                createNotifiction('Korrekturbuchung konnte nicht gespeichert werden..', false);
+            }
+        })
         }
     }
 

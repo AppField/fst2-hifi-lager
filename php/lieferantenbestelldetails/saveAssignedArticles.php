@@ -10,10 +10,15 @@ $body = "false";
 $db = new DB();
 if (isset($_POST['bestellungsId'])) {
     $lid = $db->createLieferantenLieferung($_POST['bestellungsId']);
-    if($lid == false){ echo "error beim erstellen der Lieferung"; return;}
+    if ($lid == false) {
+        echo "error beim erstellen der Lieferung";
+        $db->deleteLieferantenLieferung($_POST['bestellungsId']);
+        return;
+    }
     foreach ($_POST['artikel'] as $artikel) {
-        if(!$db->createArtikeleingang($artikel['artikelId'],$artikel['artikelAnzahl'],$lid)){
+        if (!$db->createArtikeleingang($artikel['artikelId'], $artikel['artikelAnzahl'], $lid)) {
             echo "error beim artikeleingang erstellen";
+            $db->deleteLieferantenLieferung($_POST['bestellungsId']);
             return;
         };
     }

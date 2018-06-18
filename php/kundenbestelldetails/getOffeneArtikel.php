@@ -31,8 +31,14 @@ if (isset($_GET["id"])) {
             </li>';
         }else{
             $template .= '<li class="list-group-item d-flex justify-content-between align-items-center"
+                draggable="true" data-artikel-id="'.$artikel->getID().'" data-artikel-name="'.$artikel->getBezeichnung().'"
+                data-artikel-anzahl="'.$lagerstand.'">
+                    '.$artikel->getBezeichnung().'
+                <span class="anzahl-badge badge badge-primary badge-pill">'.$artikel->getAnzahl().'</span>
+            </li>';
+            $template .= '<li class="list-group-item d-flex justify-content-between align-items-center"
                 draggable="false" data-artikel-id="'.$artikel->getID().'" data-artikel-name="'.$artikel->getBezeichnung().'"
-                data-artikel-anzahl="'.$artikel->getAnzahl().'" style="color:crimson;">
+                data-artikel-anzahl="'.($lagerstand - $artikel->getAnzahl()).'" style="color:crimson;">
                     '.$artikel->getBezeichnung().'
                 <span class="anzahl-badge badge badge-primary badge-pill" style="background-color:crimson;">'.$artikel->getAnzahl().'</span>
             </li>';

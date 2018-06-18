@@ -34,13 +34,13 @@ if (isset($_GET["id"])) {
                 draggable="true" data-artikel-id="'.$artikel->getID().'" data-artikel-name="'.$artikel->getBezeichnung().'"
                 data-artikel-anzahl="'.$lagerstand.'">
                     '.$artikel->getBezeichnung().'
-                <span class="anzahl-badge badge badge-primary badge-pill">'.$artikel->getAnzahl().'</span>
+                <span class="anzahl-badge badge badge-primary badge-pill">'.$lagerstand.'</span>
             </li>';
             $template .= '<li class="list-group-item d-flex justify-content-between align-items-center"
-                draggable="false" data-artikel-id="'.$artikel->getID().'" data-artikel-name="'.$artikel->getBezeichnung().'"
+                draggable="false" data-artikel-id="'.$artikel->getID().'-n" data-artikel-name="'.$artikel->getBezeichnung().'"
                 data-artikel-anzahl="'.($artikel->getAnzahl() - $lagerstand).'" style="color:crimson;">
                     '.$artikel->getBezeichnung().'
-                <span class="anzahl-badge badge badge-primary badge-pill" style="background-color:crimson;">'.$artikel->getAnzahl().'</span>
+                <span class="anzahl-badge badge badge-primary badge-pill" style="background-color:crimson;">'.($artikel->getAnzahl() - $lagerstand).'</span>
             </li>';
         }
 //        $template .= '<li class="list-group-item d-flex justify-content-between align-items-center"

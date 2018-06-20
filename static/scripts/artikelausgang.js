@@ -6,9 +6,9 @@
 }());
 
 function mySearch() {
-    var input, filter, table, tr, td, i;
+    var input, filter, table, tr, td, i, v;
     input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
+    filter = input.value.toLowerCase();
     table = document.getElementById("myTable");
 
     $( "table" ).removeClass( "table-striped" );
@@ -18,8 +18,9 @@ function mySearch() {
     tr = table.getElementsByTagName("tr");
     for (i = 0; i < tr.length; i++) {
         td = tr[i].getElementsByTagName("td")[0];
-        if (td) {
-            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        td1 = tr[i].getElementsByTagName("td")[1];
+        if (td || td1) {
+            if (td.innerHTML.toLowerCase().indexOf(filter) > -1 || td1.innerHTML.toLowerCase().indexOf(filter) > -1) {
 
                 tr[i].style.display = "";
 

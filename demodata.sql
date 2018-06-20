@@ -203,3 +203,9 @@ SELECT * FROM Lagerlog;
 commit;
 SELECT * FROM Kundenlieferung;
 DELETE FROM Kundenlieferung where KundenlieferungsID = 11;
+ALTER TABLE auftragsposition ADD Primary Key (KundenbestellungsID);
+UPDATE Kundenbestellung SET gesamtlieferung = 1 WHERE KundenbestellungsID = 3;
+
+SELECT * FROM Kundenbestellung; ORDER BY (Abgeschlossen) ASC;
+SELECt * FROM lieferant;
+SELECT * FROM lagerlog;

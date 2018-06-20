@@ -43,7 +43,7 @@ class DB{
         $this->dbobject->query("SET NAMES 'utf8'");
         $Bestellungen = array();
         $result = $this->dbobject->query("SELECT * FROM Kundenbestellung
-                                          JOIN kunde ON Kundenbestellung.kundenID = kunde.kundeID");
+                                          JOIN kunde ON Kundenbestellung.kundenID = kunde.kundeID ORDER BY (Status) DESC");
         while ($row = $result->fetch_object()) {
             $bestellung = new Kundenbestellung($row->KundenbestellungsID,  $row->Name, $row->Status, $row->KundenID);
             array_push($Bestellungen, $bestellung);
@@ -121,7 +121,7 @@ class DB{
         $this->dbobject->query("SET NAMES 'utf8'");
         $Bestellungen = array();
         $result = $this->dbobject->query("SELECT * FROM Lieferantenbestellung
-                                          JOIN lieferant USING(lieferantID)");
+                                          JOIN lieferant USING(lieferantID) ORDER BY (Abgeschlossen) ASC");
         while ($row = $result->fetch_object()) {
             $bestellung = new Lieferantenbestellung( $row->LieferantenbestellungsID,
                                                      $row->LieferantID,
@@ -452,6 +452,12 @@ JOIN Artikel ON Artikeleingang.Artikel_ArtikelID = Artikel.ArtikelID WHERE Liefe
         $time = 'CURRENT_TIMESTAMP';
         $lieferung = '000';
         $this->doConnect();
+        if($korrektur == "KA"){
+            $artikel = $this->getArtikelById($aid);
+            if($anzahl > $artikel->getLagerstand()){
+                return false;
+            }
+        }
         $statement = $this->dbobject->prepare("INSERT INTO Lagerlog (`ArtikelID`,`Aenderung`,`Anzahl`,`Datum`,`LieferungsID`)
                                                 VALUES (?, ?, ?, $time, ?)");
         $statement->bind_param("ssss", $aid, $korrektur, $anzahl, $lieferung);
@@ -461,6 +467,7 @@ JOIN Artikel ON Artikeleingang.Artikel_ArtikelID = Artikel.ArtikelID WHERE Liefe
         }
         $this->dbobject->query("commit");
         $this->close();
+        return true;
     }
 
     /**

@@ -13,6 +13,7 @@
 //}
 
 include "../DB.php";
+include "../models/Artikel.php";
 $body = "false";
 $db = new DB();
 if(isset($_POST['artikelid'])){

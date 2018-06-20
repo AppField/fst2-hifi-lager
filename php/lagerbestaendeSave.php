@@ -22,7 +22,8 @@ if(isset($_POST['artikelid'])){
 //                echo "error beim artikeleingang erstellen";
 //                return;
 //            }
-            $do = !$db->createlagerlog((string)$_POST['artikelid'], (string)$_POST['anzahl'], (string)$_POST['korrektur']);
+
+            $do = $db->createlagerlog((string)$_POST['artikelid'], (string)$_POST['anzahl'], (string)$_POST['korrektur']);
 
             if($do == false){ echo "error beim erstellen der Lieferung"; return;}
             $body = "true";

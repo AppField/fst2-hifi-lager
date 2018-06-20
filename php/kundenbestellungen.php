@@ -31,7 +31,7 @@ foreach ($kundenbestellungen as $bestellung) {
         if($cnt == 0){
             $artikelVorhanden = "<i class=\"fa fa-check\" style='color: mediumseagreen'></i>";
         }else{
-             if ($typ == false) {
+             if ($typ == 0) {
                  $artikelVorhanden = "<i class=\"fa fa-adjust\" style='color: orange'></i>";
              }else {
                  $artikelVorhanden = "<i class=\"fa fa-times\" style='color: crimson'></i>";

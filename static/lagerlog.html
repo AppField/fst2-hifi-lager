@@ -47,23 +47,47 @@
             <div class="intro">
                 <h2 class="text-center" style="font-size:58px;padding-top:30px;">Lagerlog</h2>
             </div>
-            <div class="row">
 
-                <div class="col">
-                    <!--<button class="btn btn-primary m-auto" type="button"-->
-                            <!--style="background-color:rgb(220,151,112);" data-toggle="modal"-->
-                            <!--data-target="#exampleModalCenter">Änderung hinzufügen-->
-                    <!--</button>-->
+            <div class="container">
+                <div class="row">
+                    <div class="legende col col-sm-9">
+                        <!--<p class = "first">-->
+                            <table align="left">
+                                <tr class="legend trFirst">
+                                    <td style="width: 15%" class="first"><strong>A</strong></td>
+                                    <td class="right">Ausgang</td>
+                                </tr>
+                                <tr class="legend">
+                                    <td class="first"><strong>E</strong></td>
+                                    <td class="right">Eingang</td>
+                                </tr>
+                                <tr class="legend">
+                                    <td class="first"><strong>KA</strong></td>
+                                    <td class="right">Korrekturbuchung Ausgang</td>
+                                </tr>
+                                <tr class="legend last">
+                                    <td class="first last"><strong>KE</strong></td>
+                                    <td class="right">Korrekturbuchung Eingang</td>
+                                </tr>
+                            </table>
+                            <!--<strong>A </strong>  - Ausgang <br>-->
+                            <!--<strong>E </strong>  - Eingang <br>-->
+                            <!--<strong>KA</strong> - Korrekturbuchung Ausgang <br>-->
+                            <!--<strong>KE</strong> - Korrekturbuchung Eingang-->
+                        <!--</p>-->
+                    </div>
+
+                    <div class="col col-sm-3">
+                        <br>
+                        <br>
+                        <p><input type="text" class="form-control" id="myInput" onkeyup="mySearch()" placeholder="Artikel-ID suchen"></p>
+                    </div>
                 </div>
-                <p><input type="text" class="form-control" id="myInput" onkeyup="mySearch()" placeholder="Artikel-ID suchen"></p>
 
-            </div>
             <div class="row justify-content-center features" style="padding-top:40px;padding-bottom:100px;">
                 <div class="col">
                     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css"
                           rel='stylesheet' type='text/css'>
-
-                    <div class="container">
                         <div class="row">
 
                             <div class="col-md-12">

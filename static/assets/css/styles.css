@@ -22,7 +22,23 @@ header, main, .footer-dark {
     padding-top: 30px;
     color: rgb(220, 155, 107);
 }
+.legend{
+    border-right: #afb2ac solid 1px;
+    border-left: #afb2ac solid 1px;
+    margin-bottom: 1px;
+}
 
+.first, .right{
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.trFirst{
+    border-top: #afb2ac solid 1px;
+}
+.last{
+    border-bottom: #afb2ac solid 1px;
+}
 /* END BASIC PAGE LAYOUT*/
 
 /*html, body {*/

@@ -544,6 +544,40 @@ JOIN Artikel ON Artikeleingang.Artikel_ArtikelID = Artikel.ArtikelID WHERE Liefe
         $this->close();
         return $logArray;
     }
+
+    function getCntForBestell($id){
+        $this->doConnect();
+        $this->dbobject->query("SET NAMES 'utf8'");
+        $kundenartikel = array();
+        $result = $this->dbobject->query("    SELECT ArtikelID,Artikelname , (Bestellt-IFNULL(Ausgegangen,0)) As Offen FROM (SELECT * FROM (SELECT Anzahl as Bestellt, ArtikelID
+        FROM Auftragsposition WHERE KundenbestellungsID = ".$id.") as Bestellung
+        LEFT JOIN
+        (SELECT SUM(Anzahl) as Ausgegangen, ArtikelID
+        FROM Artikelausgang JOIN Kundenlieferung USING(KundenlieferungsID)
+        JOIN Kundenbestellung USING(KundenbestellungsID) WHERE KundenbestellungsID = ".$id." GROUP BY (ArtikelID)) as Lieferung USING(ArtikelID)) as Result JOIN Artikel
+        USING(ArtikelID)  WHERE Ausgegangen is null OR Ausgegangen < Bestellt;");
+
+        while ($row = $result->fetch_object()) {
+            $offener = new OffenerArtikel($row->ArtikelID, $row->Artikelname, $row->Offen);
+            array_push($kundenartikel, $offener);
+        }
+        $cnt = 0;
+        foreach ($kundenartikel as $artikel) {
+            $aid = $artikel->getID();
+            $bestellt = $artikel->getAnzahl();
+            $lagerstand = 0;
+            $result = $this->dbobject->query("SELECT Lagerstand FROM Artikel WHERE ArtikelID = ".$aid);
+            while ($row = $result->fetch_object()) {
+                $lagerstand =$row->Lagerstand;
+            };
+
+            if ($bestellt >= $lagerstand) {
+                $cnt = $cnt + 1;
+            }
+        }
+        $this->close();
+        return $cnt;
+    }
     /*    function updateLagerstand($id, $lagerstand){
             $this->doConnect();
             $this->dbobject->query("SET NAMES 'utf8'");

@@ -7,13 +7,8 @@
 Implementierung der Fallstudie 2
 
 #### TODO:
-- bestelldetails insert: lieferantenlieferung maxid +1, curdate() , bestellung
-     - insert post JSON artikel + menge
-     - Bestellmenge vor dem insert muss überprüft werden
-- Spezifikationen anpassen
 - .class.php refactoring
-- Lieferschein: Id 11 fehlermeldungen (wsl gibt es im Artikelausgang die lieferid nicht.)
-- Fehler in Auftragsposition: Primary Key ist momentan nur ArtikelID
+- ER Lagerlog anpassen
 
 ### Bestelldetails Lieferungen
 Drag and Drop wurde implementiert zum Zuordnen von Artikeln zu  Lieferungen.

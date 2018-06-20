@@ -8,6 +8,14 @@
 
 class Lagerlog
 {
+    public $artikelID;
+    public $bezeichnung;
+    public $anzahl;
+    public $lieferungsID;
+    public $aenderung;
+    public $datum;
+    public $alterBestand;
+    public $neuerBestand;
     /**
      * @return mixed
      */
@@ -47,14 +55,7 @@ class Lagerlog
     {
         return $this->datum;
     }
-    public $artikelID;
-    public $bezeichnung;
-    public $anzahl;
-    public $lieferungsID;
-    public $aenderung;
-    public $datum;
-    public $alterBestand;
-    public $neuerBestand;
+
 
     /**
      * @return mixed

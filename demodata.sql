@@ -196,6 +196,10 @@ BEGIN
   IF(offeneArtikelCount = 0, UPDATE Kundenbestellung SET status = 'A' WHERE KundenbestellungsID = bestellID);
 END; //
 DELIMITER ;
-
-
-SELECT * FROM Artikelausgang;
+DELETE FROM Lagerlog WHERE Datum < STR_TO_DATE('2018-06-12 14:03:52', '%Y-%m-%d %H:%i:%s');
+;
+savepoint a;
+SELECT * FROM Lagerlog;
+commit;
+SELECT * FROM Kundenlieferung;
+DELETE FROM Kundenlieferung where KundenlieferungsID = 11;

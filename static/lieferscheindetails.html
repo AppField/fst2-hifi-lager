@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="assets/css/MUSA_panel-table.css">
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/print.css" media="print"/>
-    <link rel="icon" href="assets/img/icon_orange.png" />
+    <link rel="icon" href="assets/img/icon_orange.png"/>
 </head>
 
 <body style="background-color:#eef4f7;">
@@ -48,7 +48,7 @@
             <div class="intro">
                 <h2 class="text-center" style="font-size:58px;padding-top:30px;">Lieferschein</h2>
             </div>
-            <div class="row justify-content-center features" style="padding-top:40px;padding-bottom:100px;">
+            <div class="row justify-content-center features" style="padding-top:40px;">
                 <div class="col-md-12">
                     <form method="post">
                         <div class="form-row">
@@ -62,25 +62,27 @@
                         <hr>
                     </form>
                 </div>
-                <div class="col">
-                    <div class="col-md-6" id="Kundendaten"></div>
-
-                    <div class="panel-body">
-                        <table class="table table-striped table-bordered table-list">
-                            <thead>
-                            <tr align="center">
-                                <th class="hidden-xs">Pos</th>
-                                <th>Art-Nr</th>
-                                <th>Artikel Bezeichnung</th>
-                                <th>Menge</th>
-                            </tr>
-                            </thead>
-                            <tbody id="LieferscheinArtikelTable">
-
-                            </tbody>
-                        </table>
-                    </div>
+                <div class="col-md-6" id="Kundendaten"></div>
+                <div class="col-md-6 text-right">
+                    <p>Hifi Sound GmbH <br>
+                        Hochst&aumldtplatz 6 <br>
+                        1200 Wien</p>
                 </div>
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped table-bordered table-list">
+                    <thead>
+                    <tr align="center">
+                        <th class="hidden-xs">Pos</th>
+                        <th>Art-Nr</th>
+                        <th>Artikel Bezeichnung</th>
+                        <th>Menge</th>
+                    </tr>
+                    </thead>
+                    <tbody id="LieferscheinArtikelTable">
+
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

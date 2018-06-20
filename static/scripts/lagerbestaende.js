@@ -74,6 +74,7 @@
                         createNotifiction('Korrekturbuchung wurde erfolgreich gespeichert', true);
                     }
                     else {
+                        modal.modal('hide');
                         console.error('save failed');
                         createNotifiction(result, false);
                     }

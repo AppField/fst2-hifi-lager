@@ -592,8 +592,8 @@ JOIN Artikel ON Artikeleingang.Artikel_ArtikelID = Artikel.ArtikelID WHERE Liefe
                 $lagerstand =$row->Lagerstand;
             };
 
-            if ($bestellt >= $lagerstand) {
-                $cnt = $cnt + 1;
+            if ($bestellt > $lagerstand) {
+                    $cnt = $cnt + 1;
             }
         }
         //$this->close();

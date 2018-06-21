@@ -33,6 +33,8 @@ foreach ($kundenbestellungen as $bestellung) {
         }else{
              if ($typ == 0) {
                  $artikelVorhanden = "<i class=\"fa fa-adjust\" style='color: orange'></i>";
+             }elseif ($typ == 0 && $cnt == -1){
+                 $artikelVorhanden = "<i class=\"fa fa-times\" style='color: crimson'></i>";
              }else {
                  $artikelVorhanden = "<i class=\"fa fa-times\" style='color: crimson'></i>";
              }

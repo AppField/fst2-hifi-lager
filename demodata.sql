@@ -204,8 +204,12 @@ commit;
 SELECT * FROM Kundenlieferung;
 DELETE FROM Kundenlieferung where KundenlieferungsID = 11;
 ALTER TABLE auftragsposition ADD Primary Key (KundenbestellungsID);
-UPDATE Kundenbestellung SET gesamtlieferung = 1 WHERE KundenbestellungsID = 3;
-
+UPDATE Kundenbestellung SET Status = "O"; WHERE KundenbestellungsID = 3;
+SELECT * FROM auftragsposition;
+INSERT INTO auftragsposition (Anzahl, ArtikelID, KundenbestellungsID) VALUES (10, 30, 5);
 SELECT * FROM Kundenbestellung; ORDER BY (Abgeschlossen) ASC;
 SELECt * FROM lieferant;
 SELECT * FROM lagerlog;
+SELECT * FROM Kundenlieferung;
+DELETE FROM Kundenlieferung WHERE KundenlieferungsID = 18;
+DELETE FROM Artikelausgang WHERE KundenlieferungsID = 18;

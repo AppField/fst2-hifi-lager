@@ -17,6 +17,10 @@ header, main, .footer-dark {
     flex-shrink: 0;
 }
 
+#myTable{
+    overflow-x: scroll;
+}
+
 .pad{
     padding-top: 5px;
 }
@@ -210,4 +214,8 @@ input::-webkit-inner-spin-button {
     /* display: none; <- Crashes Chrome on hover */
     -webkit-appearance: none;
     margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+h2{
+    word-wrap:break-word;
 }

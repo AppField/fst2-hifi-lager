@@ -11,6 +11,9 @@ function mySearch() {
     filter = input.value.toLowerCase();
     table = document.getElementById("myTable");
 
+    $( "#offen" ).removeClass( "active" );
+    $( "#all" ).addClass( "active" );
+
     $( "table" ).removeClass( "table-striped" );
 
     var cnt = 0;
@@ -43,6 +46,9 @@ function filterOffen(input) {
     table = document.getElementById("myTable");
     tr = table.getElementsByTagName("tr");
 
+    $( "#all" ).removeClass( "active" );
+    $( "#offen" ).addClass( "active" );
+
     var cnt = 0;
     // Loop through all table rows, and hide those who don't match the search query
     for (i = 0; i < tr.length; i++) {
@@ -68,6 +74,10 @@ function filterOffen(input) {
 function filterOffenReturn() {
     // Declare variables
     var table, tr, td, i;
+
+    $( "#offen" ).removeClass( "active" );
+    $( "#all" ).addClass( "active" );
+
     table = document.getElementById("myTable");
     tr = table.getElementsByTagName("tr");
     var cnt = 0;

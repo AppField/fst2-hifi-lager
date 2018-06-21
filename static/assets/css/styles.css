@@ -47,6 +47,16 @@ header, main, .footer-dark {
 .last{
     border-bottom: #afb2ac solid 1px;
 }
+
+.spez{
+    background-color:rgb(220,151,112);
+    color: white;
+}
+
+.active{
+    background-color: rgb(179, 122, 92);
+    color: white;
+}
 /* END BASIC PAGE LAYOUT*/
 
 /*html, body {*/

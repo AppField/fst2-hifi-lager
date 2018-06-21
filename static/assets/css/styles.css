@@ -17,6 +17,10 @@ header, main, .footer-dark {
     flex-shrink: 0;
 }
 
+.pad{
+    padding-top: 5px;
+}
+
 .intro .text-center {
     font-size: 58px;
     padding-top: 30px;

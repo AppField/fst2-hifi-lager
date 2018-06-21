@@ -62,14 +62,32 @@
                                 <div class="panel panel-default panel-table">
                                     <div class="panel-heading">
                                         <div class="row">
-                                            <div class="col col-xs-6">
-                                                <!--<h3 class="panel-title">Bestellliste</h3>-->
-                                                <button class="btn" style="background-color:rgb(220,151,112); color: white;" onclick="filterOffenReturn();" value="Offen">Alle Bestellungen</button>
-                                                <button class="btn" style="background-color:rgb(220,151,112); color: white;" onclick="filterOffen('Offen');" value="Offen">Offene Bestellungen</button>
+                                            <div class="col col-sm-9">
+                                                    <!--<p class = "first">-->
+                                                    <table align="left">
+                                                        <tr class="legend trFirst">
+                                                            <td style="width: 15%" class="first"><i class="fa fa-check" style='color: mediumseagreen'></i></td>
+                                                            <td class="right">Alle vorhanden</td>
+                                                        </tr>
+                                                        <tr class="legend">
+                                                            <td class="first"><i class="fa fa-adjust" style='color: orange'></i></td>
+                                                            <td class="right">Teilweise vorhanden (falls Teillieferung)</td>
+                                                        </tr>
+                                                        <tr class="legend last">
+                                                            <td class="first"><i class="fa fa-times" style='color: crimson'></i></td>
+                                                            <td class="right">Nicht vorhanden</td>
+                                                        </tr>
+                                                    </table>
+
                                             </div>
-                                            <div class="col col-xs-6 text-right">
+                                            <!--<p><input type="text" class="form-control" id="myInput" onkeyup="mySearch()" placeholder="Bestellung suchen"></p>-->
+                                            <div class="col col-sm-3 text-right">
+                                                <button class="btn" style="background-color:rgb(220,151,112); color: white;" onclick="filterOffenReturn();" value="Offen">Alle</button>
+                                                <button class="btn" style="background-color:rgb(220,151,112); color: white;" onclick="filterOffen('Offen');" value="Offen">Offen</button>
+
+                                                <p class="pad"><input type="text" class="form-control" id="myInput" onkeyup="mySearch()" placeholder="Bestellung suchen"></p>
                                             </div>
-                                            <p><input type="text" class="form-control" id="myInput" onkeyup="mySearch()" placeholder="Bestellung suchen"></p>
+
                                         </div>
                                     </div>
                                     <div class="panel-body">
@@ -79,7 +97,6 @@
                                                 <th class="hidden-xs">Bestell - ID</th>
                                                 <th>Name</th>
                                                 <th>Status</th>
-                                                <th>Gesamtlieferung</th>
                                                 <th>Artikelvorhanden</th>
                                                 <th><em class="fa fa-info-circle"></em></th>
                                             </tr>

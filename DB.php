@@ -582,7 +582,10 @@ JOIN Artikel ON Artikeleingang.Artikel_ArtikelID = Artikel.ArtikelID WHERE Liefe
             $offener = new OffenerArtikel($row->ArtikelID, $row->Artikelname, $row->Offen);
             array_push($kundenartikel, $offener);
         }
-        $cnt = 0;
+
+        $teilweise = array();
+        $garnicht = array();
+
         foreach ($kundenartikel as $artikel) {
             $aid = $artikel->getID();
             $bestellt = $artikel->getAnzahl();
@@ -593,11 +596,31 @@ JOIN Artikel ON Artikeleingang.Artikel_ArtikelID = Artikel.ArtikelID WHERE Liefe
             };
 
             if ($bestellt > $lagerstand) {
-                    $cnt = $cnt + 1;
+                    if($lagerstand > 0){
+                        array_push($teilweise, $artikel);
+                    }else{
+                        array_push($garnicht, $artikel);
+                    }
+            }
+        }
+
+        $typ = $this->getKundenbestellungsLieferungsTyp($id);
+
+        if($typ == 1){  // Gesamt
+            if(sizeof($teilweise) == 0 && sizeof($garnicht) == 0){
+                return 1;
+            }
+
+        }else{
+            if(sizeof($teilweise) == 0 && sizeof($garnicht) == 0){
+                return 1;
+            }
+            if(sizeof($teilweise) != 0){
+                return 0;
             }
         }
         //$this->close();
-        return $cnt;
+        return -1;
     }
     /*    function updateLagerstand($id, $lagerstand){
             //$this->doConnect();

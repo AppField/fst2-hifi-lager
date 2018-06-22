@@ -19,9 +19,9 @@ function mySearch() {
     for (i = 0; i < tr.length; i++) {
         td = tr[i].getElementsByTagName("td")[2];   // aid
         td1 = tr[i].getElementsByTagName("td")[3];  // a bezeichnung
-        td2 = tr[i].getElementsByTagName("td")[7];  // datum
-        if (td || td1 || td2) {
-            if (td.innerHTML.toLowerCase().indexOf(filter) > -1 || td1.innerHTML.toLowerCase().indexOf(filter) > -1 || td2.innerHTML.toLowerCase().indexOf(filter) > -1) {
+        //td2 = tr[i].getElementsByTagName("td")[7]; datum
+        if (td || td1) {
+            if (td.innerHTML.toLowerCase().indexOf(filter) > -1 || td1.innerHTML.toLowerCase().indexOf(filter) > -1) {
 
                 tr[i].style.display = "";
 

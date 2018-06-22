@@ -20,6 +20,13 @@ if (isset($_GET["id"])) {
     foreach ($kundenartikel as $artikel) {
 
         $id = $artikel->getID();
+
+
+        $bestelltAnz =  $db->getOffeneBestellteArtikel($id);
+        if($bestelltAnz == null){
+            $bestelltAnz = 0;
+        }
+
         $bestellt = $artikel->getAnzahl();
         $lagerstand = $db->getOffenerArtikelBestand($id);
 
@@ -34,6 +41,7 @@ if (isset($_GET["id"])) {
                     <td>" . $artikel->getBezeichnung() . "</td>
                     <td>" . $artikel->getAnzahl() . "</td>
                     <td>" . $verfuegbar ."</td>
+                    <td>" . $bestelltAnz ."</td>
                   </tr>";
     }
 }

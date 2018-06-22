@@ -7,8 +7,6 @@
 Implementierung der Fallstudie 2
 
 #### TODO:
-- .class.php refactoring
-- ER Lagerlog anpassen
 
 ### Bestelldetails Lieferungen
 Drag and Drop wurde implementiert zum Zuordnen von Artikeln zu  Lieferungen.

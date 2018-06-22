@@ -1,14 +1,19 @@
-@media print
-{
-    .no-print, .no-print *
-    {
+@media print {
+
+    h1, h2, h3, h4, h5, h6 {
+        color: black;
+    }
+
+    .intro .text-center {
+        color: black;
+    }
+
+    .no-print, .no-print * {
         display: none !important;
     }
 
-
     a[href]:after {
-        'content: none
-        display: none !important;
+    'content: none display: none !important;
 
     }
 

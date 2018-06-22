@@ -17,6 +17,14 @@ header, main, .footer-dark {
     flex-shrink: 0;
 }
 
+#myTable{
+    overflow-x: scroll;
+}
+
+.pad{
+    padding-top: 5px;
+}
+
 .intro .text-center {
     font-size: 58px;
     padding-top: 30px;
@@ -38,6 +46,16 @@ header, main, .footer-dark {
 }
 .last{
     border-bottom: #afb2ac solid 1px;
+}
+
+.spez{
+    background-color:rgb(220,151,112);
+    color: white;
+}
+
+.active{
+    background-color: rgb(191, 132, 102);
+    color: white;
 }
 /* END BASIC PAGE LAYOUT*/
 

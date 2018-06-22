@@ -19,25 +19,16 @@ foreach ($kundenbestellungen as $bestellung) {
     if($bestellung->getStatus() == 'O'){
         $status = "Offen";
 
-        $typ = $db->getKundenbestellungsLieferungsTyp($bestellung->getBestellungsID());
-
-        if($typ == null or $typ == 0){
-            $typ = "<i class=\"fa fa-times\"></i>";
-        }else{
-            $typ = "<i class=\"fa fa-check\"></i>";
-        }
 
         $cnt = $db->getCntForBestell($bestellung->getBestellungsID());
-        if($cnt == 0){
+
+        if($cnt == 1){
             $artikelVorhanden = "<i class=\"fa fa-check\" style='color: mediumseagreen'></i>";
+        }elseif($cnt == 0){
+            $artikelVorhanden = "<i class=\"fa fa-adjust\" style='color: orange'></i>";
+
         }else{
-             if ($typ == 0) {
-                 $artikelVorhanden = "<i class=\"fa fa-adjust\" style='color: orange'></i>";
-             }elseif ($typ == 0 && $cnt == -1){
-                 $artikelVorhanden = "<i class=\"fa fa-times\" style='color: crimson'></i>";
-             }else {
-                 $artikelVorhanden = "<i class=\"fa fa-times\" style='color: crimson'></i>";
-             }
+            $artikelVorhanden = "<i class=\"fa fa-times\" style='color: crimson'></i>";
         }
 
     }else{
@@ -50,7 +41,6 @@ foreach ($kundenbestellungen as $bestellung) {
                          <td class=\"hidden-xs filterDiv\">" . $bestellung->getBestellungsID() . "</td>
                             <td class=\"filterDiv\">" . $bestellung->getName() . "</td>
                             <td class=\"filterDiv " .$status."\">" . $status . "</td>
-                            <td class=\"filterDiv\">" . $typ . "</td>
                             <td class=\"filterDiv\">" . $artikelVorhanden . "</td>
                              <td class=\"filterDiv\"align='center'>
                                 <a class=\"\" href=\"kundenbestelldetails.html?id=" . $bestellung->getBestellungsID() . "&status=". $status ."\">

@@ -7,6 +7,10 @@
         );
     };
 
+    $('#printLagerbestand').on('click', () =>{
+        window.print();
+    });
+
     loadData();
 
 
@@ -110,17 +114,21 @@
 }());
 
 function mySearch() {
-    var input, filter, table, tr, td, i;
+    var input, filter, table, tr, td, i, v;
     input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
+    filter = input.value.toLowerCase();
     table = document.getElementById("myTable");
-    tr = table.getElementsByTagName("tr");
+
+    $( "table" ).removeClass( "table-striped" );
+
     var cnt = 0;
+
+    tr = table.getElementsByTagName("tr");
     for (i = 0; i < tr.length; i++) {
         td = tr[i].getElementsByTagName("td")[0];
-        if (td) {
-            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                tr[i].style.display = "";
+        td1 = tr[i].getElementsByTagName("td")[1];
+        if (td || td1) {
+            if (td.innerHTML.toLowerCase().indexOf(filter) > -1 || td1.innerHTML.toLowerCase().indexOf(filter) > -1) {
 
                 tr[i].style.display = "";
 
@@ -130,7 +138,6 @@ function mySearch() {
                     tr[i].style.background = "#E2E8EA";
                 }
                 cnt = cnt + 1;
-
             } else {
                 tr[i].style.display = "none";
             }

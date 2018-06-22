@@ -22,11 +22,6 @@ if (isset($_GET["id"])) {
         $id = $artikel->getID();
 
 
-        $bestelltAnz =  $db->getOffeneBestellteArtikel($id);
-        if($bestelltAnz == null){
-            $bestelltAnz = 0;
-        }
-
         $bestellt = $artikel->getAnzahl();
         $lagerstand = $db->getOffenerArtikelBestand($id);
 
@@ -36,13 +31,30 @@ if (isset($_GET["id"])) {
             $verfuegbar = "<i class=\"fa fa-times\" style='color: crimson'></i> (".$lagerstand.")";
         }
 
+        $bestelltAnz =  $db->getOffeneBestellteArtikel($id);
+
+        if($bestelltAnz == null){
+            $bestelltAnz = 0;
+        }
+
+
+        if($bestellt < $bestelltAnz){
+            //$informieren = "<i class=\"fa fa-check\" style='color: mediumseagreen'> (".$zuBestellen.")</i>";
+            $info = "<td>" . $bestelltAnz ."</td>";
+        }else{
+            //$informieren = "<i class=\"fa fa-times\" style='color: crimson'></i>";
+            $info = "<td style='color: crimson'>" . $bestelltAnz ."</td>";
+        }
+
+
+
         $body .= "<tr align = \"center\">
                     <td class=\"hidden-xs\">" . $artikel->getID() . "</td>
                     <td>" . $artikel->getBezeichnung() . "</td>
                     <td>" . $artikel->getAnzahl() . "</td>
-                    <td>" . $verfuegbar ."</td>
-                    <td>" . $bestelltAnz ."</td>
-                  </tr>";
+                    <td>" . $verfuegbar ."</td>"
+                    .$info.
+                  "</tr>";
     }
 }
 

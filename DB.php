@@ -302,17 +302,18 @@ class DB{
         //$this->doConnect();
         $this->dbobject->query("SET NAMES 'utf8'");
         $artikel = null;
-        $result = $this->dbobject->query("SELECT ArtikelID, Artikelname, (Bestellt-IFNULL(Eingegangen,0)) As Offen FROM (SELECT * FROM (SELECT Anzahl as Bestellt, ArtikelID 
+        $result = $this->dbobject->query("SELECT (Bestellt-IFNULL(Eingegangen,0)) As Offen FROM (SELECT * FROM (SELECT Anzahl as Bestellt, ArtikelID 
         FROM Lieferantenartikel WHERE ArtikelID = ".$id.") as Bestellung Left JOIN
         (SELECT SUM(Anzahl) as Eingegangen, Artikel_ArtikelID as ArtikelID FROM Artikeleingang 
-        JOIN Lieferantenlieferungen USING(LieferantenLieferungID) WHERE ArtikelID = ".$id." GROUP BY Artikel_ArtikelID) as Lieferung
+        JOIN Lieferantenlieferungen USING(LieferantenLieferungID) GROUP BY Artikel_ArtikelID) as Lieferung
         USING (ArtikelID)) as Results JOIN Artikel USING(ArtikelID) WHERE Eingegangen is null OR Eingegangen < Bestellt");
-        if(!$result->fetch_object()){
+
+        if(!$result){
             return null;
         }
+
         while ($row = $result->fetch_object()) {
-            $offener = new OffenerArtikel($row->ArtikelID, $row->Artikelname, $row->Offen);
-            $artikel = $offener;
+            $artikel = $row->Offen;
         }
         //$this->close();
         return $artikel;
@@ -322,7 +323,7 @@ class DB{
         //$this->doConnect();
         $this->dbobject->query("SET NAMES 'utf8'");
         $artikel = array();
-        $result = $this->dbobject->query("    SELECT ArtikelID,Artikelname , (Bestellt-IFNULL(Ausgegangen,0)) As Offen FROM (SELECT * FROM (SELECT Anzahl as Bestellt, ArtikelID
+        $result = $this->dbobject->query("SELECT ArtikelID,Artikelname , (Bestellt-IFNULL(Ausgegangen,0)) As Offen FROM (SELECT * FROM (SELECT Anzahl as Bestellt, ArtikelID
         FROM Auftragsposition WHERE KundenbestellungsID = ".$id.") as Bestellung
         LEFT JOIN
         (SELECT SUM(Anzahl) as Ausgegangen, ArtikelID

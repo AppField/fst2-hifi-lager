@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="assets/css/Header-Dark.css">
     <link rel="stylesheet" href="assets/css/MUSA_panel-table.css">
     <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/print.css">
     <link rel="icon" href="assets/img/icon_orange.png"/>
 </head>
 
@@ -45,7 +46,8 @@
                 </div>
             </nav>
             <div class="intro">
-                <h2 class="text-center" style="font-size:58px;padding-top:30px;">Lagerstände</h2>
+                <h2 class="text-center d-print-none" style="font-size:58px;padding-top:30px;">Lagerstände</h2>
+                <h2  class="text-center d-none d-print-block" style="font-size:58px;padding-top:30px;">Inventurschein</h2>
             </div>
             <div class="row justify-content-center features" style="padding-top:40px;padding-bottom:100px;">
                 <div class="col">
@@ -55,13 +57,18 @@
                     <div class="container">
                         <div class="row">
 
-
-
                             <div class="col-md-12">
 
                                 <div class="panel panel-default panel-table">
-                                    <div class="panel-heading">
+                                    <div class="panel-heading d-print-none">
                                         <div class="row">
+                                            <div class="col-xs-6" style="padding-bottom: 5px; padding-right: 0;">
+                                                <button id="printLagerbestand" class="btn btn-primary float-right m-auto no-print" type="button"
+                                                        style="background-color:rgb(220,151,112);" data-toggle="modal"
+                                                        data-target="#exampleModalCenter" >Bestand drucken
+                                                </button>
+                                            </div>
+                                            <hr>
                                             <div class="col col-xs-6">
                                                 <h3 class="panel-title"></h3>
                                             </div>
@@ -75,8 +82,9 @@
                                                 <th class="hidden-xs">Artikel - ID</th>
                                                 <th>Bezeichnung</th>
                                                 <th>Bestand</th>
-                                                <th>Korrekturbuchung<br>hinzuf&uumlgen</th>
-                                                <th>Lagerlog</th>
+                                                <th class="d-none d-print-table-cell">IST Bestand</th>
+                                                <th class="d-print-none">Korrekturbuchung<br>hinzuf&uumlgen</th>
+                                                <th class="d-print-none">Lagerlog</th>
                                             </tr>
                                             </thead>
                                             <tbody id="lagerbestaendeliste">
@@ -93,7 +101,7 @@
         </div>
     </div>
 </main>
-<div class="footer-dark">
+<div class="footer-dark d-print-none">
     <footer>
         <div class="container">
             <div class="row">

@@ -26,14 +26,15 @@ if (!empty($_GET['artikelid'])) {
                             <td class=\"hidden-xs\">" . $artikel->getArtikelID() . "</td>
                             <td>" . $artikel->getArtikelname() . "</td>
                             <td>" . $artikel->getLagerstand() . "</td>
-                            <td align=\"center\">
+                            <td class=\"d-none d-print-table-cell\"></td>
+                            <td align=\"center\" class='d-print-none'>
                               <a class=\"btn btn-default\" 
                               data-toggle=\"modal\" 
                               data-target=\"#lagerstandModal\" 
                               data-article-id=" . $artikel->getArtikelID() . "
                               data-article-name='" . $artikel->getArtikelname() . "'><em class=\"fa fa-plus\"></em></a>
                             </td>
-                            <td>
+                            <td class='d-print-none'>
                                 <button class=\"btn fa fa-book\"
                                             data-toggle=\"modal\"
                                             data-artikel-id='" .$artikel->getArtikelID()."'

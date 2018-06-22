@@ -7,6 +7,10 @@
         );
     };
 
+    $('#printLagerbestand').on('click', () =>{
+        window.print();
+    });
+
     loadData();
 
 

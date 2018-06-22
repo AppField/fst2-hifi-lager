@@ -307,6 +307,9 @@ class DB{
         (SELECT SUM(Anzahl) as Eingegangen, Artikel_ArtikelID as ArtikelID FROM Artikeleingang 
         JOIN Lieferantenlieferungen USING(LieferantenLieferungID) WHERE ArtikelID = ".$id." GROUP BY Artikel_ArtikelID) as Lieferung
         USING (ArtikelID)) as Results JOIN Artikel USING(ArtikelID) WHERE Eingegangen is null OR Eingegangen < Bestellt");
+        if(!$result->fetch_object()){
+            return null;
+        }
         while ($row = $result->fetch_object()) {
             $offener = new OffenerArtikel($row->ArtikelID, $row->Artikelname, $row->Offen);
             $artikel = $offener;

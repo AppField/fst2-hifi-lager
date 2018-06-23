@@ -302,7 +302,7 @@ class DB{
         //$this->doConnect();
         $this->dbobject->query("SET NAMES 'utf8'");
         $artikel = null;
-        $result = $this->dbobject->query("SELECT (Bestellt-IFNULL(Eingegangen,0)) As Offen FROM (SELECT * FROM (SELECT Anzahl as Bestellt, ArtikelID 
+        $result = $this->dbobject->query("SELECT SUM((Bestellt-IFNULL(Eingegangen,0))) As Offen FROM (SELECT * FROM (SELECT Anzahl as Bestellt, ArtikelID 
         FROM Lieferantenartikel WHERE ArtikelID = ".$id.") as Bestellung Left JOIN
         (SELECT SUM(Anzahl) as Eingegangen, Artikel_ArtikelID as ArtikelID FROM Artikeleingang 
         JOIN Lieferantenlieferungen USING(LieferantenLieferungID) GROUP BY Artikel_ArtikelID) as Lieferung

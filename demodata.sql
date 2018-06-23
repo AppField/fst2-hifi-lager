@@ -213,3 +213,12 @@ SELECT * FROM lagerlog;
 SELECT * FROM Kundenlieferung;
 DELETE FROM Kundenlieferung WHERE KundenlieferungsID = 18;
 DELETE FROM Artikelausgang WHERE KundenlieferungsID = 18;
+
+
+####
+SELECT * FROM (SELECT * FROM (SELECT Anzahl as Bestellt, ArtikelID 
+        FROM Lieferantenartikel WHERE ArtikelID = 16) as Bestellung Left JOIN
+        (SELECT SUM(Anzahl) as Eingegangen, Artikel_ArtikelID as ArtikelID FROM Artikeleingang 
+        JOIN Lieferantenlieferungen USING(LieferantenLieferungID) GROUP BY Artikel_ArtikelID) as Lieferung
+        USING (ArtikelID)) as Results JOIN Artikel USING(ArtikelID) WHERE Eingegangen is null OR Eingegangen < Bestellt
+

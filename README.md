@@ -7,6 +7,7 @@
 Implementierung der Fallstudie 2
 
 #### TODO:
+- Name auf Vorname und Nachname muss angepasst werden!!!!!
 
 ### Bestelldetails Lieferungen
 Drag and Drop wurde implementiert zum Zuordnen von Artikeln zu  Lieferungen.

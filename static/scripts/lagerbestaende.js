@@ -36,6 +36,7 @@
             this.modal = modal;
             this.id = $('#artikelid');
             this.name = $('#artikelname');
+            this.articleBestand = $('#bestand');
             this.form = $('#modalForm');
 
             this.saveBtn = $('#saveBtn');
@@ -48,6 +49,7 @@
             })
                 .done((data) => {
                     const artikel = JSON.parse(data);
+                    console.log(artikel);
                     this.setValues(artikel);
                 });
         }
@@ -55,6 +57,7 @@
         setValues(artikel) {
             this.id.val(artikel.artikelID);
             this.name.val(artikel.artikelname);
+            this.articleBestand.val(artikel.lagerstand)
         }
 
         saveBestand() {

@@ -230,6 +230,21 @@ sELECT SUM((Bestellt-IFNULL(Eingegangen,0))) As Offen FROM (SELECT * FROM (SELEC
         FROM Lieferantenartikel WHERE ArtikelID = 14) as Bestellung Left JOIN
         (SELECT SUM(Anzahl) as Eingegangen, Artikel_ArtikelID as ArtikelID FROM Artikeleingang 
         JOIN Lieferantenlieferungen USING(LieferantenLieferungID) GROUP BY Artikel_ArtikelID) as Lieferung
-        USING (ArtikelID)) as Results JOIN Artikel USING(ArtikelID) WHERE Eingegangen is null OR Eingegangen < Bestellt
+        USING (ArtikelID)) as Results JOIN Artikel USING(ArtikelID) WHERE Eingegangen is null OR Eingegangen < Bestellt;
 
-SELECT * FROM Lagerlog;
+SELECT "asdfftw" FROM dual;
+dbms_output =;
+DELETE FROM KUNDE WHERE KundeID = 10000;
+commit;
+drop trigger KundenName;
+INSERT INTO KUNDE (KundeID, Vorname, Nachname,Name, Mail, Telefon, Strasse) VALUES(10000, "Max", "Mustermann","asdf", "muster@mail.com", "123456789", "Musterstraße");
+CREATE TRIGGER kundenNameInsert
+BEFORE INSERT ON kunde
+FOR EACH ROW
+  SET New.Name = CONCAT(New.Vorname,New.Nachname);
+  
+
+CREATE TRIGGER kundenNameUpdate
+BEFORE UPDATE ON kunde
+FOR EACH ROW
+  SET New.Name = CONCAT(New.Vorname,New.Nachname);

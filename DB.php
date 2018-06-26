@@ -617,7 +617,7 @@ JOIN Artikel ON Artikeleingang.Artikel_ArtikelID = Artikel.ArtikelID WHERE Liefe
             };
 
             if ($bestellt > $lagerstand) {
-                    if($lagerstand > 0){
+                    if($lagerstand >= 0){
                         array_push($teilweise, $artikel);
                     }else{
                         array_push($garnicht, $artikel);

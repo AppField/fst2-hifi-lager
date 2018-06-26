@@ -236,15 +236,19 @@ SELECT "asdfftw" FROM dual;
 dbms_output =;
 DELETE FROM KUNDE WHERE KundeID = 10000;
 commit;
-drop trigger KundenName;
+drop trigger kundenNameUpdate;
 INSERT INTO KUNDE (KundeID, Vorname, Nachname,Name, Mail, Telefon, Strasse) VALUES(10000, "Max", "Mustermann","asdf", "muster@mail.com", "123456789", "Musterstraße");
 CREATE TRIGGER kundenNameInsert
 BEFORE INSERT ON kunde
 FOR EACH ROW
-  SET New.Name = CONCAT(New.Vorname,New.Nachname);
-  
-
+  SET New.Name = CONCAT(New.Vorname," ",New.Nachname);
+  commit;
+SELECT * FROM Kunde;
+savepoint a;
+rollback to a;
+UPDATE Kunde SET Vorname = "Max", Nachname = "Musterfrau" WHERE KundeID = 2;
+Update Kunde Set Name="Manfred Dauer";
 CREATE TRIGGER kundenNameUpdate
 BEFORE UPDATE ON kunde
 FOR EACH ROW
-  SET New.Name = CONCAT(New.Vorname,New.Nachname);
+  SET New.Name = CONCAT(New.Vorname," ",New.Nachname);

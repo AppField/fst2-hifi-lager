@@ -25,8 +25,8 @@ if (isset($_GET["id"])) {
         $bestellt = $artikel->getAnzahl();
         $lagerstand = $db->getOffenerArtikelBestand($id);
 
-        if($bestellt < $lagerstand){
-            $verfuegbar = "<i class=\"fa fa-check\" style='color: mediumseagreen'></i>";
+        if($bestellt <= $lagerstand){
+            $verfuegbar = "<i class=\"fa fa-check\" style='color: mediumseagreen'></i> (".$lagerstand.")";
         }else{
             $verfuegbar = "<i class=\"fa fa-times\" style='color: crimson'></i> (".$lagerstand.")";
         }

@@ -206,7 +206,8 @@ DELETE FROM Kundenlieferung where KundenlieferungsID = 11;
 ALTER TABLE auftragsposition ADD Primary Key (KundenbestellungsID);
 UPDATE Kundenbestellung SET Status = "O"; WHERE KundenbestellungsID = 3;
 SELECT * FROM auftragsposition;
-INSERT INTO auftragsposition (Anzahl, ArtikelID, KundenbestellungsID) VALUES (10, 30, 5);
+commit;
+INSERT INTO auftragsposition (Anzahl, ArtikelID, KundenbestellungsID) VALUES (14, 14, 5);
 SELECT * FROM Kundenbestellung; ORDER BY (Abgeschlossen) ASC;
 SELECt * FROM lieferant;
 SELECT * FROM lagerlog;
@@ -214,11 +215,21 @@ SELECT * FROM Kundenlieferung;
 DELETE FROM Kundenlieferung WHERE KundenlieferungsID = 18;
 DELETE FROM Artikelausgang WHERE KundenlieferungsID = 18;
 
-
+SELECT * FROM Lieferantenartikel; JOIN Lieferantenlieferungen USING(LieferantenLieferungID);
+GROUP By ArtikelID)
 ####
+SELECT SUM(Anzahl) as Bestellt, ArtikelID 
+        FROM Lieferantenartikel GROUP By ArtikelID;
 SELECT * FROM (SELECT * FROM (SELECT Anzahl as Bestellt, ArtikelID 
-        FROM Lieferantenartikel WHERE ArtikelID = 16) as Bestellung Left JOIN
+        FROM Lieferantenartikel  as Bestellung Left JOIN
+        (SELECT SUM(Anzahl) as Eingegangen, Artikel_ArtikelID as ArtikelID FROM Artikeleingang 
+        JOIN Lieferantenlieferungen USING(LieferantenLieferungID) GROUP BY Artikel_ArtikelID) as Lieferung
+        USING (ArtikelID)) as Results JOIN Artikel USING(ArtikelID)  WHERE Eingegangen is null OR Eingegangen < Bestellt GROUP By ArtikelID;
+        
+sELECT SUM((Bestellt-IFNULL(Eingegangen,0))) As Offen FROM (SELECT * FROM (SELECT Anzahl as Bestellt, ArtikelID 
+        FROM Lieferantenartikel WHERE ArtikelID = 14) as Bestellung Left JOIN
         (SELECT SUM(Anzahl) as Eingegangen, Artikel_ArtikelID as ArtikelID FROM Artikeleingang 
         JOIN Lieferantenlieferungen USING(LieferantenLieferungID) GROUP BY Artikel_ArtikelID) as Lieferung
         USING (ArtikelID)) as Results JOIN Artikel USING(ArtikelID) WHERE Eingegangen is null OR Eingegangen < Bestellt
 
+SELECT * FROM Lagerlog;

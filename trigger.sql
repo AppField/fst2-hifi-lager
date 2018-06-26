@@ -114,6 +114,19 @@ BEGIN
 END; //
 DELIMITER ;
 
+CREATE TRIGGER kundenName
+BEFORE INSERT ON kunde
+FOR EACH ROW
+  SET New.Name = CONCAT(Old.Vorname,OldNachname);
+COMMIT;
+
+
+CREATE TRIGGER kundenNameUpdate
+BEFORE UPDATE ON kunde
+FOR EACH ROW
+  SET New.Name = CONCAT(New.Vorname,New.Nachname);
+
+
 Select * from artikel;
 
   SELECT KundenbestellungsID FROM artikelausgang

@@ -22,7 +22,7 @@ if (isset($_GET["id"])) {
         $bestellt = $artikel->getAnzahl();
         $lagerstand = $db->getOffenerArtikelBestand($id);
 
-        if($bestellt < $lagerstand){
+        if($bestellt <= $lagerstand){
             $template .= '<li class="list-group-item d-flex justify-content-between align-items-center"
                 draggable="true" data-artikel-id="'.$artikel->getID().'" data-artikel-name="'.$artikel->getBezeichnung().'"
                 data-artikel-anzahl="'.$artikel->getAnzahl().'">

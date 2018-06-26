@@ -38,7 +38,7 @@ if (isset($_GET["id"])) {
         }
 
 
-        if($bestellt < $bestelltAnz){
+        if($bestellt <= $bestelltAnz){
             //$informieren = "<i class=\"fa fa-check\" style='color: mediumseagreen'> (".$zuBestellen.")</i>";
             $info = "<td>" . $bestelltAnz ."</td>";
         }else{

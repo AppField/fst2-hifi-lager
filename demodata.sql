@@ -252,3 +252,12 @@ CREATE TRIGGER kundenNameUpdate
 BEFORE UPDATE ON kunde
 FOR EACH ROW
   SET New.Name = CONCAT(New.Vorname," ",New.Nachname);
+DELeTE FROM Kundenbestellung Where KundenbestellungsId = 17;
+UPDATE Kundenbestellung SET Status = "O";
+SELECT * FROM Kundenbestellung;
+commit;
+rollback;
+DELETE FROM Lagerlog;
+DELETE FROM Artikel WHERE ArtikelID > 55;
+INSERT INTO Lagerlog(ArtikelID, Aenderung, Anzahl, Datum, LieferungsId) VALUES (93, "KE", 0, CURDATE(), 0);
+SELECT * FROM lagerlog;

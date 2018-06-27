@@ -30,7 +30,7 @@ DROP TRIGGER bestandAenderung;
 CREATE TRIGGER bestandAenderung
 AFTER INSERT ON lagerlog
 FOR EACH ROW
-  UPDATE ARTIKEL SET Lagerstand =IF(NEW.Aenderung = 'KA',Lagerstand-NEW.anzahl, Lagerstand), Lagerstand =IF(NEW.Aenderung = 'KE',Lagerstand+NEW.anzahl, Lagerstand) WHERE ArtikelID = NEW.artikelID;
+  UPDATE ARTIKEL SET Lagerstand =IF(NEW.Aenderung = 'A',Lagerstand-NEW.anzahl, Lagerstand), Lagerstand = IF(NEW.Aenderung = 'KA',Lagerstand-NEW.anzahl, Lagerstand), Lagerstand =IF(NEW.Aenderung = 'KE',Lagerstand+NEW.anzahl, Lagerstand), Lagerstand = IF(NEW.Aenderung = 'E',Lagerstand+NEW.anzahl, Lagerstand) WHERE ArtikelID = NEW.artikelID;
 COMMIT;
 
 # trigger fuer alten und neuen Lagerstand

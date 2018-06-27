@@ -224,13 +224,14 @@ SELECT * FROM (SELECT * FROM (SELECT Anzahl as Bestellt, ArtikelID
         FROM Lieferantenartikel  as Bestellung Left JOIN
         (SELECT SUM(Anzahl) as Eingegangen, Artikel_ArtikelID as ArtikelID FROM Artikeleingang 
         JOIN Lieferantenlieferungen USING(LieferantenLieferungID) GROUP BY Artikel_ArtikelID) as Lieferung
-        USING (ArtikelID)) as Results JOIN Artikel USING(ArtikelID)  WHERE Eingegangen is null OR Eingegangen < Bestellt GROUP By ArtikelID;
+        USING (ArtikelID)) as Results JOIN Artikel USING(ArtikelID)  WHERE Eingegangen is null OR Eingegangen <= Bestellt GROUP By ArtikelID;
         
-sELECT SUM((Bestellt-IFNULL(Eingegangen,0))) As Offen FROM (SELECT * FROM (SELECT Anzahl as Bestellt, ArtikelID 
-        FROM Lieferantenartikel WHERE ArtikelID = 14) as Bestellung Left JOIN
-        (SELECT SUM(Anzahl) as Eingegangen, Artikel_ArtikelID as ArtikelID FROM Artikeleingang 
-        JOIN Lieferantenlieferungen USING(LieferantenLieferungID) GROUP BY Artikel_ArtikelID) as Lieferung
-        USING (ArtikelID)) as Results JOIN Artikel USING(ArtikelID) WHERE Eingegangen is null OR Eingegangen < Bestellt;
+sELECT SUM((Bestellt-IFNULL(Eingegangen,0))) As Offen FROM (SELECT * FROM (SELECT SUM(Anzahl) as Bestellt, ArtikelID 
+        FROM Lieferantenartikel WHERE ArtikelID = 7) as Bestellung Left JOIN
+        (SELECT SUM(Anzahl) as Eingegangen, Artikel_ArtikelID as ArtikelID 
+        FROM Artikeleingang 
+        JOIN Lieferantenlieferungen USING(LieferantenLieferungID) WHERE Artikel_ArtikelID = 7 ) as Lieferung
+        USING (ArtikelID)) as Results JOIN Artikel USING(ArtikelID) WHERE Eingegangen is null OR Eingegangen <= Bestellt;
 
 SELECT "asdfftw" FROM dual;
 dbms_output =;
@@ -261,3 +262,15 @@ DELETE FROM Lagerlog;
 DELETE FROM Artikel WHERE ArtikelID > 55;
 INSERT INTO Lagerlog(ArtikelID, Aenderung, Anzahl, Datum, LieferungsId) VALUES (93, "KE", 0, CURDATE(), 0);
 SELECT * FROM lagerlog;
+show triggers;
+
+DROP TRIGGER bestandAenderung;
+CREATE TRIGGER bestandAenderung
+AFTER INSERT ON lagerlog
+FOR EACH ROW
+  UPDATE ARTIKEL SET Lagerstand =IF(NEW.Aenderung = 'A',Lagerstand-NEW.anzahl, Lagerstand), Lagerstand = IF(NEW.Aenderung = 'KA',Lagerstand-NEW.anzahl, Lagerstand), Lagerstand =IF(NEW.Aenderung = 'KE',Lagerstand+NEW.anzahl, Lagerstand), Lagerstand = IF(NEW.Aenderung = 'E',Lagerstand+NEW.anzahl, Lagerstand) WHERE ArtikelID = NEW.artikelID;
+COMMIT;
+
+SELECT sum(anzahl), ArtikelID FROM Lieferantenartikel group by ArtikelID;
+SELECT sum(anzahl), Artikel_ArtikelID FROM Artikeleingang GROUP By Artikel_ArtikelID;
+SELECT * FROM Artikeleingang;
